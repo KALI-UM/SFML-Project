@@ -6,7 +6,9 @@ namespace sf
 	class RenderWindow;
 }
 
-class ResourceManager;
+//class ResourceManager<sf::Texture>;
+//class ResourceManager<sf::Font>;
+
 class InputManager;
 class SceneManager;
 class DrawableObject;
@@ -21,7 +23,8 @@ class GameManager :
 {
 public:
 	GameManager();
-	ResourceManager* GetResourceManager() const;
+	//ResourceManager<sf::Texture>* GetTextureManager() const;
+	//ResourceManager<sf::Font>* GetFontManager() const;
 	InputManager* GetInputManager() const;
 	SceneManager* GetSceneManager() const;
 
@@ -37,5 +40,10 @@ public:
 private:
 	sf::RenderWindow* m_MainWindow;
 	std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> m_DrawQue;
+
+	//ResourceManager<sf::Texture>* const		m_RTextureManager;
+	//ResourceManager<sf::Font>* const		m_RFontManager;
+	InputManager* const						m_InputManager;
+	SceneManager* const						m_SceneManager;
 };
 

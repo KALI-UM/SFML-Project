@@ -7,6 +7,8 @@ class DAnimation :
 public:
 	DAnimation(sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed = 1.0f, bool playnow = true, bool loop = true, DrawType type = DrawType::Normal);
 	DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt, float speed = 1.0f, bool playnow = true, bool loop = true, DrawType type = DrawType::Normal);
+	DAnimation(const sf::Vector2f& position, sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed = 1.0f, bool playnow = true, bool loop = true, DrawType type = DrawType::Normal);
+	DAnimation(const sf::Vector2f& position, const std::string& filepath, const sf::Vector2u& FrameCnt, float speed = 1.0f, bool playnow = true, bool loop = true, DrawType type = DrawType::Normal);
 	DAnimation(const DAnimation& other);
 	DAnimation(DAnimation&& other);
 	virtual ~DAnimation();

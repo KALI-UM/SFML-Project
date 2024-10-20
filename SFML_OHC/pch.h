@@ -9,6 +9,7 @@
 
 #include "yaml-cpp/yaml.h"
 #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "GameManager.h"
 #include "ResourceManager.h"

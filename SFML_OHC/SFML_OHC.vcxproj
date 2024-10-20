@@ -135,7 +135,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.6.1\include;$(SolutionDir)yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -149,20 +149,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DAnimation.cpp" />
+    <ClCompile Include="DCircle.cpp" />
+    <ClCompile Include="DRectangle.cpp" />
     <ClCompile Include="DSprite.cpp" />
+    <ClCompile Include="DText.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DAnimation.h" />
+    <ClInclude Include="DCircle.h" />
     <ClInclude Include="DrawableObject.h" />
+    <ClInclude Include="DRectangle.h" />
     <ClInclude Include="DSprite.h" />
+    <ClInclude Include="DText.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />

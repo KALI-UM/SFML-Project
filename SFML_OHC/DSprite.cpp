@@ -9,25 +9,45 @@ DSprite::DSprite(sf::Texture* tex, DrawType type)
 		m_IsValid = true;
 		m_Sprite.setTexture(*tex);
 	}
-	m_Drawable = &m_Sprite;
 }
 
 DSprite::DSprite(const std::string& filepath, DrawType type)
 	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
 {
-	sf::Texture* tex = ResourceManager::GetInstance()->LoadTextureByFileName(filepath);
+	sf::Texture* tex = ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath);
 	if (tex)
 	{
 		m_IsValid = true;
 		m_Sprite.setTexture(*tex);
 	}
-	m_Drawable = &m_Sprite;
+}
+
+DSprite::DSprite(const sf::Vector2f& position, sf::Texture* tex, DrawType type)
+	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+{
+	m_Sprite.setPosition(position);
+	if (tex)
+	{
+		m_IsValid = true;
+		m_Sprite.setTexture(*tex);
+	}
+}
+
+DSprite::DSprite(const sf::Vector2f& position, const std::string& filepath, DrawType type)
+	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+{
+	m_Sprite.setPosition(position);
+	sf::Texture* tex = ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath);
+	if (tex)
+	{
+		m_IsValid = true;
+		m_Sprite.setTexture(*tex);
+	}
 }
 
 DSprite::DSprite(DrawType type)
 	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
 {
-	m_Drawable = &m_Sprite;
 }
 
 DSprite::DSprite(const DSprite& other)
@@ -55,7 +75,7 @@ void DSprite::SetTexture(sf::Texture* tex)
 
 bool DSprite::GetIsVisible() const
 {
-	return (m_Sprite.getColor().a != sf::Color::Transparent.a) || GetIsValid();
+	return (m_Sprite.getColor().a != sf::Color::Transparent.a) && GetIsValid();
 }
 
 void DSprite::SetOriginCenter()

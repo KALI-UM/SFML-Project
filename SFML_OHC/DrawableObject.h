@@ -14,6 +14,7 @@ enum class DrawType
 	Background,
 	Normal,
 	Effect,
+	Debug,
 	UI,
 };
 
@@ -25,15 +26,21 @@ protected:
 	DrawableObject(const DrawableObject& other, sf::Drawable* drawable, sf::Transformable* transform)
 		:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid) {}
 	DrawableObject(DrawableObject&& other, sf::Drawable* drawable, sf::Transformable* transform)
-		:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid) {other.m_IsValid = false;}
+		:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid) {
+		other.m_IsValid = false;
+	}
 
-	//짜다 말음
-	//virtual DrawableObject& operator=(const DrawableObject& rhs) {  }
 public:
 	virtual ~DrawableObject() {};
 
 	virtual void Update(float dt) {};
-	bool GetIsValid()const { return m_IsValid; }
+	bool GetIsValid()const {
+#ifdef NDEBUG
+		if (m_DrawType == DrawType::Debug) //디버그 상황이 아닐때 그려지지 않게 하기 위함
+			return false;
+#endif
+		return m_IsValid;
+	}
 	virtual bool GetIsVisible()const = 0;
 	virtual void SetOriginCenter() = 0;
 	sf::Drawable* GetDrawable()const { return m_Drawable; }

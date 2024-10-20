@@ -54,7 +54,7 @@ bool GameObject::GetIsValid() const
 
 bool GameObject::GetIsVisible() const
 {
-	return GetIsValid() || GetDrawable()->GetIsVisible();
+	return GetIsValid() && GetDrawable() && GetDrawable()->GetIsVisible();
 }
 
 DrawableObject* GameObject::GetDrawable()const

@@ -16,27 +16,18 @@
     <Filter Include="GameEngine">
       <UniqueIdentifier>{d2804a64-e3df-4921-b5e7-1b4cd7eb9eba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Manager">
+      <UniqueIdentifier>{e5478075-9950-4e6e-a9b8-1f0a846b229d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="SceneBase.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Test.cpp">
@@ -46,6 +37,24 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DAnimation.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DRectangle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DCircle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>GameEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>GameEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="DText.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,22 +68,10 @@
     <ClInclude Include="GameObject.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="SceneBase.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Test.h">
@@ -84,6 +81,27 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="DAnimation.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DRectangle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DCircle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>GameEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>GameEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>GameEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="DText.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

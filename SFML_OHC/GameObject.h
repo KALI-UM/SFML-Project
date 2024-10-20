@@ -26,7 +26,7 @@ private:
 	const int	m_Id;
 	bool		m_IsValid;
 
-	DrawableObject* m_Drawable;
+	DrawableObject* m_Drawable = nullptr;
 
 	static int m_GameObjectsCount;
 	static int m_IdNumber;

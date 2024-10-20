@@ -2,30 +2,38 @@
 #include "DrawableObject.h"
 
 GameManager::GameManager()
-	:m_MainWindow(nullptr)
+	:m_MainWindow(nullptr),
+	//m_RTextureManager(ResourceManager<sf::Texture>::GetInstance()),
+	//m_RFontManager(ResourceManager<sf::Font>::GetInstance()),
+	m_InputManager(InputManager::GetInstance()),
+	m_SceneManager(SceneManager::GetInstance())
 {
 }
 
-ResourceManager* GameManager::GetResourceManager() const
-{
-	return ResourceManager::GetInstance();
-}
+//ResourceManager<sf::Texture>* GameManager::GetTextureManager() const
+//{
+//	return m_RTextureManager;
+//}
+//
+//ResourceManager<sf::Font>* GameManager::GetFontManager() const
+//{
+//	return m_RFontManager;
+//}
 
 InputManager* GameManager::GetInputManager() const
 {
-	return InputManager::GetInstance();
+	return m_InputManager;
 }
 
 SceneManager* GameManager::GetSceneManager() const
 {
-	return SceneManager::GetInstance();
+	return m_SceneManager;
 }
 
 bool GameManager::Initialize(sf::RenderWindow* window)
 {
 	m_MainWindow = window;
 	bool success = true;
-	success &= GetResourceManager()->Initialize();
 	success &= GetInputManager()->Initialize();
 	success &= GetSceneManager()->Initialize();
 	return success;

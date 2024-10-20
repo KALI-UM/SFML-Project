@@ -7,6 +7,8 @@ class DSprite :
 public:
 	DSprite(sf::Texture* tex, DrawType type = DrawType::Normal);
 	DSprite(const std::string& filepath, DrawType type = DrawType::Normal);
+	DSprite(const sf::Vector2f& position, sf::Texture* tex, DrawType type = DrawType::Normal);
+	DSprite(const sf::Vector2f& position, const std::string& filepath, DrawType type = DrawType::Normal);
 	DSprite(DrawType type = DrawType::Normal);
 	DSprite(const DSprite& other);
 	DSprite(DSprite&& other);
@@ -18,7 +20,7 @@ public:
 	sf::Color GetColor() const;
 	virtual void SetColor(const sf::Color& color);
 	virtual void SetColor(int r, int g, int b, int a = 255);
-	
+
 private:
 	sf::Sprite m_Sprite;
 };

@@ -19,14 +19,42 @@ DAnimation::DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt
 	m_FrameCount(FrameCnt), m_FrameSize(), m_CurrFrame({ 0,0 }),
 	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
 {
-	sf::Texture* tex = ResourceManager::GetInstance()->LoadTextureByFileName(filepath);
+	sf::Texture* tex = ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath);
 	if (tex)
 	{
 		m_IsValid = true;
 		m_Sprite.setTexture(*tex);
 		m_FrameSize = { tex->getSize().x / m_FrameCount.x, tex->getSize().y / m_FrameCount.y };
 	}
-	m_Drawable = &m_Sprite;
+}
+
+DAnimation::DAnimation(const sf::Vector2f& position, sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
+	:DrawableObject(DataType::Animation, type, &m_Sprite, &m_Sprite),
+	m_FrameCount(FrameCnt), m_FrameSize({ tex->getSize().x / FrameCnt.x, tex->getSize().y / FrameCnt.y }), m_CurrFrame({ 0,0 }),
+	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
+{
+	m_Sprite.setPosition(position);
+	if (tex)
+	{
+		m_IsValid = true;
+		m_Sprite.setTexture(*tex);
+	}
+	m_Sprite.setTextureRect(sf::IntRect(0, 0, m_FrameSize.x, m_FrameSize.y));
+}
+
+DAnimation::DAnimation(const sf::Vector2f& position, const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
+	:DrawableObject(DataType::Animation, type, &m_Sprite, &m_Sprite),
+	m_FrameCount(FrameCnt), m_FrameSize(), m_CurrFrame({ 0,0 }),
+	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
+{
+	m_Sprite.setPosition(position);
+	sf::Texture* tex = ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath);
+	if (tex)
+	{
+		m_IsValid = true;
+		m_Sprite.setTexture(*tex);
+		m_FrameSize = { tex->getSize().x / m_FrameCount.x, tex->getSize().y / m_FrameCount.y };
+	}
 }
 
 DAnimation::DAnimation(const DAnimation& other)
@@ -78,7 +106,7 @@ void DAnimation::SetTexture(sf::Texture* tex)
 
 bool DAnimation::GetIsVisible() const
 {
-	return (m_Sprite.getColor().a != sf::Color::Transparent.a) || GetIsValid();
+	return (m_Sprite.getColor().a != sf::Color::Transparent.a)&& GetIsValid();
 }
 
 void DAnimation::SetOriginCenter()
