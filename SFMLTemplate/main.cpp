@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 
+//lib, dll연결되어있는 SFML 프로젝트
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
@@ -29,7 +30,6 @@ int main()
 		shape.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255, 150));
 		shape.setRadius(rand() % 100);
 	}
-
 
 
 	return 0;
