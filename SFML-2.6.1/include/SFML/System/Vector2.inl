@@ -159,3 +159,21 @@ inline bool operator !=(const Vector2<T>& left, const Vector2<T>& right)
 {
     return (left.x != right.x) || (left.y != right.y);
 }
+
+////////////////////////////////////////////////////////////
+//자체 제작 수정
+////////////////////////////////////////////////////////////
+template <typename T>
+inline T length(const Vector2<T>& v)
+{
+    return (sqrt(v.x*v.x+v.y*v.y));
+}
+
+
+////////////////////////////////////////////////////////////
+template <typename T>
+inline Vector2<T> nomalize(const Vector2<T>& v)
+{
+    T len = length(v);
+    return Vector2<T>(v.x/len, v.y/len);
+}
