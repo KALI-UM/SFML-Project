@@ -1,14 +1,18 @@
 #pragma once
 #include "DrawableObject.h"
 
+class DLine;
 class Line : public sf::Drawable, public sf::Transformable
 {
-	friend DLine;
+	friend class DLine;
 private:
 	Line();
 	~Line();
 	sf::VertexArray m_Vertices;
+	sf::Color m_Color;
 
+	void setColor(const sf::Color& color);
+	const sf::Color& getColor()const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

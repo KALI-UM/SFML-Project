@@ -6,6 +6,7 @@
 #include <map>
 #include <unordered_map>
 #include <queue>
+#include <cmath>
 
 #include "yaml-cpp/yaml.h"
 #include <SFML/Window.hpp>
