@@ -43,11 +43,19 @@ public:
 	}
 	virtual bool GetIsVisible()const = 0;
 	virtual void SetOriginCenter() = 0;
+
 	sf::Drawable* GetDrawable()const { return m_Drawable; }
 	sf::Transformable* Transform() { return m_Transform; }
+
 	virtual sf::Color GetColor() const = 0;
 	virtual void SetColor(const sf::Color& color) = 0;
 	virtual void SetColor(int r, int g, int b, int a = 255) = 0;
+	virtual sf::Color GetFillColor() const = 0;
+	virtual sf::Color GetOutlineColor() const = 0;
+	virtual void SetFillColor(const sf::Color& color) = 0;
+	virtual void SetFillColor(int r, int g, int b, int a = 255) = 0;
+	virtual void SetOutlineColor(const sf::Color& color) = 0;
+	virtual void SetOutlineColor(int r, int g, int b, int a = 255) = 0;
 
 	static bool TypeCompare(DrawableObject*& lhs, DrawableObject*& rhs)
 	{

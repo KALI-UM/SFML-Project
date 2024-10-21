@@ -17,9 +17,16 @@ public:
 	void SetTexture(sf::Texture* tex);
 	bool GetIsVisible()const;
 	void SetOriginCenter();
+
 	sf::Color GetColor() const;
 	virtual void SetColor(const sf::Color& color);
 	virtual void SetColor(int r, int g, int b, int a = 255);
+	virtual sf::Color GetFillColor() const;								//GetColor客 悼老						
+	virtual sf::Color GetOutlineColor() const;							//GetColor客 悼老
+	virtual void SetFillColor(const sf::Color& color);					//SetColor客 悼老
+	virtual void SetFillColor(int r, int g, int b, int a = 255);		//SetColor客 悼老
+	virtual void SetOutlineColor(const sf::Color& color);				//SetColor客 悼老
+	virtual void SetOutlineColor(int r, int g, int b, int a = 255);		//SetColor客 悼老
 
 	sf::Vector2u GetFrame() const;
 	void SetFrame(unsigned int x, unsigned int y);

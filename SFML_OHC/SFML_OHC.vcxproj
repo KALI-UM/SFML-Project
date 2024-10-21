@@ -150,7 +150,9 @@
   <ItemGroup>
     <ClCompile Include="DAnimation.cpp" />
     <ClCompile Include="DCircle.cpp" />
+    <ClCompile Include="DLine.cpp" />
     <ClCompile Include="DRectangle.cpp" />
+    <ClCompile Include="DShape.cpp" />
     <ClCompile Include="DSprite.cpp" />
     <ClCompile Include="DText.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -164,8 +166,10 @@
   <ItemGroup>
     <ClInclude Include="DAnimation.h" />
     <ClInclude Include="DCircle.h" />
+    <ClInclude Include="DLine.h" />
     <ClInclude Include="DrawableObject.h" />
     <ClInclude Include="DRectangle.h" />
+    <ClInclude Include="DShape.h" />
     <ClInclude Include="DSprite.h" />
     <ClInclude Include="DText.h" />
     <ClInclude Include="GameManager.h" />

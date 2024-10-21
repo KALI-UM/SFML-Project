@@ -22,23 +22,19 @@ public:
 	{
 		if (m_Resources.find(filepath) == m_Resources.end())
 		{
-			T* newRes = new T();
-			bool success = newRes->loadFromFile(filepath);
-			if (success)
-			{
-				m_Resources[filepath] = newRes;
-			}
-			else
-			{
-				delete newRes;
-			}
-			return success;
+			T* newRes = GetByFilepath(filepath);
+			return newRes;
 		}
 		return false;
 	}
 
 	bool UnloadByFilepath(const std::string& filepath)
 	{
+		if (!IsValidPath(filepath))
+		{
+			return false;
+		}
+
 		auto it = m_Resources.find(filepath);
 		if (it == m_Resources.end())
 		{
@@ -61,16 +57,25 @@ public:
 
 	T* GetByFilepath(const std::string& filepath) //실패시 nullptr반환
 	{
+		if (!IsValidPath(filepath))
+		{
+			return nullptr;
+		}
+
 		auto it = m_Resources.find(filepath);
 		if (it == m_Resources.end())
 		{
 			T* newRes = new T();
+			std::cout << "RESOURCE LOADING::\"" << filepath << "\"		...	";
 			if (newRes->loadFromFile(filepath))
 			{
+				std::cout << "Success\n";
+				m_Resources[filepath] = newRes;
 				return newRes;
 			}
 			else
 			{
+				std::cout << "Fail\n";
 				delete newRes;
 				return nullptr;
 			}
@@ -79,6 +84,16 @@ public:
 		{
 			return it->second;
 		}
+	}
+
+	bool IsValidPath(const std::string& filepath)
+	{
+		if (filepath.compare("") == 0)
+		{
+			std::cout << "RESOURCE Filepath::\"" << filepath << "\"is not vaild\n";
+			return false;
+		}
+		return true;
 	}
 };
 

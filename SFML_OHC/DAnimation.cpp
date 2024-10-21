@@ -129,6 +129,36 @@ void DAnimation::SetColor(int r, int g, int b, int a)
 	SetColor(sf::Color(r, g, b, a));
 }
 
+sf::Color DAnimation::GetFillColor() const
+{
+	return GetColor();
+}
+
+sf::Color DAnimation::GetOutlineColor() const
+{
+	return GetColor();
+}
+
+void DAnimation::SetFillColor(const sf::Color& color)
+{
+	SetColor(color);
+}
+
+void DAnimation::SetFillColor(int r, int g, int b, int a)
+{
+	SetFillColor(sf::Color(r, g, b, a));
+}
+
+void DAnimation::SetOutlineColor(const sf::Color& color)
+{
+	SetColor(color);
+}
+
+void DAnimation::SetOutlineColor(int r, int g, int b, int a)
+{
+	SetOutlineColor(sf::Color(r, g, b, a));
+}
+
 sf::Vector2u DAnimation::GetFrame() const
 {
 	return m_CurrFrame;

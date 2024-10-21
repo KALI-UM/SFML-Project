@@ -1,34 +1,47 @@
 #include "pch.h"
 #include "DCircle.h"
 
-DCircle::DCircle(float radius, const sf::Color& line, float thick, const sf::Color& fill, DrawType type)
-	:DrawableObject(DataType::Shape, type, &m_Shape, &m_Shape)
+#include "pch.h"
+#include "DCircle.h"
+
+DCircle::DCircle(const sf::Vector2f& position, float radius, const sf::Color& line, float thick, const sf::Color& fill, int pointcnt, DrawType type)
+	:DShape(&m_Circle, line, thick, fill, type)
 {
-	m_Shape.setRadius(radius);
-	m_Shape.setOutlineColor(line);
-	m_Shape.setOutlineThickness(thick);
-	m_Shape.setFillColor(fill);
-	m_IsValid = true;
+	m_Circle.setPosition(position);
+	SetPointCount(pointcnt);
+	SetRadius(radius);
+	SetOutlineColor(line);
+	SetOutlineThickness(thick);
+	SetFillColor(fill);
 }
 
-DCircle::DCircle(const sf::Vector2f& position, float radius, const sf::Color& line, float thick, const sf::Color& fill, DrawType type)
-	:DrawableObject(DataType::Shape, type, &m_Shape, &m_Shape)
+DCircle::DCircle(const sf::Vector2f& position, float radius, sf::Texture* tex, int pointcnt, DrawType type)
+	:DShape(&m_Circle, tex, type)
 {
-	m_Shape.setPosition(position);
-	m_Shape.setRadius(radius);
-	m_Shape.setOutlineColor(line);
-	m_Shape.setOutlineThickness(thick);
-	m_Shape.setFillColor(fill);
-	m_IsValid = true;
+	m_Circle.setPosition(position);
+	SetPointCount(pointcnt);
+	SetRadius(radius);
+	if (tex)
+	{
+		m_IsValid = true;
+	}
+}
+
+DCircle::DCircle(const sf::Vector2f& position, float radius, const std::string& filepath, int pointcnt, DrawType type)
+	:DShape(&m_Circle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath), type)
+{
+	m_Circle.setPosition(position);
+	m_Circle.setPointCount(pointcnt);
+	m_Circle.setRadius(radius);
 }
 
 DCircle::DCircle(const DCircle& other)
-	:DrawableObject(other, &m_Shape, &m_Shape)
+	:DShape(other)
 {
 }
 
 DCircle::DCircle(DCircle&& other)
-	:DrawableObject(other, &m_Shape, &m_Shape)
+	:DShape(other)
 {
 }
 
@@ -36,57 +49,14 @@ DCircle::~DCircle()
 {
 }
 
-bool DCircle::GetIsVisible() const
+void DCircle::SetRadius(float r)
 {
-	return (m_Shape.getFillColor().a != sf::Color::Transparent.a) && (m_Shape.getOutlineColor().a != sf::Color::Transparent.a)&&GetIsValid();
+	m_Circle.setRadius(r);
 }
 
-void DCircle::SetOriginCenter()
+void DCircle::SetPointCount(int cnt)
 {
-	m_Shape.setOrigin(m_Shape.getRadius(), m_Shape.getRadius());
+	m_Circle.setPointCount(cnt);
 }
 
-sf::Color DCircle::GetColor() const
-{
-	return m_Shape.getFillColor();
-}
 
-void DCircle::SetColor(const sf::Color& color)
-{
-	SetFillColor(color);
-}
-
-void DCircle::SetColor(int r, int g, int b, int a)
-{
-	SetFillColor(sf::Color(r, g, b, a));
-}
-
-sf::Color DCircle::GetFillColor() const
-{
-	return m_Shape.getFillColor();
-}
-
-sf::Color DCircle::GetOutlineColor() const
-{
-	return m_Shape.getOutlineColor();
-}
-
-void DCircle::SetFillColor(const sf::Color& color)
-{
-	m_Shape.setFillColor(color);
-}
-
-void DCircle::SetFillColor(int r, int g, int b, int a)
-{
-	SetFillColor(sf::Color(r, g, b, a));
-}
-
-void DCircle::SetOutlineColor(const sf::Color& color)
-{
-	m_Shape.setOutlineColor(color);
-}
-
-void DCircle::SetOutlineColor(int r, int g, int b, int a)
-{
-	SetOutlineColor(sf::Color(r, g, b, a));
-}

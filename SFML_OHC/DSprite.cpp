@@ -98,3 +98,32 @@ void DSprite::SetColor(int r, int g, int b, int a)
 	SetColor(sf::Color(r, g, b, a));
 }
 
+sf::Color DSprite::GetFillColor() const
+{
+	return GetColor();
+}
+
+sf::Color DSprite::GetOutlineColor() const
+{
+	return GetColor();
+}
+
+void DSprite::SetFillColor(const sf::Color& color)
+{
+	SetColor(color);
+}
+
+void DSprite::SetFillColor(int r, int g, int b, int a)
+{
+	SetFillColor(sf::Color(r, g, b, a));
+}
+
+void DSprite::SetOutlineColor(const sf::Color& color)
+{
+	SetColor(color);
+}
+
+void DSprite::SetOutlineColor(int r, int g, int b, int a)
+{
+	SetOutlineColor(sf::Color(r, g, b, a));
+}

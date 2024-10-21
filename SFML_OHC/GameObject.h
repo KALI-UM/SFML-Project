@@ -18,7 +18,6 @@ public:
 	bool GetIsVisible()const;
 
 	
-
 	DrawableObject* GetDrawable() const;
 	void SetDrawable(DrawableObject* dobj);
 
