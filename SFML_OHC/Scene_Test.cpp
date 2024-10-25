@@ -46,7 +46,9 @@ bool Scene_Test::Initialize()
 	obj5->SetDrawable(backrect);
 	DText* text = new DText(sf::Vector2f(500, 500), "resource/KOMIKAP_.ttf", "rdfssf", 50, DrawType::Debug);
 	obj6->SetDrawable(text);
-	DLine* line = new DLine(sf::Vector2f(0, 0), sf::Vector2f(5, 5), sf::Color::Green, 1, DrawType::Debug);
+	sf::Vector2f vectors[] = { {0,0}, {800,800}, {100,100} };
+DLine* line = new DLine(vectors, 3, sf::Color::Green, 1, DrawType::Debug);
+	//DLine* line = new DLine(sf::Vector2f(100,100), sf::Vector2f(0, 0), sf::Color::Green, 10, DrawType::Debug);
 	obj7->SetDrawable(line);
 
 	//m_GameObjects.push_back(obj1);
@@ -63,5 +65,8 @@ void Scene_Test::Update(float dt)
 {
 	obj2->GetDrawable()->Transform()->setPosition(InputManager::GetInstance()->GetMousePos().x, InputManager::GetInstance()->GetMousePos().y);
 	obj3->GetDrawable()->Update(dt);
-	dynamic_cast<DLine*>(obj7->GetDrawable())->SetPoint(sf::Vector2f(0, 0), { (float)InputManager::GetInstance()->GetMousePos().x,(float)InputManager::GetInstance()->GetMousePos().y });
+	//sf::Vector2f vectors[] = { {0,0}, {800,800}, { (float)InputManager::GetInstance()->GetMousePos().x,(float)InputManager::GetInstance()->GetMousePos().y } };
+	dynamic_cast<DLine*>(obj7->GetDrawable())->SetPoint(2, { (float)InputManager::GetInstance()->GetMousePos().x,(float)InputManager::GetInstance()->GetMousePos().y });
+	dynamic_cast<DLine*>(obj7->GetDrawable())->SetColor(sf::Color((float)InputManager::GetInstance()->GetMousePos().x, (float)InputManager::GetInstance()->GetMousePos().y, 255));
+	//dynamic_cast<DLine*>(obj7->GetDrawable())->SetPoint(sf::Vector2f(100,100), sf::Vector2f((float)InputManager::GetInstance()->GetMousePos().x, (float)InputManager::GetInstance()->GetMousePos().y));
 }
