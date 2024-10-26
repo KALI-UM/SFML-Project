@@ -10,8 +10,8 @@ DAnimation::DAnimation(sf::Texture* tex, const sf::Vector2u& FrameCnt, float spe
 	{
 		m_IsValid = true;
 		m_Sprite.setTexture(*tex);
+		m_Sprite.setTextureRect(sf::IntRect(0, 0, m_FrameSize.x, m_FrameSize.y));
 	}
-	m_Sprite.setTextureRect(sf::IntRect(0, 0, m_FrameSize.x, m_FrameSize.y));
 }
 
 DAnimation::DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
@@ -25,6 +25,7 @@ DAnimation::DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt
 		m_IsValid = true;
 		m_Sprite.setTexture(*tex);
 		m_FrameSize = { tex->getSize().x / m_FrameCount.x, tex->getSize().y / m_FrameCount.y };
+		m_Sprite.setTextureRect(sf::IntRect(0, 0, m_FrameSize.x, m_FrameSize.y));
 	}
 }
 
@@ -38,8 +39,8 @@ DAnimation::DAnimation(const sf::Vector2f& position, sf::Texture* tex, const sf:
 	{
 		m_IsValid = true;
 		m_Sprite.setTexture(*tex);
+		m_Sprite.setTextureRect(sf::IntRect(0, 0, m_FrameSize.x, m_FrameSize.y));
 	}
-	m_Sprite.setTextureRect(sf::IntRect(0, 0, m_FrameSize.x, m_FrameSize.y));
 }
 
 DAnimation::DAnimation(const sf::Vector2f& position, const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
@@ -104,16 +105,6 @@ void DAnimation::SetTexture(sf::Texture* tex)
 	}
 }
 
-bool DAnimation::GetIsVisible() const
-{
-	return (m_Sprite.getColor().a != sf::Color::Transparent.a)&& GetIsValid();
-}
-
-void DAnimation::SetOriginCenter()
-{
-	m_Sprite.setOrigin(m_Sprite.getLocalBounds().width / 2, m_Sprite.getLocalBounds().height / 2);
-}
-
 sf::Color DAnimation::GetColor() const
 {
 	return m_Sprite.getColor();
@@ -157,6 +148,11 @@ void DAnimation::SetOutlineColor(const sf::Color& color)
 void DAnimation::SetOutlineColor(int r, int g, int b, int a)
 {
 	SetOutlineColor(sf::Color(r, g, b, a));
+}
+
+sf::FloatRect DAnimation::GetFloatRect() const
+{
+	return m_Sprite.getGlobalBounds();
 }
 
 sf::Vector2u DAnimation::GetFrame() const

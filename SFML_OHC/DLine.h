@@ -33,8 +33,7 @@ public:
 	void SetPoint(int index, const sf::Vector2f& p);
 	void SetThickness(float thick);
 
-	bool GetIsVisible()const;
-	void SetOriginCenter();
+	sf::FloatRect GetFloatRect()const;
 	sf::Color GetColor() const;								//GetFillColor客 悼老		
 	void SetColor(const sf::Color& color);					//SetFillColor客 悼老
 	void SetColor(int r, int g, int b, int a = 255);		//SetFillColor客 悼老

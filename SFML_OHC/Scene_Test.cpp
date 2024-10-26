@@ -1,72 +1,127 @@
 #include "pch.h"
 #include "Scene_Test.h"
-#include "GameObject.h"
-#include "DSprite.h"
-#include "DAnimation.h"
-#include "DRectangle.h"
-#include "DCircle.h"
-#include "DText.h"
-#include "DLine.h"
+//#include "GameObject.h"
+//#include "DSprite.h"
+//#include "DAnimation.h"
+//#include "DRectangle.h"
+//#include "DCircle.h"
+//#include "DText.h"
+//#include "DLine.h"
+//#include "Character.h"
+//#include "Monster.h"
+//#include "Score.h"
+//#include "Background.h"
+//#include "Scene_Play1.h"
 
-Scene_Test::Scene_Test()
-{
-}
-
-Scene_Test::~Scene_Test()
-{
-}
-
-bool Scene_Test::Initialize()
-{
-	obj1 = new GameObject();
-	obj2 = new GameObject();
-	obj3 = new GameObject();
-	obj4 = new GameObject();
-	obj5 = new GameObject();
-	obj6 = new GameObject();
-	obj7 = new GameObject();
-
-	DSprite* spt1 = new DSprite("resource/ex.png");
-	DSprite* spt2 = new DSprite("resource/ex.png");
-	obj1->SetDrawable(spt1);
-	obj2->SetDrawable(spt2);
-	obj2->GetDrawable()->SetOriginCenter();
-	DAnimation* aaa = new DAnimation("resource/Warrior_TotalAni.png", sf::Vector2u(16, 7), 50.f);
-	aaa->SetFrame(0, 3);
-	obj3->SetDrawable(aaa);
-
-	obj1->GetDrawable()->SetColor(200, 0, 0);
-	DRectangle* rect = new DRectangle(sf::Vector2f(100, 100), sf::Vector2f(100, 100), sf::Color::Transparent, 2, sf::Color::Blue);
-	obj4->SetDrawable(rect);
-	std::cout << std::to_string(rect->GetColor().r) << "," << std::to_string(rect->GetColor().g) << "," << std::to_string(rect->GetColor().b) << "," << std::endl;
-	rect->SetColor(sf::Color::Red);
-	std::cout << std::to_string(rect->GetColor().r) << "," << std::to_string(rect->GetColor().g) << "," << std::to_string(rect->GetColor().b) << "," << std::endl;
-	DCircle* circle = new DCircle(sf::Vector2f(100, 100), 300, sf::Color::Yellow, 20, sf::Color::Blue);
-	DRectangle* backrect = new DRectangle(sf::Vector2f(0, 0), sf::Vector2f(1000, 1000), sf::Color::Transparent, 2, sf::Color::White, DrawType::Background);
-	obj5->SetDrawable(backrect);
-	DText* text = new DText(sf::Vector2f(500, 500), "resource/KOMIKAP_.ttf", "rdfssf", 50, DrawType::Debug);
-	obj6->SetDrawable(text);
-	sf::Vector2f vectors[] = { {0,0}, {800,800}, {100,100} };
-DLine* line = new DLine(vectors, 3, sf::Color::Green, 1, DrawType::Debug);
-	//DLine* line = new DLine(sf::Vector2f(100,100), sf::Vector2f(0, 0), sf::Color::Green, 10, DrawType::Debug);
-	obj7->SetDrawable(line);
-
-	//m_GameObjects.push_back(obj1);
-	//m_GameObjects.push_back(obj2);
-	//m_GameObjects.push_back(obj3);
-	//m_GameObjects.push_back(obj4);
-	//m_GameObjects.push_back(obj5);
-	//m_GameObjects.push_back(obj6);
-	m_GameObjects.push_back(obj7);
-	return true;
-}
-
-void Scene_Test::Update(float dt)
-{
-	obj2->GetDrawable()->Transform()->setPosition(InputManager::GetInstance()->GetMousePos().x, InputManager::GetInstance()->GetMousePos().y);
-	obj3->GetDrawable()->Update(dt);
-	//sf::Vector2f vectors[] = { {0,0}, {800,800}, { (float)InputManager::GetInstance()->GetMousePos().x,(float)InputManager::GetInstance()->GetMousePos().y } };
-	dynamic_cast<DLine*>(obj7->GetDrawable())->SetPoint(2, { (float)InputManager::GetInstance()->GetMousePos().x,(float)InputManager::GetInstance()->GetMousePos().y });
-	dynamic_cast<DLine*>(obj7->GetDrawable())->SetColor(sf::Color((float)InputManager::GetInstance()->GetMousePos().x, (float)InputManager::GetInstance()->GetMousePos().y, 255));
-	//dynamic_cast<DLine*>(obj7->GetDrawable())->SetPoint(sf::Vector2f(100,100), sf::Vector2f((float)InputManager::GetInstance()->GetMousePos().x, (float)InputManager::GetInstance()->GetMousePos().y));
-}
+//float Scene_Test::m_XPosSet[5] = { 55, 163, 271, 379, 487 };
+//float Scene_Test::m_YPos;
+//
+//float Scene_Test::m_BG_XPos;
+//float Scene_Test::m_BG_YPos = -720;
+//float Scene_Test::m_BG_YTopPos = 0;
+//float Scene_Test::m_SpeedVariable = 25;
+//
+//Scene_Test::Scene_Test()
+//	:SceneBase("Test")
+//{
+//	m_YPos = GM->GetWindow()->getSize().y / 2 - 360;
+//	m_BG_XPos = GM->GetWindow()->getSize().x / 2;
+//}
+//
+//Scene_Test::~Scene_Test()
+//{
+//}
+//
+//bool Scene_Test::Initialize()
+//{
+//	m_Background = new Background();
+//	m_Player = new Character();
+//	m_Monsters.resize(5);
+//	for (int i = 0; i < m_Monsters.size(); ++i)
+//	{
+//		m_Monsters[i] = new Monster();
+//	}
+//	m_Score = new Score();
+//	m_Player->getMonster(&m_Monsters);
+//
+//	m_GameObjects.push_back(m_Background);
+//	m_GameObjects.push_back(m_Player);
+//	for (int i = 0; i < m_Monsters.size(); i++)
+//	{
+//		m_GameObjects.push_back(m_Monsters[i]);
+//	}
+//	m_GameObjects.push_back(m_Score);
+//	return true;
+//}
+//
+//void Scene_Test::Update(float dt)
+//{
+//	if (m_ResetPoint.y > 1100)
+//	{
+//		MonsterReset();
+//	}
+//
+//	m_ResetPoint.y += m_MonsterSpeed * dt;
+//	if (m_Background->m_background1->Transform()->getPosition().y > GM->GetWindow()->getSize().y)
+//	{
+//		m_Background->Set1(m_BackgoundSpeed, { m_BG_XPos , m_BG_YTopPos }, { 1 , 1 });
+//		m_Background->Set2(m_BackgoundSpeed, { m_BG_XPos , m_BG_YPos }, { 1, 1 });
+//	}
+//
+//	if (m_Player->RectCheck() == true)
+//	{
+//		m_Player->SetStopCharacter();
+//		for (int i = 0; i < m_Monsters.size(); i++)
+//		{
+//			m_Monsters[i]->SetStopMonster();
+//		}
+//		m_Background->SetStopBackground();
+//
+//		SM->ChangeScene("GameOver");
+//	}
+//}
+//
+//void Scene_Test::Reset()
+//{
+//	m_MonsterSpeed = 200;
+//	m_BackgoundSpeed = 200;
+//	m_ResetPoint.y = m_BG_YTopPos;
+//
+//	m_SpawnPos = (Position)(rand() % 4);
+//	for (int i = 0; i < m_Monsters.size(); i++)
+//	{
+//		if (i == (int)m_SpawnPos || i == (int)m_SpawnPos + 1)
+//		{
+//			m_Monsters[i]->SetIsValid(false);
+//			m_Monsters[i]->Set(m_MonsterSpeed, { m_XPosSet[i], m_BG_YTopPos }, { 0.6f, 0.6f });
+//		}
+//		else
+//		{
+//			m_Monsters[i]->SetIsValid(true);
+//			m_Monsters[i]->Set(m_MonsterSpeed, { m_XPosSet[i], m_BG_YTopPos }, { 0.6f, 0.6f });
+//		}
+//	}
+//}
+//
+//void Scene_Test::MonsterReset()
+//{
+//	m_SpawnPos = (Position)(rand() % 4);
+//	for (int i = 0; i < m_Monsters.size(); i++)
+//	{
+//		if (i == (int)m_SpawnPos || i == (int)m_SpawnPos + 1)
+//		{
+//			std::cout << i << "번째 몬스터 안스폰\n";
+//			m_Monsters[i]->SetIsValid(false);
+//		}
+//		else
+//		{
+//			std::cout << i << "번째 몬스터 스폰\n";
+//			m_Monsters[i]->SetIsValid(true);
+//			m_Monsters[i]->Set(m_MonsterSpeed, { m_XPosSet[i], m_YPos }, { 0.6f, 0.6f });
+//		}
+//	}
+//	m_ResetPoint.y = m_YPos;
+//
+//	m_MonsterSpeed += m_SpeedVariable;
+//	m_BackgoundSpeed += m_SpeedVariable;
+//}

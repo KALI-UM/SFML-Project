@@ -17,8 +17,6 @@ public:
 	void SetFont(sf::Font* font);
 	void SetString(const std::string& text);
 
-	bool GetIsVisible()const;
-	void SetOriginCenter();
 	sf::Color GetColor() const;									//GetFillColor客 悼老
 	virtual void SetColor(const sf::Color& color);				//SetFillColor客 悼老
 	virtual void SetColor(int r, int g, int b, int a = 255);	//SetFillColor客 悼老
@@ -28,7 +26,9 @@ public:
 	void SetFillColor(int r, int g, int b, int a = 255);
 	void SetOutlineColor(const sf::Color& color);
 	void SetOutlineColor(int r, int g, int b, int a = 255);
-
+	void SetOutlineThickness(float v);
+	void SetCharacterSize(unsigned int v);
+	sf::FloatRect GetFloatRect()const;
 private:
 	sf::Text m_Text;
 };

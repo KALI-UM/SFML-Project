@@ -59,4 +59,9 @@ void DCircle::SetPointCount(int cnt)
 	m_Circle.setPointCount(cnt);
 }
 
+sf::FloatRect DCircle::GetFloatRect() const
+{
+	return m_Circle.getGlobalBounds();
+}
+
 

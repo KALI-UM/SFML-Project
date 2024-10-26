@@ -87,16 +87,6 @@ void DText::SetString(const std::string& text)
 	m_Text.setString(text);
 }
 
-bool DText::GetIsVisible() const
-{
-	return (m_Text.getFillColor().a != sf::Color::Transparent.a) && (m_Text.getOutlineColor().a != sf::Color::Transparent.a) && GetIsValid();
-}
-
-void DText::SetOriginCenter()
-{
-	m_Text.setOrigin(m_Text.getLocalBounds().width / 2, m_Text.getLocalBounds().height / 2);
-}
-
 sf::Color DText::GetColor() const
 {
 	return m_Text.getFillColor();
@@ -140,4 +130,19 @@ void DText::SetOutlineColor(const sf::Color& color)
 void DText::SetOutlineColor(int r, int g, int b, int a)
 {
 	SetOutlineColor(sf::Color(r, g, b, a));
+}
+
+void DText::SetOutlineThickness(float v)
+{
+	m_Text.setOutlineThickness(v);
+}
+
+void DText::SetCharacterSize(unsigned int v)
+{
+	m_Text.setCharacterSize(v);
+}
+
+sf::FloatRect DText::GetFloatRect() const
+{
+	return m_Text.getGlobalBounds();
 }

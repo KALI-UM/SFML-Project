@@ -12,6 +12,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+#include "Framework.h"
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "InputManager.h"

@@ -29,3 +29,4 @@ private:
 	std::bitset<sf::Mouse::ButtonCount>		m_UpMouse;
 };
 
+#define MOUSEPOS (IM->GetMousePos())

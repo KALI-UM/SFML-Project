@@ -1,5 +1,9 @@
 #include "pch.h"
 #include "DrawableObject.h"
+#include "SFML/Window.hpp"
+#include "Scene_Test.h"
+#include "Scene_Lobby.h"
+
 
 GameManager::GameManager()
 	:m_MainWindow(nullptr),
@@ -34,8 +38,15 @@ bool GameManager::Initialize(sf::RenderWindow* window)
 {
 	m_MainWindow = window;
 	bool success = true;
+	m_MainWindow->setMouseCursorVisible(false);
 	success &= GetInputManager()->Initialize();
 	success &= GetSceneManager()->Initialize();
+
+	m_Volume = 0.8f;
+
+	Scene_Lobby* lobby = new Scene_Lobby();
+	SM->PushScene(lobby);
+	SM->SetCurrentScene(lobby->GetName());
 	return success;
 }
 
@@ -46,6 +57,17 @@ void GameManager::UpdateEvent(const sf::Event& ev)
 
 void GameManager::Update(float dt)
 {
+	if (IM->GetKeyDown(sf::Keyboard::F1))
+	{
+		std::cout << "Play Mode - Debug\n";
+		m_GameMode = GameMode::Debug;
+	}
+	if (IM->GetKeyDown(sf::Keyboard::F2))
+	{
+		std::cout << "Play Mode - Normal\n";
+		m_GameMode = GameMode::Normal;
+	}
+
 	GetSceneManager()->Update(dt);
 	GetSceneManager()->PushToDrawQue();
 }
@@ -72,6 +94,21 @@ sf::RenderWindow* GameManager::GetWindow()
 void GameManager::PushDrawableObject(DrawableObject* dobj)
 {
 	m_DrawQue.push(dobj);
+}
+
+const GameMode& GameManager::GetGameMode() const
+{
+	return m_GameMode;
+}
+
+float GameManager::GetGlobalVolume() const
+{
+	return m_Volume;
+}
+
+void GameManager::SetGlobalVolume(float volume)
+{
+	m_Volume = volume;
 }
 
 bool PriorityComp::operator()(DrawableObject*& lhs, DrawableObject*& rhs)

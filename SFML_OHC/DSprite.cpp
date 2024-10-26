@@ -73,14 +73,14 @@ void DSprite::SetTexture(sf::Texture* tex)
 	}
 }
 
-bool DSprite::GetIsVisible() const
+void DSprite::SetTexture(const std::string& filepath)
 {
-	return (m_Sprite.getColor().a != sf::Color::Transparent.a) && GetIsValid();
+	SetTexture(ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath));
 }
 
-void DSprite::SetOriginCenter()
+sf::FloatRect DSprite::GetFloatRect() const
 {
-	m_Sprite.setOrigin(m_Sprite.getLocalBounds().width / 2, m_Sprite.getLocalBounds().height / 2);
+	return m_Sprite.getGlobalBounds();
 }
 
 sf::Color DSprite::GetColor() const

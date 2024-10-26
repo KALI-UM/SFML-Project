@@ -14,6 +14,7 @@ public:
 
 	void SetRadius(float r);
 	void SetPointCount(int cnt);
+	sf::FloatRect GetFloatRect()const;
 private:
 	sf::CircleShape m_Circle;
 };

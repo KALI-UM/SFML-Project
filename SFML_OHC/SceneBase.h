@@ -1,23 +1,35 @@
 #pragma once
 
 class GameObject;
-
+class SoundPlayer;
 class SceneBase
 {
 public:
-	SceneBase();
+	SceneBase(const std::string& name);
 	//SceneBase(const SceneBase& other);
 	//SceneBase(SceneBase&& other);
 	virtual ~SceneBase();
 
-	virtual bool Initialize();
-	virtual void Update(float dt);
+	bool INITIALIZE();
+	void RESET();
+	void UPDATE(float dt);
+	void EXIT();
+	void RELEASE();
 
-	virtual void SetInitialState();
 	void PushToDrawQue();
+	std::string GetName()const;
+
+	SoundPlayer* GetSoundPlayer();
 
 protected:
-	std::vector<GameObject*> m_GameObjects;
-	std::string m_Name;
+	virtual bool Initialize();
+	virtual void Reset();
+	virtual void Update(float dt);
+	virtual void Exit();
+	virtual void Release();
+
+	std::vector<GameObject*>	m_GameObjects;
+	SoundPlayer*				m_SoundPlayer;
+	const std::string			m_Name;
 };
 

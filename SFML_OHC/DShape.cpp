@@ -37,16 +37,6 @@ void DShape::SetTexture(sf::Texture* tex)
 	}
 }
 
-bool DShape::GetIsVisible() const
-{
-	return ((m_Shape->getFillColor().a != sf::Color::Transparent.a) || (m_Shape->getOutlineColor().a != sf::Color::Transparent.a)) && GetIsValid();
-}
-
-void DShape::SetOriginCenter()
-{
-	m_Shape->setOrigin(m_Shape->getLocalBounds().width / 2, m_Shape->getLocalBounds().height / 2);
-}
-
 sf::Color DShape::GetColor() const
 {
 	return m_Shape->getFillColor();
