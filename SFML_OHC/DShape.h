@@ -12,8 +12,8 @@ protected:
 	virtual ~DShape();
 public:
 	void SetTexture(sf::Texture* tex);
-	// bool GetIsVisible()const;
-	void SetOriginCenter();
+	sf::Vector2u GetTextureSize() const;
+
 	sf::Color GetColor() const;								//GetFillColor客 悼老		
 	void SetColor(const sf::Color& color);					//SetFillColor客 悼老
 	void SetColor(int r, int g, int b, int a = 255);		//SetFillColor客 悼老

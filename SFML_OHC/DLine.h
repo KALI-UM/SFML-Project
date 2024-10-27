@@ -14,7 +14,7 @@ private:
 
 	void setColor(const sf::Color& color);
 	const sf::Color& getColor()const;
-	sf::FloatRect getLocalBounds()const;
+	sf::FloatRect getGlobalBounds()const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

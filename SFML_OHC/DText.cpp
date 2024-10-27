@@ -146,3 +146,4 @@ sf::FloatRect DText::GetFloatRect() const
 {
 	return m_Text.getGlobalBounds();
 }
+

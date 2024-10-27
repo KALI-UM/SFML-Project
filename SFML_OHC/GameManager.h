@@ -51,8 +51,7 @@ private:
 	sf::RenderWindow* m_MainWindow;
 	std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> m_DrawQue;
 
-
-	//ResourceManager<sf::Texture>* const		m_RTextureManager;
+	//ResourceManager<sf::Texture>* const	m_RTextureManager;
 	//ResourceManager<sf::Font>* const		m_RFontManager;
 	InputManager* const						m_InputManager;
 	SceneManager* const						m_SceneManager;

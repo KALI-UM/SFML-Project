@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "SoundObject.h"
-#include "SFML/Audio.hpp"
 
 SoundObject::SoundObject(const std::string& filepath, float volume, SoundType type)
-	:m_IsValid(false), m_Type(type), m_DefaultVolume(volume* GM->GetGlobalVolume()), m_FadeInSpeed(-1), m_FadeOutSpeed(-1)
+	:m_IsValid(false), m_Type(type), m_DefaultVolume(volume* GM->GetGlobalVolume()), m_FadeInSpeed(-1), m_FadeOutSpeed(-1), m_FadeOutVolume(m_DefaultVolume)
 {
 	sf::SoundBuffer* soundbuff = ResourceManager<sf::SoundBuffer>::GetInstance()->GetByFilepath(filepath);
 	if (soundbuff)
@@ -16,7 +15,7 @@ SoundObject::SoundObject(const std::string& filepath, float volume, SoundType ty
 }
 
 SoundObject::SoundObject(const SoundObject& other)
-	:m_IsValid(false), m_Type(other.m_Type), m_DefaultVolume(other.m_DefaultVolume), m_FadeInSpeed(-1), m_FadeOutSpeed(-1), m_SoundDuration()
+	:m_IsValid(false), m_Type(other.m_Type), m_DefaultVolume(other.m_DefaultVolume), m_FadeInSpeed(-1), m_FadeOutSpeed(-1), m_FadeOutVolume(m_DefaultVolume), m_SoundDuration(other.m_SoundDuration)
 {
 	if (other.m_Sound.getBuffer())
 	{
@@ -27,13 +26,16 @@ SoundObject::SoundObject(const SoundObject& other)
 }
 
 SoundObject::SoundObject(SoundObject&& other)
-	:m_IsValid(other.m_IsValid), m_Type(other.m_Type), m_DefaultVolume(other.m_DefaultVolume), m_FadeOutSpeed(other.m_DefaultVolume)
+	:m_IsValid(other.m_IsValid), m_Type(other.m_Type), m_DefaultVolume(other.m_DefaultVolume), m_FadeInSpeed(other.m_FadeInSpeed), m_FadeOutSpeed(other.m_FadeOutSpeed), m_FadeOutVolume(other.m_FadeOutVolume), m_SoundDuration(other.m_SoundDuration)
 {
 	if (other.m_Sound.getBuffer())
 	{
 		m_Sound = other.m_Sound;
 	}
-	other.SetIsValid(false);
+	else
+	{
+		other.SetIsValid(false);
+	}
 }
 
 SoundObject::~SoundObject()

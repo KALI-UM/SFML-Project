@@ -21,7 +21,6 @@ bool Background_Lobby::Initialize()
 	SetDrawable(m_Background[1]);
 	SetDrawable(m_LobbyCharacter);
 	SetDrawable(m_Logo);
-	Reset();
 	return false;
 }
 
@@ -29,9 +28,11 @@ void Background_Lobby::Reset()
 {
 	m_Logo->SetOriginCenter();
 	m_Logo->Transform()->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 4);
-	m_LobbyCharacter->SetOriginCenter();
 	m_LobbyCharacter->Transform()->setScale(0.5f, 0.5f);
+	m_LobbyCharacter->SetOriginCenter();
 	m_LobbyCharacter->Transform()->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 2);
+	sf::Vector2f v1 = m_LobbyCharacter->Transform()->getOrigin();
+	sf::Vector2f v2 = m_LobbyCharacter->Transform()->getPosition();
 	m_FadeOutSpeed = -1;
 	m_CurrvColorValue = 150;
 	m_Background[0]->SetColor(m_CurrvColorValue, m_CurrvColorValue, m_CurrvColorValue);
@@ -40,13 +41,11 @@ void Background_Lobby::Reset()
 
 void Background_Lobby::Update(float dt)
 {
-	
 	if (m_FadeOutSpeed > 0)
 	{
 		m_CurrvColorValue = m_CurrvColorValue + (dt * m_FadeOutSpeed);
 		m_Background[0]->SetColor(m_CurrvColorValue, m_CurrvColorValue, m_CurrvColorValue);
 		m_Background[1]->SetColor(m_CurrvColorValue, m_CurrvColorValue, m_CurrvColorValue);
-
 
 		if (m_CurrvColorValue >= 255)
 		{

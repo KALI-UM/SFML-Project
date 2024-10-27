@@ -16,6 +16,7 @@ public:
 	void Update(float dt) override;
 	void SetTexture(sf::Texture* tex);
 
+	virtual void SetOrigin(OriginType type, const sf::Vector2f& detail = sf::Vector2f(0, 0));
 	sf::Color GetColor() const;
 	virtual void SetColor(const sf::Color& color);
 	virtual void SetColor(int r, int g, int b, int a = 255);
@@ -26,6 +27,7 @@ public:
 	virtual void SetOutlineColor(const sf::Color& color);				//SetColor客 悼老
 	virtual void SetOutlineColor(int r, int g, int b, int a = 255);		//SetColor客 悼老
 	sf::FloatRect GetFloatRect()const;
+	sf::Vector2u GetTextureSize()const;
 
 	sf::Vector2u GetFrame() const;
 	void SetFrame(unsigned int x, unsigned int y);

@@ -57,7 +57,6 @@ void SoundPlayer::PlayEffect(const std::string& filepath)
 		std::cout << "존재하지 않는 이펙트 사운드 입니다.\n";
 		return;
 	}
-	sound->second->
 	sound->second->Play();
 }
 

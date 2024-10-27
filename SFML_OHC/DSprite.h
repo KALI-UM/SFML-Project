@@ -14,9 +14,12 @@ public:
 	DSprite(DSprite&& other);
 	virtual ~DSprite();
 
+
 	void SetTexture(sf::Texture* tex);
 	void SetTexture(const std::string& filepath);
+	virtual void SetOrigin(OriginType type, const sf::Vector2f& detail = sf::Vector2f(0, 0));
 	sf::FloatRect GetFloatRect()const;
+	sf::Vector2u GetTextureSize() const;
 	sf::Color GetColor() const;
 	void SetColor(const sf::Color& color);
 	void SetColor(int r, int g, int b, int a = 255);

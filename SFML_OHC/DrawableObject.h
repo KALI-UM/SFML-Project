@@ -40,7 +40,22 @@ protected:
 public:
 	virtual ~DrawableObject() {};
 
-	virtual void Update(float dt) {};
+	static bool TypeCompare(DrawableObject*& lhs, DrawableObject*& rhs)
+	{
+		return lhs->m_DrawType > rhs->m_DrawType;
+	}
+
+	static bool YCompare(DrawableObject*& lhs, DrawableObject*& rhs)
+	{
+		return lhs->m_DrawType > rhs->m_DrawType ? true : lhs->m_DrawType == rhs->m_DrawType ? lhs->GetPriority(false) > rhs->GetPriority(false) : false;
+}
+
+	static bool XCompare(DrawableObject*& lhs, DrawableObject*& rhs)
+	{
+		return lhs->m_DrawType > rhs->m_DrawType ? true : lhs->m_DrawType == rhs->m_DrawType ? lhs->GetPriority(true) > rhs->GetPriority(true) : false;
+	}
+
+	
 	bool GetIsValid()const {
 #ifdef NDEBUG
 		if (m_DrawType == DrawType::Debug) //디버그 상황이 아닐때 그려지지 않게 하기 위함
@@ -54,6 +69,8 @@ public:
 		return m_IsValid;
 	}
 
+	virtual void Update(float dt) {};
+
 	sf::Drawable* GetDrawable()const { return m_Drawable; }
 	sf::Transformable* Transform() { return m_Transform; }
 
@@ -64,10 +81,13 @@ public:
 	void SetName(const std::string& name) { m_Name = name; }
 
 	void SetOriginCenter();
-	void SetOrigin(OriginType type, const sf::Vector2f& detail = sf::Vector2f(0, 0));
+	virtual void SetOrigin(OriginType type, const sf::Vector2f& detail = sf::Vector2f(0, 0));
 	sf::Vector2f GetPoint(int index) const; 
 
+	virtual sf::Vector2u GetTextureSize()const;
 	virtual sf::FloatRect GetFloatRect()const = 0;
+
+
 	virtual sf::Color GetColor() const = 0;
 	virtual void SetColor(const sf::Color& color) = 0;
 	virtual void SetColor(int r, int g, int b, int a = 255) = 0;
@@ -77,21 +97,6 @@ public:
 	virtual void SetFillColor(int r, int g, int b, int a = 255) = 0;
 	virtual void SetOutlineColor(const sf::Color& color) = 0;
 	virtual void SetOutlineColor(int r, int g, int b, int a = 255) = 0;
-
-	static bool TypeCompare(DrawableObject*& lhs, DrawableObject*& rhs)
-	{
-		return lhs->m_DrawType > rhs->m_DrawType;
-	}
-
-	static bool YCompare(DrawableObject*& lhs, DrawableObject*& rhs)
-	{
-		return lhs->m_DrawType > rhs->m_DrawType ? true : lhs->m_DrawType == rhs->m_DrawType ? lhs->GetPriority(false) > rhs->GetPriority(false) : false;
-	}
-
-	static bool XCompare(DrawableObject*& lhs, DrawableObject*& rhs)
-	{
-		return lhs->m_DrawType > rhs->m_DrawType ? true : lhs->m_DrawType == rhs->m_DrawType ? lhs->GetPriority(true) > rhs->GetPriority(true) : false;
-	}
 
 	const DataType m_DataType;
 	const DrawType m_DrawType;

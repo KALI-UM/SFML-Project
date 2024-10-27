@@ -78,9 +78,20 @@ void DSprite::SetTexture(const std::string& filepath)
 	SetTexture(ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath));
 }
 
+void DSprite::SetOrigin(OriginType type, const sf::Vector2f& detail)
+{
+	Transform()->setOrigin(((GetTextureSize().x / 2) * ((int)type % 3)) + detail.x,
+		((GetTextureSize().y / 2) * ((int)type / 3)) + detail.y);
+}
+
 sf::FloatRect DSprite::GetFloatRect() const
 {
 	return m_Sprite.getGlobalBounds();
+}
+
+sf::Vector2u DSprite::GetTextureSize() const
+{
+	return m_Sprite.getTexture() ? m_Sprite.getTexture()->getSize() : sf::Vector2u(0, 0);
 }
 
 sf::Color DSprite::GetColor() const

@@ -105,6 +105,12 @@ void DAnimation::SetTexture(sf::Texture* tex)
 	}
 }
 
+void DAnimation::SetOrigin(OriginType type, const sf::Vector2f& detail)
+{
+	Transform()->setOrigin(((GetTextureSize().x / 2) * ((int)type % 3)) + detail.x,
+							((GetTextureSize().y / 2) * ((int)type / 3)) + detail.y);
+}
+
 sf::Color DAnimation::GetColor() const
 {
 	return m_Sprite.getColor();
@@ -153,6 +159,11 @@ void DAnimation::SetOutlineColor(int r, int g, int b, int a)
 sf::FloatRect DAnimation::GetFloatRect() const
 {
 	return m_Sprite.getGlobalBounds();
+}
+
+sf::Vector2u DAnimation::GetTextureSize() const
+{
+	return m_Sprite.getTexture() ? m_Sprite.getTexture()->getSize() : sf::Vector2u(0, 0);
 }
 
 sf::Vector2u DAnimation::GetFrame() const

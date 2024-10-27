@@ -37,6 +37,11 @@ void DShape::SetTexture(sf::Texture* tex)
 	}
 }
 
+sf::Vector2u DShape::GetTextureSize() const
+{
+	return m_Shape->getTexture() ? m_Shape->getTexture()->getSize() : sf::Vector2u(0, 0);
+}
+
 sf::Color DShape::GetColor() const
 {
 	return m_Shape->getFillColor();

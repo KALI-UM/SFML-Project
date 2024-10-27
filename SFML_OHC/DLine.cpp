@@ -24,7 +24,7 @@ const sf::Color& Line::getColor() const
 	return m_Color;
 }
 
-sf::FloatRect Line::getLocalBounds() const
+sf::FloatRect Line::getGlobalBounds() const
 {
 	return m_Vertices.getBounds();
 }
@@ -184,7 +184,7 @@ void DLine::SetThickness(float thick)
 
 sf::FloatRect DLine::GetFloatRect() const
 {
-	return m_Line.m_Vertices.getBounds();
+	return m_Line.getGlobalBounds();
 }
 
 sf::Color DLine::GetColor() const
