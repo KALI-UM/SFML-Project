@@ -25,7 +25,7 @@ void MouseCursor::Reset()
 
 void MouseCursor::Update(float dt)
 {
-    m_Cursor->Transform()->setPosition({ (float)MOUSEPOS.x,(float)MOUSEPOS.y });
+    m_Cursor->setPosition({ (float)MOUSEPOS.x,(float)MOUSEPOS.y });
     if (IM->GetMouseDown(sf::Mouse::Left))
     {
         SM->GetSoundPlayer()->PlayEffect("sound/ButtonClick.wav");

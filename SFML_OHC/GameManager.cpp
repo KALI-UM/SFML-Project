@@ -81,6 +81,15 @@ void GameManager::Render()
 	}
 }
 
+void GameManager::Render2()
+{
+	while (!m_DrawQue2.empty())
+	{
+		m_MainWindow->draw(*m_DrawQue2.top()->GetDrawable());
+		m_DrawQue2.pop();
+	}
+}
+
 void GameManager::LateUpdate()
 {
 	GetInputManager()->Clear();
@@ -93,7 +102,14 @@ sf::RenderWindow* GameManager::GetWindow()
 
 void GameManager::PushDrawableObject(DrawableObject* dobj)
 {
-	m_DrawQue.push(dobj);
+	if (dobj->m_DrawType == DrawType::UI)
+	{
+		m_DrawQue2.push(dobj);
+	}
+	else
+	{
+		m_DrawQue.push(dobj);
+	}
 }
 
 const GameMode& GameManager::GetGameMode() const

@@ -14,6 +14,8 @@ protected:
 	Framework& operator=(const Framework& other) = delete;
 
 	sf::RenderWindow m_MainWindow;
+	sf::View			m_View;
+	sf::View			m_View2;
 
 	sf::Clock clock;
 	float m_TimeScale = 1.f;

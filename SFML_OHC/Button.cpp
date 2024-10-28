@@ -15,7 +15,7 @@ Button::~Button()
 bool Button::Initialize()
 {
 	m_ButtonSprite = new DSprite("ui/button.png", DrawType::UI);
-	m_ButtonSprite->Transform()->setScale(0.4f, 0.4f);
+	m_ButtonSprite->setScale(0.4f, 0.4f);
 	m_ButtonSprite->SetOriginCenter();
 	m_ButtonSprite->SetPriority(10);
 	SetDrawable(m_ButtonSprite);
@@ -58,8 +58,8 @@ void Button::Update(float dt)
 
 void Button::SetButtonPosition(const sf::Vector2f& pos)
 {
-	m_ButtonSprite->Transform()->setPosition(pos);
-	m_ButtonText->Transform()->setPosition(pos);
+	m_ButtonSprite->setPosition(pos);
+	m_ButtonText->setPosition(pos);
 	m_ButtonArea->SetFloatRect(m_ButtonSprite->GetFloatRect());
 }
 

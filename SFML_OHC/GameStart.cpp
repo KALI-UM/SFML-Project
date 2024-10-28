@@ -23,7 +23,7 @@ bool GameStart::Initialize()
 void GameStart::Reset()
 {
 	m_GameStart->SetOriginCenter();
-	m_GameStart->Transform()->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y - 150);
+	m_GameStart->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y - 150);
 }
 
 void GameStart::Update(float dt)

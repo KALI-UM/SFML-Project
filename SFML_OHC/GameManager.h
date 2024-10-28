@@ -39,6 +39,7 @@ public:
 	void UpdateEvent(const sf::Event& ev);
 	void Update(float dt);
 	void Render();
+	void Render2();
 	void LateUpdate();
 
 
@@ -50,6 +51,7 @@ public:
 private:
 	sf::RenderWindow* m_MainWindow;
 	std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> m_DrawQue;
+	std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> m_DrawQue2;
 
 	//ResourceManager<sf::Texture>* const	m_RTextureManager;
 	//ResourceManager<sf::Font>* const		m_RFontManager;

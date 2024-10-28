@@ -15,6 +15,7 @@ public:
 	bool GetKey(sf::Keyboard::Key key);
 
 	sf::Vector2i GetMousePos()const;			//½ºÅ©¸° ÁÂÇ¥°è ±âÁØ
+	sf::Vector2f GetMouseViewPos()const;		//ºä ÁÂÇ¥°è ±âÁØ
 	bool GetMouseDown(sf::Mouse::Button btt);
 	bool GetMouseUp(sf::Mouse::Button btt);
 	bool GetMouse(sf::Mouse::Button btt);
@@ -30,3 +31,4 @@ private:
 };
 
 #define MOUSEPOS (IM->GetMousePos())
+#define MOUSEVIEWPOS (IM->GetMouseViewPos())

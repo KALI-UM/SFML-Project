@@ -27,12 +27,12 @@ bool Background_Lobby::Initialize()
 void Background_Lobby::Reset()
 {
 	m_Logo->SetOriginCenter();
-	m_Logo->Transform()->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 4);
-	m_LobbyCharacter->Transform()->setScale(0.5f, 0.5f);
+	m_Logo->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 4);
+	m_LobbyCharacter->setScale(0.5f, 0.5f);
 	m_LobbyCharacter->SetOriginCenter();
-	m_LobbyCharacter->Transform()->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 2);
-	sf::Vector2f v1 = m_LobbyCharacter->Transform()->getOrigin();
-	sf::Vector2f v2 = m_LobbyCharacter->Transform()->getPosition();
+	m_LobbyCharacter->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 2);
+	sf::Vector2f v1 = m_LobbyCharacter->getOrigin();
+	sf::Vector2f v2 = m_LobbyCharacter->getPosition();
 	m_FadeOutSpeed = -1;
 	m_CurrvColorValue = 150;
 	m_Background[0]->SetColor(m_CurrvColorValue, m_CurrvColorValue, m_CurrvColorValue);
@@ -41,8 +41,12 @@ void Background_Lobby::Reset()
 
 void Background_Lobby::Update(float dt)
 {
+
 	if (m_FadeOutSpeed > 0)
 	{
+		//std::cout << "global " << MOUSEPOS.x << "," << MOUSEPOS.y << std::endl;
+		//std::cout << "view " << MOUSEVIEWPOS.x << "," << MOUSEVIEWPOS.y << std::endl;
+
 		m_CurrvColorValue = m_CurrvColorValue + (dt * m_FadeOutSpeed);
 		m_Background[0]->SetColor(m_CurrvColorValue, m_CurrvColorValue, m_CurrvColorValue);
 		m_Background[1]->SetColor(m_CurrvColorValue, m_CurrvColorValue, m_CurrvColorValue);
@@ -56,5 +60,5 @@ void Background_Lobby::Update(float dt)
 
 void Background_Lobby::FadeOutBackGround(float duration)
 {
-	m_FadeOutSpeed = 100/duration;
+	m_FadeOutSpeed = 100 / duration;
 }

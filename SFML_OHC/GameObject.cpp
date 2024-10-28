@@ -46,7 +46,7 @@ void GameObject::RESET()
 void GameObject::UPDATE(float dt)
 {
 	Update(dt);
-	
+
 	for (auto& drawable : m_Drawable)
 	{
 		drawable->Update(dt);
@@ -127,7 +127,7 @@ void GameObject::SetPosition(const sf::Vector2f& position)
 	m_Position = position;
 	for (DrawableObject*& dobj : m_Drawable)
 	{
-		dobj->Transform()->setPosition(position);
+		dobj->setPosition(position);
 	}
 }
 
@@ -136,16 +136,17 @@ void GameObject::SetOrigin(const sf::Vector2f& origin)
 	m_Origin = origin;
 	for (DrawableObject*& dobj : m_Drawable)
 	{
-		dobj->Transform()->setOrigin(origin);
+		dobj->setOrigin(origin);
 	}
 }
 
 void GameObject::SetScale(const sf::Vector2f& scale)
 {
 	m_Scale = scale;
-	for (DrawableObject*& dobj: m_Drawable)
+	for (DrawableObject*& dobj : m_Drawable)
 	{
-		dobj->Transform()->setScale(scale);
+		sf::Vector2f originScale = dobj->getScale();
+		dobj->setScale(scale);
 	}
 }
 
@@ -154,7 +155,7 @@ void GameObject::SetRotation(float angle)
 	m_Rotation = angle;
 	for (DrawableObject*& dobj : m_Drawable)
 	{
-		dobj->Transform()->setRotation(angle);
+		dobj->setRotation(angle);
 	}
 }
 

@@ -77,6 +77,11 @@ sf::Vector2i InputManager::GetMousePos() const
 	return sf::Mouse::getPosition(*GameManager::GetInstance()->GetWindow());
 }
 
+sf::Vector2f InputManager::GetMouseViewPos() const
+{
+	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos());
+}
+
 bool InputManager::GetMouseDown(sf::Mouse::Button btt)
 {
 	return m_DownMouse.test(btt);

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Transform.h"
 enum class DataType
 {
 	Sprite,
@@ -26,17 +26,13 @@ enum class OriginType
 	Custom
 };
 
-class DrawableObject
+class DrawableObject : public Transform
 {
 protected:
-	DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform)
-		:m_DataType(datatype), m_DrawType(drawtype), m_Drawable(drawable), m_Transform(transform), m_IsValid(false) {}
-	DrawableObject(const DrawableObject& other, sf::Drawable* drawable, sf::Transformable* transform)
-		:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid) {}
-	DrawableObject(DrawableObject&& other, sf::Drawable* drawable, sf::Transformable* transform)
-		:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid) {
-		other.m_IsValid = false;	}
-
+	DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform);
+	DrawableObject(const DrawableObject& other, sf::Drawable* drawable, sf::Transformable* transform);
+	DrawableObject(DrawableObject&& other, sf::Drawable* drawable, sf::Transformable* transform);
+	
 public:
 	virtual ~DrawableObject() {};
 
@@ -72,9 +68,9 @@ public:
 	virtual void Update(float dt) {};
 
 	sf::Drawable* GetDrawable()const { return m_Drawable; }
-	sf::Transformable* Transform() { return m_Transform; }
+	//sf::Transformable* Transform() { return m_Transform; }
 
-	float GetPriority(bool x) { return m_DrawType == DrawType::UI ? m_Priority : x ? Transform()->getPosition().x : Transform()->getPosition().y; };
+	float GetPriority(bool x) { return m_DrawType == DrawType::UI ? m_Priority : x ? getPosition().x : getPosition().y; };
 	void SetPriority(float p) { m_Priority = p; };
 
 	std::string GetName()const { return m_Name; }
@@ -86,7 +82,6 @@ public:
 
 	virtual sf::Vector2u GetTextureSize()const;
 	virtual sf::FloatRect GetFloatRect()const = 0;
-
 
 	virtual sf::Color GetColor() const = 0;
 	virtual void SetColor(const sf::Color& color) = 0;

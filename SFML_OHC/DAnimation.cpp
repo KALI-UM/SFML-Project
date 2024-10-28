@@ -107,7 +107,7 @@ void DAnimation::SetTexture(sf::Texture* tex)
 
 void DAnimation::SetOrigin(OriginType type, const sf::Vector2f& detail)
 {
-	Transform()->setOrigin(((GetTextureSize().x / 2) * ((int)type % 3)) + detail.x,
+	setOrigin(((GetTextureSize().x / 2) * ((int)type % 3)) + detail.x,
 							((GetTextureSize().y / 2) * ((int)type / 3)) + detail.y);
 }
 
