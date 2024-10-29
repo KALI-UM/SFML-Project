@@ -34,7 +34,7 @@ SceneManager* GameManager::GetSceneManager() const
 	return m_SceneManager;
 }
 
-bool GameManager::Initialize(sf::RenderWindow* window)
+bool GameManager::Initialize(sf::RenderWindow* window, int viewcnt)
 {
 	m_MainWindow = window;
 	bool success = true;
@@ -47,6 +47,12 @@ bool GameManager::Initialize(sf::RenderWindow* window)
 	Scene_Lobby* lobby = new Scene_Lobby();
 	SM->PushScene(lobby);
 	SM->SetCurrentScene(lobby->GetName());
+
+	m_Views.resize(viewcnt);
+	m_DrawQues.resize(viewcnt);
+
+	m_Views[0].reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
+	m_DebugView.reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
 	return success;
 }
 
@@ -74,19 +80,20 @@ void GameManager::Update(float dt)
 
 void GameManager::Render()
 {
-	while (!m_DrawQue.empty())
+	for (int i = 0; i < m_Views.size() - 1; i++)
 	{
-		m_MainWindow->draw(*m_DrawQue.top()->GetDrawable());
-		m_DrawQue.pop();
+		m_MainWindow->setView(m_Views[i]);
+		while (!m_DrawQues[i].empty())
+		{
+			m_MainWindow->draw(*m_DrawQues[i].top()->GetDrawable());
+			m_DrawQues[i].pop();
+		}
 	}
-}
-
-void GameManager::Render2()
-{
-	while (!m_DrawQue2.empty())
+	m_MainWindow->setView(m_DebugView);
+	while (!m_DebugDrawQue.empty())
 	{
-		m_MainWindow->draw(*m_DrawQue2.top()->GetDrawable());
-		m_DrawQue2.pop();
+		m_MainWindow->draw((sf::Drawable&)*m_DebugDrawQue.front());
+		m_DebugDrawQue.pop();
 	}
 }
 
@@ -100,16 +107,15 @@ sf::RenderWindow* GameManager::GetWindow()
 	return m_MainWindow;
 }
 
-void GameManager::PushDrawableObject(DrawableObject* dobj)
+void GameManager::PushDrawableObject(int viewindex, DrawableObject* dobj)
 {
-	if (dobj->m_DrawType == DrawType::UI)
-	{
-		m_DrawQue2.push(dobj);
-	}
-	else
-	{
-		m_DrawQue.push(dobj);
-	}
+	m_DrawQues[viewindex].push(dobj);
+}
+
+void GameManager::PushDebugDrawObject(DebugInfo* dobj)
+{
+	if (dobj)
+		m_DebugDrawQue.push(dobj);
 }
 
 const GameMode& GameManager::GetGameMode() const

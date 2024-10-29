@@ -4,10 +4,7 @@
 void Framework::Initialize(int width, int height, const std::string& name)
 {
 	m_MainWindow.create(sf::VideoMode(width, height), name);
-	//m_View.reset(sf::FloatRect(0, 0, m_MainWindow.getSize().x, m_MainWindow.getSize().y));
-	m_View.reset(sf::FloatRect(0, 0, m_MainWindow.getSize().x*2, m_MainWindow.getSize().y*2));
-	m_View2.reset(sf::FloatRect(0 , 0 , m_MainWindow.getSize().x*4 , m_MainWindow.getSize().y*4));
-	GM->Initialize(&m_MainWindow);
+	GM->Initialize(&m_MainWindow,2);
 	IM->Initialize();
 	SM->Initialize();
 }
@@ -37,10 +34,7 @@ void Framework::Do()
 		GM->Update(m_DeltaTime);
 		// µå·Î¿ì
 		m_MainWindow.clear();
-		m_MainWindow.setView(m_View);
 		GM->Render();
-		m_MainWindow.setView(m_View2);
-		GM->Render2();
 		m_MainWindow.display();
 		GM->LateUpdate();
 	}

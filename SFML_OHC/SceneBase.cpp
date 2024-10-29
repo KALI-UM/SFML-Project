@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SceneBase.h"
+#include "DrawableObject.h"
 #include "SoundPlayer.h"
 
 SceneBase::SceneBase(const std::string& name)
@@ -89,7 +90,10 @@ void SceneBase::PushToDrawQue()
 			for (int i = 0; i < gobj->GetDrawbleCount(); i++)
 			{
 				if (gobj->GetIsVisible(i))
-					GameManager::GetInstance()->PushDrawableObject(gobj->GetDrawable(i));
+				{
+					GameManager::GetInstance()->PushDrawableObject(0, gobj->GetDrawable(i));
+					GameManager::GetInstance()->PushDebugDrawObject(gobj->GetDrawable(i)->GetDebugDraw());
+				}
 			}
 		}
 	}

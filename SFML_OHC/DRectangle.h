@@ -17,7 +17,7 @@ public:
 
 	void SetSize(const sf::Vector2f& widthheight);
 	void SetFloatRect(const sf::FloatRect& frect);
-	virtual sf::FloatRect GetFloatRect()const;
+	sf::FloatRect GetFloatRect()const;
 private:
 	sf::RectangleShape m_Rectangle;
 	sf::FloatRect m_FloatRect;

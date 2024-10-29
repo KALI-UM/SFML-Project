@@ -26,15 +26,16 @@ enum class OriginType
 	Custom
 };
 
+class DebugInfo;
 class DrawableObject : public Transform
 {
 protected:
-	DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform);
+	DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform, bool debug = true);
 	DrawableObject(const DrawableObject& other, sf::Drawable* drawable, sf::Transformable* transform);
 	DrawableObject(DrawableObject&& other, sf::Drawable* drawable, sf::Transformable* transform);
 	
 public:
-	virtual ~DrawableObject() {};
+	virtual ~DrawableObject();
 
 	static bool TypeCompare(DrawableObject*& lhs, DrawableObject*& rhs)
 	{
@@ -68,7 +69,9 @@ public:
 	virtual void Update(float dt) {};
 
 	sf::Drawable* GetDrawable()const { return m_Drawable; }
-	//sf::Transformable* Transform() { return m_Transform; }
+	DebugInfo* GetDebugDraw();
+
+	void SetDebugDraw(bool debug);
 
 	float GetPriority(bool x) { return m_DrawType == DrawType::UI ? m_Priority : x ? getPosition().x : getPosition().y; };
 	void SetPriority(float p) { m_Priority = p; };
@@ -101,4 +104,6 @@ protected:
 	bool					m_IsValid;
 	std::string				m_Name;
 	float					m_Priority = 0;			//m_Priority가 클수록 나중에 그려진다.
+	DebugInfo*				m_DebugInfo;
+
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 class DrawableObject;
+class DebugInfo;
 class GameObject
 {
 public:

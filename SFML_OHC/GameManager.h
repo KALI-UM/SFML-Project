@@ -19,6 +19,7 @@ enum class GameMode
 class InputManager;
 class SceneManager;
 class DrawableObject;
+class DebugInfo;
 
 struct PriorityComp
 {
@@ -35,24 +36,26 @@ public:
 	InputManager* GetInputManager() const;
 	SceneManager* GetSceneManager() const;
 
-	bool Initialize(sf::RenderWindow* window);
+	bool Initialize(sf::RenderWindow* window, int viewcnt);
 	void UpdateEvent(const sf::Event& ev);
 	void Update(float dt);
 	void Render();
-	void Render2();
 	void LateUpdate();
 
 
 	sf::RenderWindow* GetWindow();
-	void PushDrawableObject(DrawableObject* dobj);
+	void PushDrawableObject(int viewindex, DrawableObject* dobj);
+	void PushDebugDrawObject(DebugInfo* dobj);
 	const GameMode& GetGameMode()const;
 	float GetGlobalVolume()const;
 	void SetGlobalVolume(float volume);
 private:
 	sf::RenderWindow* m_MainWindow;
-	std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> m_DrawQue;
-	std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> m_DrawQue2;
 
+	std::vector<sf::View> m_Views;
+	std::vector <std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp>> m_DrawQues;
+	sf::View				m_DebugView;
+	std::queue<DebugInfo*>	m_DebugDrawQue;
 	//ResourceManager<sf::Texture>* const	m_RTextureManager;
 	//ResourceManager<sf::Font>* const		m_RFontManager;
 	InputManager* const						m_InputManager;

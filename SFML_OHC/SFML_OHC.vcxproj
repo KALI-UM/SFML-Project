@@ -152,6 +152,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DAnimation.cpp" />
     <ClCompile Include="DCircle.cpp" />
+    <ClCompile Include="DebugInfo.cpp" />
     <ClCompile Include="DLine.cpp" />
     <ClCompile Include="DrawableObject.cpp" />
     <ClCompile Include="DRectangle.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="DAnimation.h" />
     <ClInclude Include="DCircle.h" />
+    <ClInclude Include="DebugInfo.h" />
     <ClInclude Include="DLine.h" />
     <ClInclude Include="DrawableObject.h" />
     <ClInclude Include="DRectangle.h" />
