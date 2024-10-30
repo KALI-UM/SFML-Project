@@ -30,7 +30,7 @@ class DebugInfo;
 class DrawableObject : public Transform
 {
 protected:
-	DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform, bool debug = true);
+	DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform);
 	DrawableObject(const DrawableObject& other, sf::Drawable* drawable, sf::Transformable* transform);
 	DrawableObject(DrawableObject&& other, sf::Drawable* drawable, sf::Transformable* transform);
 	
@@ -45,7 +45,7 @@ public:
 	static bool YCompare(DrawableObject*& lhs, DrawableObject*& rhs)
 	{
 		return lhs->m_DrawType > rhs->m_DrawType ? true : lhs->m_DrawType == rhs->m_DrawType ? lhs->GetPriority(false) > rhs->GetPriority(false) : false;
-}
+	}
 
 	static bool XCompare(DrawableObject*& lhs, DrawableObject*& rhs)
 	{

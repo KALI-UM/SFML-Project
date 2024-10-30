@@ -114,6 +114,9 @@
     <ClCompile Include="DebugInfo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="ColorPalette.cpp">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="DebugInfo.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorPalette.h">
+      <Filter>GameEngine\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

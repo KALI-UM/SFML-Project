@@ -34,7 +34,7 @@ SceneManager* GameManager::GetSceneManager() const
 	return m_SceneManager;
 }
 
-bool GameManager::Initialize(sf::RenderWindow* window, int viewcnt)
+bool GameManager::Initialize(sf::RenderWindow* window, unsigned int viewcnt)
 {
 	m_MainWindow = window;
 	bool success = true;
@@ -75,7 +75,7 @@ void GameManager::Update(float dt)
 	}
 
 	GetSceneManager()->Update(dt);
-	GetSceneManager()->PushToDrawQue();
+	GetSceneManager()->PreRender();
 }
 
 void GameManager::Render()
@@ -89,22 +89,32 @@ void GameManager::Render()
 			m_DrawQues[i].pop();
 		}
 	}
+#ifdef _DEBUG
 	m_MainWindow->setView(m_DebugView);
 	while (!m_DebugDrawQue.empty())
 	{
 		m_MainWindow->draw((sf::Drawable&)*m_DebugDrawQue.front());
 		m_DebugDrawQue.pop();
 	}
+#endif // _DEBUG
+	GetSceneManager()->PostRender();
 }
 
 void GameManager::LateUpdate()
 {
+	GetSceneManager()->LateUpdate();
 	GetInputManager()->Clear();
 }
 
 sf::RenderWindow* GameManager::GetWindow()
 {
 	return m_MainWindow;
+}
+
+sf::View* GameManager::GetView(int index)
+{
+	if (index >= m_Views.size())return nullptr;
+	return &m_Views[index];
 }
 
 void GameManager::PushDrawableObject(int viewindex, DrawableObject* dobj)

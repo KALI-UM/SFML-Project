@@ -11,6 +11,7 @@
 #include "yaml-cpp/yaml.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "ColorPalette.h"
 
 #include "Framework.h"
 #include "GameManager.h"

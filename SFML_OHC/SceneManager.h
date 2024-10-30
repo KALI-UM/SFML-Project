@@ -11,8 +11,10 @@ public:
 	bool Initialize();
 	void Reset();
 	void Update(float dt);
+	void LateUpdate();
 	void Release();
-	void PushToDrawQue();
+	void PreRender();
+	void PostRender();
 
 	std::string GetCurrentSceneName() const;
 	void SetCurrentScene(const std::string& name);

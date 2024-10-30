@@ -31,9 +31,19 @@ void SceneManager::Update(float dt)
 	}
 }
 
-void SceneManager::PushToDrawQue()
+void SceneManager::LateUpdate()
 {
-	m_CurrScene->PushToDrawQue();
+	m_CurrScene->LATEUPDATE();
+}
+
+void SceneManager::PreRender()
+{
+	m_CurrScene->PRERENDER();
+}
+
+void SceneManager::PostRender()
+{
+	m_CurrScene->POSTRENDER();
 }
 
 void SceneManager::Release()

@@ -3,8 +3,8 @@
 #include "DrawableObject.h"
 #include "SoundPlayer.h"
 
-SceneBase::SceneBase(const std::string& name)
-	:m_Name(name)
+SceneBase::SceneBase(const std::string& name, unsigned int layercnt, unsigned int viewIndex)
+	:m_TargetViewIndex(viewIndex), m_Name(name), m_SoundPlayer(nullptr)
 {
 }
 
@@ -27,21 +27,36 @@ bool SceneBase::INITIALIZE()
 
 void SceneBase::RESET()
 {
-	Reset();
 	for (auto& gobj : m_GameObjects)
 	{
 		gobj->RESET();
 	}
+	Reset();
+}
+
+void SceneBase::LATEUPDATE()
+{
 }
 
 void SceneBase::UPDATE(float dt)
 {
-	Update(dt);
 	for (auto& gobj : m_GameObjects)
 	{
 		if (gobj->GetIsValid())
 			gobj->UPDATE(dt);
 	}
+	Update(dt);
+}
+
+void SceneBase::PRERENDER()
+{
+	PreRender();
+	PushToDrawQue();
+}
+
+void SceneBase::POSTRENDER()
+{
+	PostRender();
 }
 
 void SceneBase::EXIT()
@@ -73,12 +88,34 @@ void SceneBase::Update(float dt)
 {
 }
 
+void SceneBase::LateUpdate()
+{
+}
+
+void SceneBase::PreRender()
+{
+}
+
+void SceneBase::PostRender()
+{
+}
+
 void SceneBase::Exit()
 {
 }
 
 void SceneBase::Release()
 {
+}
+
+std::string SceneBase::GetName() const
+{
+	return m_Name;
+}
+
+SoundPlayer* SceneBase::GetSoundPlayer()
+{
+	return m_SoundPlayer;
 }
 
 void SceneBase::PushToDrawQue()
@@ -91,20 +128,10 @@ void SceneBase::PushToDrawQue()
 			{
 				if (gobj->GetIsVisible(i))
 				{
-					GameManager::GetInstance()->PushDrawableObject(0, gobj->GetDrawable(i));
-					GameManager::GetInstance()->PushDebugDrawObject(gobj->GetDrawable(i)->GetDebugDraw());
+					GM->PushDrawableObject(m_TargetViewIndex, gobj->GetDrawable(i));
+					GM->PushDebugDrawObject(gobj->GetDrawable(i)->GetDebugDraw());
 				}
 			}
 		}
 	}
-}
-
-std::string SceneBase::GetName() const
-{
-	return m_Name;
-}
-
-SoundPlayer* SceneBase::GetSoundPlayer()
-{
-	return m_SoundPlayer;
 }

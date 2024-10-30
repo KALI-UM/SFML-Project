@@ -2,34 +2,31 @@
 #include "DrawableObject.h"
 #include "DebugInfo.h"
 
-DrawableObject::DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform, bool debug)
+DrawableObject::DrawableObject(DataType datatype, DrawType drawtype, sf::Drawable* drawable, sf::Transformable* transform)
 	:m_DataType(datatype), m_DrawType(drawtype), m_Drawable(drawable), m_Transform(transform), m_IsValid(false), m_DebugInfo(nullptr)
 {
 	Init(m_Transform);
-	if (debug)
-	{
-		m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
-	}
+#ifdef _DEBUG
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
+#endif // _DEBUG
 }
 
 DrawableObject::DrawableObject(const DrawableObject& other, sf::Drawable* drawable, sf::Transformable* transform)
 	:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid), m_DebugInfo(nullptr)
 {
 	Init(other, m_Transform);
-	if (other.m_DebugInfo)
-	{
-		m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
-	}
+#ifdef _DEBUG
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
+#endif // _DEBUG
 }
 
 DrawableObject::DrawableObject(DrawableObject&& other, sf::Drawable* drawable, sf::Transformable* transform)
 	:m_DataType(other.m_DataType), m_DrawType(other.m_DrawType), m_Drawable(drawable), m_Transform(transform), m_IsValid(other.m_IsValid), m_DebugInfo(nullptr)
 {
 	Init(other, m_Transform);
-	if (other.m_DebugInfo)
-	{
-		m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
-	}
+#ifdef _DEBUG
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
+#endif // _DEBUG
 	other.m_IsValid = false;
 }
 
@@ -40,8 +37,7 @@ DrawableObject::~DrawableObject()
 
 DebugInfo* DrawableObject::GetDebugDraw()
 {
-	if (m_DebugInfo)
-		m_DebugInfo->Update(GetFloatRect());
+	m_DebugInfo->Update(GetFloatRect());
 	return m_DebugInfo;
 }
 

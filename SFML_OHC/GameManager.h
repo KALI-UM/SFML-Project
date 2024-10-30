@@ -36,7 +36,7 @@ public:
 	InputManager* GetInputManager() const;
 	SceneManager* GetSceneManager() const;
 
-	bool Initialize(sf::RenderWindow* window, int viewcnt);
+	bool Initialize(sf::RenderWindow* window, unsigned int viewcnt);
 	void UpdateEvent(const sf::Event& ev);
 	void Update(float dt);
 	void Render();
@@ -44,6 +44,7 @@ public:
 
 
 	sf::RenderWindow* GetWindow();
+	sf::View* GetView(int index);
 	void PushDrawableObject(int viewindex, DrawableObject* dobj);
 	void PushDebugDrawObject(DebugInfo* dobj);
 	const GameMode& GetGameMode()const;
