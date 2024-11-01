@@ -8,6 +8,8 @@
 #include <queue>
 #include <cmath>
 
+#include "MathHelper.hpp"
+
 #include "yaml-cpp/yaml.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>

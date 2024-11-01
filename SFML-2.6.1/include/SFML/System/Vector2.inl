@@ -162,29 +162,49 @@ inline bool operator !=(const Vector2<T>& left, const Vector2<T>& right)
 
 ////////////////////////////////////////////////////////////
 //자체 제작 수정
+// 
 ////////////////////////////////////////////////////////////
+//캐스팅
+//template <typename T, typename U>
+//inline Vector2<T>(const Vector2<U>& v)
+//{
+//	return Vector2<T>(static_cast<T>(v.x), static_cast<T>(v.y));
+//}
+////////////////////////////////////////////////////////////
+//길이
 template <typename T>
 inline T length(const Vector2<T>& v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y));
 }
-
-
 ////////////////////////////////////////////////////////////
+//거리
+template <typename T>
+inline T distance(const Vector2<T>& left, const Vector2<T>& right)
+{
+	return Vector2<T>(left.x-right.x, left.y-right.y).length();
+}
+////////////////////////////////////////////////////////////
+//정규화
 template <typename T>
 inline Vector2<T> nomalize(const Vector2<T>& v)
 {
 	T len = length(v);
 	return Vector2<T>(v.x / len, v.y / len);
 }
-
-//template <typename T>
-//inline Vector2<T> clamp(const Vector2<T>& v, const Vector2<T>& min, const Vector2<T>& max)
+////////////////////////////////////////////////////////////
+//clamp
+template <typename T>
+inline Vector2<T> clamp(const Vector2<T>& v, const Vector2<T>& min, const Vector2<T>& max)
+{
+	return Vector2<T>(clamp(v.x, min.x, max.y), clamp(v.y, min.y,max.y));
+}
+////////////////////////////////////////////////////////////
+//보간
+//template<typename T>
+//inline Vector2<T> lerp(const Vector<T>& left, const Vector<T>& right, float ratio)
 //{
-//	T x, y;
-//	x = v.x < min.x ? min.x : v.x;
-//	x = v.x > max.x ? max.x : v.x;
-//	y = v.y < min.y ? min.y : v.y;
-//	y = v.y > max.y ? max.y : v.y;
-//	return Vector2<T>(x, y);
+//	float x = (float)left.x * (1.0f - ratio) + (float)right.x * ratio;
+//	float y = (float)left.y * (1.0f - ratio) + (float)right.y * ratio);
+//	return Vector2<T>((T)x, (T)y);
 //}

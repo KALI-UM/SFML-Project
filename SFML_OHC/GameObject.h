@@ -34,6 +34,7 @@ protected:
 private:
 	const int	m_Id;
 	bool		m_IsValid;
+	bool		m_IsMovable;
 
 	std::vector<DrawableObject*> m_Drawable;
 	sf::Vector2f	m_Position;

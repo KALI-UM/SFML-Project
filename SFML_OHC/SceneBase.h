@@ -36,8 +36,6 @@ protected:
 	virtual void Release();
 	
 	void PushToDrawQue();
-	void Set
-
 
 	unsigned int				m_TargetViewIndex;
 	std::vector<GameObject*>	m_GameObjects;

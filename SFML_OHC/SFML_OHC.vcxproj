@@ -203,6 +203,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStart.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MathHelper.hpp" />
     <ClInclude Include="MouseCursor.h" />
     <ClInclude Include="MusicObject.h" />
     <ClInclude Include="pch.h" />
