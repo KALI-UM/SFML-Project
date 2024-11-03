@@ -37,6 +37,7 @@ DrawableObject::~DrawableObject()
 
 DebugInfo* DrawableObject::GetDebugDraw()
 {
+	if(m_DebugInfo)
 	m_DebugInfo->Update(GetFloatRect());
 	return m_DebugInfo;
 }

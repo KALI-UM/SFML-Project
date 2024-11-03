@@ -21,15 +21,21 @@ public:
 	bool GetIsOveraying()const;
 	bool GetIsClicked()const;
 
+	void SetOverlayFunc(std::function<void()> func);
+	void SetClickedFunc(std::function<void()> func);
+
 private:
 
 	bool m_IsOverlaying;
 	bool m_IsClicked;
+
+	std::function<void()> m_WhenOverlay;
+	std::function<void()> m_WhenClicked;
 
 	DRectangle* m_ButtonArea;
 	DSprite*	m_ButtonSprite;
 	DText*		m_ButtonText;
 
 	sf::Color	m_DefaultColor;
-	sf::Color	m_OverayColor;
+	sf::Color	m_OverlayColor;
 };

@@ -46,13 +46,21 @@ void Button::Update(float dt)
 
 	if (m_IsOverlaying)
 	{
-		m_ButtonSprite->SetColor(m_OverayColor);
+		m_ButtonSprite->SetColor(m_OverlayColor);
 		m_ButtonArea->SetOutlineColor(sf::Color::Red);
+		if (m_WhenOverlay)
+			m_WhenOverlay();
 	}
 	else
 	{
 		m_ButtonSprite->SetColor(m_DefaultColor);
 		m_ButtonArea->SetOutlineColor(sf::Color::Blue);
+	}
+
+	if (m_IsClicked)
+	{
+		if (m_WhenClicked)
+			m_WhenClicked();
 	}
 }
 
@@ -72,7 +80,7 @@ void Button::SetButtonText(const std::string& text)
 void Button::SetButtonColor(const sf::Color& on, const sf::Color& off)
 {
 	m_DefaultColor = off;
-	m_OverayColor = on;
+	m_OverlayColor = on;
 }
 
 bool Button::GetIsOveraying() const
@@ -83,4 +91,14 @@ bool Button::GetIsOveraying() const
 bool Button::GetIsClicked() const
 {
 	return m_IsClicked;
+}
+
+void Button::SetOverlayFunc(std::function<void()> func)
+{
+	m_WhenOverlay = func;
+}
+
+void Button::SetClickedFunc(std::function<void()> func)
+{
+	m_WhenClicked = func;
 }

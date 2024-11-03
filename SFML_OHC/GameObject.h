@@ -1,9 +1,12 @@
 #pragma once
 
 class DrawableObject;
+class SceneBase;
 class DebugInfo;
 class GameObject
 {
+public:
+	const int	m_Id;
 public:
 	GameObject();
 	GameObject(const GameObject& other);
@@ -18,12 +21,14 @@ public:
 
 	void SetIsValid(bool value);
 	bool GetIsValid()const;
-	bool GetIsVisible(size_t index = 0)const;
+	bool GetIsVisible()const;
+	bool GetIsVisible(size_t index)const;
 
 	DrawableObject* GetDrawable(size_t index = 0) const;
 	DrawableObject* GetDrawable(const std::string& name) const;
 	void SetDrawable(DrawableObject* dobj);
-	int GetDrawbleCount()const;
+	int GetDrawbleCount()const { return (int)m_Drawable.size(); }
+	bool GetIsMovable() const { return m_IsMovable; }
 
 protected:
 	virtual bool Initialize();
@@ -32,9 +37,9 @@ protected:
 	virtual void Release();
 
 private:
-	const int	m_Id;
-	bool		m_IsValid;
-	bool		m_IsMovable;
+	bool			m_IsValid;
+	const bool		m_IsMovable;
+
 
 	std::vector<DrawableObject*> m_Drawable;
 	sf::Vector2f	m_Position;
@@ -43,6 +48,7 @@ private:
 	float			m_Rotation;
 
 public:
+
 	void SetPosition(const sf::Vector2f& position);
 	void SetOrigin(const sf::Vector2f& origin);
 	void SetScale(const sf::Vector2f& scale);

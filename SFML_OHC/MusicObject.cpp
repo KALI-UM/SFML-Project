@@ -22,13 +22,11 @@ void MusicObject::Play(bool fadeIn, float duration, float startvolume)
 	{
 		if (fadeIn)
 		{
-			if (startvolume < 0.1f)startvolume = 0.1f;
-			m_FadeInSpeed = (m_Music.getVolume() - startvolume) / duration;
+			SetFadeInSpeed(duration, startvolume);
+			m_Music.setVolume(startvolume);
 		}
-		m_Music.setVolume(startvolume);
 		m_Music.play();
 	}
-
 }
 
 void MusicObject::Pause(bool fadeOut, float duration, float endvolume)
@@ -39,7 +37,16 @@ void MusicObject::Pause(bool fadeOut, float duration, float endvolume)
 void MusicObject::Stop(bool fadeOut, float duration, float endvolume)
 {
 	if (GetIsPlaying())
-		m_Music.stop();
+	{
+		if (fadeOut)
+		{
+			SetFadeOutSpeed(duration, endvolume);
+		}
+		else
+		{
+			m_Music.stop();
+		}
+	}
 }
 
 void MusicObject::SetLoop(bool loop)
@@ -68,9 +75,9 @@ void MusicObject::Update(float dt)
 	if (m_FadeOutSpeed > 0)
 	{
 		float currv = m_Music.getVolume() - dt * m_FadeOutSpeed;
-		if (currv < m_FadeOutVolume)
+		if (currv < m_FadeOutVolume || currv < 0.1f)
 		{
-			Stop();
+			m_Music.stop();
 			m_Music.setVolume(m_DefaultVolume);
 			m_FadeOutSpeed = -1;
 		}

@@ -31,13 +31,13 @@ struct AxisInfo
 	}
 };
 
-
 class InputManager :
 	public Singleton<InputManager>
 {
 public:
 	bool Initialize();
-	void Update(const sf::Event& ev);
+	void UpdateEvent(const sf::Event& ev);
+	void Update(float dt);
 	void Clear();
 
 	bool GetKeyDown(sf::Keyboard::Key key);
@@ -45,7 +45,7 @@ public:
 	bool GetKey(sf::Keyboard::Key key);
 
 	sf::Vector2i GetMousePos()const;			//½ºÅ©¸° ÁÂÇ¥°è ±âÁØ
-	sf::Vector2f GetMouseViewPos()const;		//ºä ÁÂÇ¥°è ±âÁØ
+	sf::Vector2f GetMouseDefaultViewPos()const;		//ºä ÁÂÇ¥°è ±âÁØ
 	bool GetMouseDown(sf::Mouse::Button btt);
 	bool GetMouseUp(sf::Mouse::Button btt);
 	bool GetMouse(sf::Mouse::Button btt);
@@ -56,13 +56,10 @@ private:
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_HeldKey;
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_DownKey;
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_UpKey;
-
 	//std::bitset<sf::Mouse::ButtonCount>		m_HeldMouse;
 	//std::bitset<sf::Mouse::ButtonCount>		m_DownMouse;
 	//std::bitset<sf::Mouse::ButtonCount>		m_UpMouse;
-
 	std::vector<AxisInfo>							m_Axis;
 };
 
-#define MOUSEPOS (IM->GetMousePos())
-#define MOUSEVIEWPOS (IM->GetMouseViewPos())
+#define MOUSEPOS (IM->GetMouseDefaultViewPos())

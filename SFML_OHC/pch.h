@@ -7,6 +7,8 @@
 #include <unordered_map>
 #include <queue>
 #include <cmath>
+#include <algorithm>
+#include <functional>
 
 #include "MathHelper.hpp"
 

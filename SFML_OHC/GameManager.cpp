@@ -34,11 +34,11 @@ SceneManager* GameManager::GetSceneManager() const
 	return m_SceneManager;
 }
 
-bool GameManager::Initialize(sf::RenderWindow* window, unsigned int viewcnt)
+bool GameManager::Initialize(sf::RenderWindow* window)
 {
 	m_MainWindow = window;
 	bool success = true;
-	m_MainWindow->setMouseCursorVisible(false);
+	//m_MainWindow->setMouseCursorVisible(false);
 	success &= GetInputManager()->Initialize();
 	success &= GetSceneManager()->Initialize();
 
@@ -47,18 +47,13 @@ bool GameManager::Initialize(sf::RenderWindow* window, unsigned int viewcnt)
 	Scene_Lobby* lobby = new Scene_Lobby();
 	SM->PushScene(lobby);
 	SM->SetCurrentScene(lobby->GetName());
-
-	m_Views.resize(viewcnt);
-	m_DrawQues.resize(viewcnt);
-
-	m_Views[0].reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
-	m_DebugView.reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
+	lobby->ENTER();
 	return success;
 }
 
 void GameManager::UpdateEvent(const sf::Event& ev)
 {
-	GetInputManager()->Update(ev);
+	GetInputManager()->UpdateEvent(ev);
 }
 
 void GameManager::Update(float dt)
@@ -80,23 +75,25 @@ void GameManager::Update(float dt)
 
 void GameManager::Render()
 {
-	for (int i = 0; i < m_Views.size() - 1; i++)
+	for (int i = 0; i < m_Views.size(); i++)
 	{
-		m_MainWindow->setView(m_Views[i]);
-		while (!m_DrawQues[i].empty())
+		m_MainWindow->setView(m_Views[i].view);
+		auto& currDrawQue = m_Views[i].drawQue;
+		while (!currDrawQue.empty())
 		{
-			m_MainWindow->draw(*m_DrawQues[i].top()->GetDrawable());
-			m_DrawQues[i].pop();
+			m_MainWindow->draw(*currDrawQue.top()->GetDrawable());
+			currDrawQue.pop();
 		}
-	}
 #ifdef _DEBUG
-	m_MainWindow->setView(m_DebugView);
-	while (!m_DebugDrawQue.empty())
-	{
-		m_MainWindow->draw((sf::Drawable&)*m_DebugDrawQue.front());
-		m_DebugDrawQue.pop();
-	}
+		m_MainWindow->setView(m_DebugViews[i].view);
+		auto& currDebugDrawQue = m_DebugViews[i].drawQue;
+		while (!currDebugDrawQue.empty())
+		{
+			m_MainWindow->draw((sf::Drawable&)*currDebugDrawQue.front());
+			currDebugDrawQue.pop();
+		}
 #endif // _DEBUG
+	}
 	GetSceneManager()->PostRender();
 }
 
@@ -111,21 +108,56 @@ sf::RenderWindow* GameManager::GetWindow()
 	return m_MainWindow;
 }
 
-sf::View* GameManager::GetView(int index)
+void GameManager::ResizeViews(unsigned int cnt)
 {
-	if (index >= m_Views.size())return nullptr;
-	return &m_Views[index];
+	m_Views.resize(cnt);
+	m_Views[0].view.reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
+#ifdef _DEBUG
+	m_DebugViews.resize(cnt);
+	m_DebugViews[0].view.reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
+#endif // _DEBUG
+}
+
+void GameManager::SetViewSize(int index, const sf::FloatRect& rect)
+{
+	m_Views[index].view.reset(rect);
+#ifdef _DEBUG
+	m_DebugViews[index].view.reset(rect);
+#endif // _DEBUG
+}
+
+void GameManager::SetViewportSize(int index, const sf::FloatRect& rect)
+{
+	m_Views[index].view.setViewport(rect);
+#ifdef _DEBUG
+	m_DebugViews[index].view.setViewport(rect);
+#endif // _DEBUG
+}
+
+void GameManager::SetViewportCenter(int index, const sf::Vector2f& pos)
+{
+	m_Views[index].view.setCenter(pos);
+#ifdef _DEBUG
+	m_DebugViews[index].view.setCenter(pos);
+#endif // _DEBUG
+}
+
+void GameManager::MoveViewport(int index, const sf::Vector2f& offset)
+{
+	m_Views[index].view.move(offset);
+#ifdef _DEBUG
+	m_DebugViews[index].view.move(offset);
+#endif // _DEBUG
 }
 
 void GameManager::PushDrawableObject(int viewindex, DrawableObject* dobj)
 {
-	m_DrawQues[viewindex].push(dobj);
+	m_Views[viewindex].drawQue.push(dobj);
 }
 
-void GameManager::PushDebugDrawObject(DebugInfo* dobj)
+void GameManager::PushDebugDrawObject(int viewindex, DebugInfo* dobj)
 {
-	if (dobj)
-		m_DebugDrawQue.push(dobj);
+	m_DebugViews[viewindex].drawQue.push(dobj);
 }
 
 const GameMode& GameManager::GetGameMode() const

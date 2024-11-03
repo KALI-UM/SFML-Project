@@ -7,19 +7,19 @@ int GameObject::m_GameObjectsCount = 1;
 int GameObject::m_IdNumber = 0;
 
 GameObject::GameObject()
-	:m_Id(m_IdNumber++), m_IsValid(true)
+	:m_Id(m_IdNumber++), m_IsValid(true), m_IsMovable(true)
 {
 	m_GameObjectsCount++;
 }
 
 GameObject::GameObject(const GameObject& other)
-	:m_Id(m_IdNumber++), m_IsValid(other.m_IsValid)
+	:m_Id(m_IdNumber++), m_IsValid(other.m_IsValid), m_IsMovable(other.m_IsMovable)
 {
 	m_GameObjectsCount++;
 }
 
 GameObject::GameObject(GameObject&& other)noexcept
-	:m_Id(other.m_Id), m_IsValid(other.m_IsValid), m_Drawable(other.m_Drawable)
+	:m_Id(other.m_Id), m_IsValid(other.m_IsValid), m_Drawable(other.m_Drawable),m_IsMovable(other.m_IsMovable)
 {
 	//¹Ì¿Ï
 	other.m_Drawable.clear();
@@ -90,6 +90,11 @@ bool GameObject::GetIsValid() const
 	return m_IsValid;
 }
 
+bool GameObject::GetIsVisible() const
+{
+	return GetIsValid() && GetDrawbleCount()!=0;
+}
+
 bool GameObject::GetIsVisible(size_t index) const
 {
 	//return GetIsValid() && GetDrawable(index) && GetDrawable(index)->GetIsVisible();
@@ -115,11 +120,6 @@ DrawableObject* GameObject::GetDrawable(const std::string& name) const
 void GameObject::SetDrawable(DrawableObject* dobj)
 {
 	m_Drawable.push_back(dobj);
-}
-
-int GameObject::GetDrawbleCount() const
-{
-	return (int)m_Drawable.size();
 }
 
 void GameObject::SetPosition(const sf::Vector2f& position)

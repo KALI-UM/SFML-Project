@@ -4,6 +4,7 @@ class Background_Lobby;
 class SoundPlayer;
 class DustEffect;
 class GameStart;
+class Button;
 class Scene_Lobby :
     public SceneBase
 {
@@ -14,6 +15,7 @@ public:
 protected:
 	bool Initialize() override;
 	void Reset() override;
+	void Enter() override;
 	void Update(float dt) override;
 	void Release() override;
 
@@ -21,9 +23,8 @@ protected:
 private:
 	Background_Lobby* m_LobbyImage;
 	std::vector< DustEffect*> m_Effects;
-
 	GameStart*		m_GameStart;
-	bool			m_Start = false;
+	Button*			m_Button;
 	float			m_FadeSpeed;
 };
 

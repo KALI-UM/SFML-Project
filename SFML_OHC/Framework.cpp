@@ -4,7 +4,7 @@
 void Framework::Initialize(int width, int height, const std::string& name)
 {
 	m_MainWindow.create(sf::VideoMode(width, height), name);
-	GM->Initialize(&m_MainWindow,2);
+	GM->Initialize(&m_MainWindow);
 	IM->Initialize();
 	SM->Initialize();
 }
@@ -27,7 +27,7 @@ void Framework::Do()
 			if (event.type == sf::Event::Closed)
 				m_MainWindow.close();
 
-			IM->Update(event);
+			IM->UpdateEvent(event);
 		}
 
 		// 업데이트

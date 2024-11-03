@@ -7,7 +7,6 @@ class SceneManager :
 	public Singleton <SceneManager>
 {
 public:
-
 	bool Initialize();
 	void Reset();
 	void Update(float dt);
@@ -18,6 +17,7 @@ public:
 
 	std::string GetCurrentSceneName() const;
 	void SetCurrentScene(const std::string& name);
+	SceneBase* GetCurrentScene();
 	bool ChangeScene(const std::string& name);
 	void PushScene(SceneBase* scene);
 	SoundPlayer* GetSoundPlayer();

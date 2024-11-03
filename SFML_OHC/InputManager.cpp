@@ -21,7 +21,7 @@ bool InputManager::Initialize()
 	return true;
 }
 
-void InputManager::Update(const sf::Event& ev)
+void InputManager::UpdateEvent(const sf::Event& ev)
 {
 	switch (ev.type)
 	{
@@ -59,11 +59,15 @@ void InputManager::Update(const sf::Event& ev)
 	}
 }
 
+void InputManager::Update(float dt)
+{
+
+}
+
 void InputManager::Clear()
 {
 	m_DownKey.reset();
 	m_UpKey.reset();
-
 	//m_DownMouse.reset();
 	//m_UpMouse.reset();
 }
@@ -88,7 +92,7 @@ sf::Vector2i InputManager::GetMousePos() const
 	return sf::Mouse::getPosition(*GameManager::GetInstance()->GetWindow());
 }
 
-sf::Vector2f InputManager::GetMouseViewPos() const
+sf::Vector2f InputManager::GetMouseDefaultViewPos() const
 {
 	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos());
 }
@@ -115,7 +119,7 @@ float InputManager::GetAxis(Axis axis) const
 
 float InputManager::GetAxisRaw(Axis axis) const
 {
-
+	m_Axis[(int)axis].m_Value;
 
 	return 0.0f;
 }

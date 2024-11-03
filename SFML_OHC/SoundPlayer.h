@@ -7,12 +7,13 @@ namespace sf
 }
 
 class SoundObject;
+class MusicObject;
 class SoundPlayer :
-    public GameObject
+	public GameObject
 {
 public:
 	SoundPlayer();
-	~SoundPlayer();  
+	~SoundPlayer();
 
 	bool Initialize() override;
 	void Reset()override;
@@ -21,12 +22,12 @@ public:
 
 	void StopAllSound();
 	void PlayEffect(const std::string& filepath);
-	void PlayBGM(const std::string& filepath);
+	void PlayBGM(const std::string& filepath, bool fadeIn = false, float durtaion = 0, float startVolume = 0);
 	void StopBGM(const std::string& filepath);
 
-	//void EffectFadeOut(const std::string& filepath, float duration);
-	void FadeOutBGM(const std::string& filepath, float duration);
+	void FadeOutBGM(const std::string& filepath, float duration, float endVolume = 0);
+	//void FadeInBGM(const std::string& filepath, float duration, float startVolume = 0);
 private:
 	std::unordered_map<std::string, SoundObject*> m_Effects;
-	std::unordered_map<std::string, SoundObject*> m_BGMs;
+	std::unordered_map<std::string, MusicObject*> m_BGMs;
 };

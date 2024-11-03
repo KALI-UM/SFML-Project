@@ -23,6 +23,7 @@ void SceneManager::Update(float dt)
 		SetCurrentScene(m_WantsTo);
 		m_CurrSoundPlayer = m_CurrScene->GetSoundPlayer();
 		m_WantsTo = nullptr;
+		m_CurrScene->ENTER();
 		m_CurrScene->RESET();
 	}
 	else
@@ -64,6 +65,11 @@ void SceneManager::SetCurrentScene(const std::string& name)
 	m_CurrSceneName = name;
 	m_CurrScene = m_Scenes[m_CurrSceneName];
 	m_CurrSoundPlayer = m_CurrScene->GetSoundPlayer();
+}
+
+SceneBase* SceneManager::GetCurrentScene()
+{
+	return m_CurrScene;
 }
 
 bool SceneManager::ChangeScene(const std::string& name)

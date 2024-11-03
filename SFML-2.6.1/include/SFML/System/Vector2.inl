@@ -197,14 +197,13 @@ inline Vector2<T> nomalize(const Vector2<T>& v)
 template <typename T>
 inline Vector2<T> clamp(const Vector2<T>& v, const Vector2<T>& min, const Vector2<T>& max)
 {
-	return Vector2<T>(clamp(v.x, min.x, max.y), clamp(v.y, min.y,max.y));
+	return Vector2<T>(util::clamp(v.x, min.x, max.y), util::clamp(v.y, min.y,max.y));
 }
 ////////////////////////////////////////////////////////////
 //º¸°£
-//template<typename T>
-//inline Vector2<T> lerp(const Vector<T>& left, const Vector<T>& right, float ratio)
-//{
-//	float x = (float)left.x * (1.0f - ratio) + (float)right.x * ratio;
-//	float y = (float)left.y * (1.0f - ratio) + (float)right.y * ratio);
-//	return Vector2<T>((T)x, (T)y);
-//}
+template<typename T>
+inline Vector2<T> lerp(const Vector2<T>& left, const Vector2<T>& right, float ratio)
+{
+	ratio = util::clamp(ratio, 0.f, 1.f);
+	return Vector2<T>(util::lerp(left.x, right.x, ratio), util::lerp(left.y, right.y, ratio));
+}
