@@ -7,10 +7,8 @@ DebugInfo::DebugInfo(const sf::FloatRect& target, const sf::Vector2f& pos)
 	m_Rectangle.setFillColor(sf::Color::Transparent);
 	m_Rectangle.setOutlineColor(sf::Color::Green);
 	m_Rectangle.setOutlineThickness(1);
-	m_X[0].resize(2);
-	m_X[1].resize(2);
-	m_X[0].setPrimitiveType(sf::LineStrip);
-	m_X[1].setPrimitiveType(sf::LineStrip);
+	m_X.resize(4);
+	m_X.setPrimitiveType(sf::Lines);
 	setXColor(sf::Color::Magenta);
 	Update(target);
 }
@@ -24,8 +22,7 @@ void DebugInfo::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform(); // getTransform() is defined by sf::Transformable
 
 	target.draw(m_Rectangle, states);
-	target.draw(m_X[0], states);
-	target.draw(m_X[1], states);
+	target.draw(m_X, states);
 }
 
 void DebugInfo::Update(const sf::FloatRect& target)
@@ -33,10 +30,10 @@ void DebugInfo::Update(const sf::FloatRect& target)
 	m_Target = target;
 	m_Rectangle.setSize(m_Target.getSize());
 	m_Rectangle.setPosition(m_Target.getPosition());
-	m_X[0][0].position = { m_Position.x + 4,m_Position.y + 4 };
-	m_X[0][1].position = { m_Position.x - 4,m_Position.y - 4 };
-	m_X[1][0].position = { m_Position.x + 4,m_Position.y - 4 };
-	m_X[1][1].position = { m_Position.x - 4,m_Position.y + 4 };
+	m_X[0].position = { m_Position.x + 4,m_Position.y + 4 };
+	m_X[1].position = { m_Position.x - 4,m_Position.y - 4 };
+	m_X[2].position = { m_Position.x + 4,m_Position.y - 4 };
+	m_X[3].position = { m_Position.x - 4,m_Position.y + 4 };
 }
 
 void DebugInfo::setColor(const sf::Color& color)
@@ -72,13 +69,9 @@ const sf::Color& DebugInfo::getRectColor() const
 void DebugInfo::setXColor(const sf::Color& color)
 {
 	m_XColor = color;
-	for (int i = 0; i < m_X[0].getVertexCount(); i++)
+	for (int i = 0; i < m_X.getVertexCount(); i++)
 	{
-		m_X[0][i].color = m_XColor;
-	}
-	for (int i = 0; i < m_X[1].getVertexCount(); i++)
-	{
-		m_X[1][i].color = m_XColor;
+		m_X[i].color = m_XColor;
 	}
 }
 

@@ -12,18 +12,24 @@ namespace util
 	}
 
 	template <typename T>
-	static T lerp(const T& left, const T& right, float ratio)
+	static T lerp(const T& left, const T& right, float ratio, bool clamp = true)
 	{
-		ratio = clamp(ratio, 0.0f, 1.0f);
+		if (clamp)ratio = util::clamp(ratio, 0.0f, 1.0f);
 		float value = (float)left * (1.0f - ratio) + (float)right * ratio;
 		return value;
 	}
 
 	template<>
-	static double lerp(const double& left, const double& right, float ratio)
+	static double lerp(const double& left, const double& right, float ratio, bool clamp)
 	{
-		ratio = clamp(ratio, 0.0f, 1.0f);
+		if (clamp)ratio = util::clamp(ratio, 0.0f, 1.0f);
 		return left * (1.0 - (double)ratio) + right * (double)ratio;
 	}
+
+	//template<typename T>
+	//static T slerp(const T& left, const T& right, float ratio, float radius, bool clamp = true)
+	//{
+
+	//}
 }
 

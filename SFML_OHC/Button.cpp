@@ -2,6 +2,7 @@
 #include "Button.h"
 #include "DRectangle.h"
 #include "DSprite.h"
+#include "DebugInfo.h"
 #include "DText.h"
 
 Button::Button()
@@ -15,18 +16,14 @@ Button::~Button()
 bool Button::Initialize()
 {
 	m_ButtonSprite = new DSprite("ui/button.png", DrawType::UI);
-	m_ButtonSprite->setScale(0.4f, 0.4f);
 	m_ButtonSprite->SetOriginCenter();
 	m_ButtonSprite->SetPriority(10);
-	SetDrawable(m_ButtonSprite);
-	m_ButtonArea = new DRectangle(m_ButtonSprite->GetFloatRect(), sf::Color::Blue, 1, sf::Color::Transparent, DrawType::Debug);
-	m_ButtonArea->SetOriginCenter();
-	SetDrawable(m_ButtonArea);
 	m_ButtonText = new DText("resource/CookieRun Black.ttf", "", 30, DrawType::UI);
 	m_ButtonText->SetOutlineColor(sf::Color::Black);
 	m_ButtonText->SetOutlineThickness(1);
 	m_ButtonText->SetOriginCenter();
 	m_ButtonText->SetPriority(100);
+	SetDrawable(m_ButtonSprite);
 	SetDrawable(m_ButtonText);
 
 	return true;
@@ -35,26 +32,29 @@ bool Button::Initialize()
 void Button::Reset()
 {
 	m_ButtonSprite->SetColor(m_DefaultColor);
+	m_ButtonArea = m_ButtonSprite->GetFloatRect();
 	m_IsOverlaying = false;
 	m_IsClicked = false;
 }
 
 void Button::Update(float dt)
 {
-	m_IsOverlaying = m_ButtonArea->GetFloatRect().contains({ (float)MOUSEPOS.x,(float)MOUSEPOS.y });
+	m_IsOverlaying = m_ButtonArea.contains({ (float)MOUSEPOS.x,(float)MOUSEPOS.y });
 	m_IsClicked = m_IsOverlaying && IM->GetMouseDown(sf::Mouse::Left);
 
 	if (m_IsOverlaying)
 	{
 		m_ButtonSprite->SetColor(m_OverlayColor);
-		m_ButtonArea->SetOutlineColor(sf::Color::Red);
+		if (m_ButtonSprite->GetDebugDraw())
+			m_ButtonSprite->GetDebugDraw()->setColor(ColorPalette::Red);
 		if (m_WhenOverlay)
 			m_WhenOverlay();
 	}
 	else
 	{
 		m_ButtonSprite->SetColor(m_DefaultColor);
-		m_ButtonArea->SetOutlineColor(sf::Color::Blue);
+		if (m_ButtonSprite->GetDebugDraw())
+			m_ButtonSprite->GetDebugDraw()->setColor(ColorPalette::Blue);
 	}
 
 	if (m_IsClicked)
@@ -68,7 +68,7 @@ void Button::SetButtonPosition(const sf::Vector2f& pos)
 {
 	m_ButtonSprite->setPosition(pos);
 	m_ButtonText->setPosition(pos);
-	m_ButtonArea->SetFloatRect(m_ButtonSprite->GetFloatRect());
+	m_ButtonArea = m_ButtonSprite->GetFloatRect();
 }
 
 void Button::SetButtonText(const std::string& text)

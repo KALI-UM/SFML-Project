@@ -12,8 +12,8 @@ struct AxisInfo
 {
 	Axis m_Axis;
 
-	std::vector<int> m_PositiveKeys;
-	std::vector<int> m_NegativeKeys;
+	std::set<int> m_PositiveKeys;
+	std::set<int> m_NegativeKeys;
 
 	float m_Sensitivity = 10;
 	float m_Value = 0;
@@ -22,11 +22,11 @@ struct AxisInfo
 	{
 		if (positive)
 		{
-			m_PositiveKeys.push_back(code);
+			m_PositiveKeys.insert(code);
 		}
 		else
 		{
-			m_NegativeKeys.push_back(code);
+			m_NegativeKeys.insert(code);
 		}
 	}
 };
@@ -40,19 +40,23 @@ public:
 	void Update(float dt);
 	void Clear();
 
-	bool GetKeyDown(sf::Keyboard::Key key);
-	bool GetKeyUp(sf::Keyboard::Key key);
-	bool GetKey(sf::Keyboard::Key key);
+	bool GetKeyDown(sf::Keyboard::Key key) const;
+	bool GetKeyUp(sf::Keyboard::Key key) const;
+	bool GetKey(sf::Keyboard::Key key) const;
 
 	sf::Vector2i GetMousePos()const;			//Ω∫≈©∏∞ ¡¬«•∞Ë ±‚¡ÿ
 	sf::Vector2f GetMouseDefaultViewPos()const;		//∫‰ ¡¬«•∞Ë ±‚¡ÿ
-	bool GetMouseDown(sf::Mouse::Button btt);
-	bool GetMouseUp(sf::Mouse::Button btt);
-	bool GetMouse(sf::Mouse::Button btt);
+	bool GetMouseDown(sf::Mouse::Button btt) const;
+	bool GetMouseUp(sf::Mouse::Button btt) const;
+	bool GetMouse(sf::Mouse::Button btt) const;
 
 	float GetAxis(Axis axis) const;
 	float GetAxisRaw(Axis axis) const;
 private:
+	bool GetKeyDownKM(int key) const;
+	bool GetKeyUpKM(int key) const;
+	bool GetKeyKM(int key) const;
+
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_HeldKey;
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_DownKey;
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_UpKey;

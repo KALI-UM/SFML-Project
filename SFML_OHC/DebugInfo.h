@@ -20,7 +20,7 @@ public:
 
 private:
 	sf::RectangleShape	m_Rectangle;
-	sf::VertexArray		m_X[2];
+	sf::VertexArray		m_X;
 	sf::Color			m_XColor;
 
 	sf::FloatRect			m_Target;

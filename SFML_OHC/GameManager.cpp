@@ -69,6 +69,7 @@ void GameManager::Update(float dt)
 		m_GameMode = GameMode::Normal;
 	}
 
+	GetInputManager()->Update(dt);
 	GetSceneManager()->Update(dt);
 	GetSceneManager()->PreRender();
 }

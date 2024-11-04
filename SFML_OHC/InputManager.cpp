@@ -44,15 +44,15 @@ void InputManager::UpdateEvent(const sf::Event& ev)
 	{
 		if (!GetMouse(ev.mouseButton.button))
 		{
-			m_DownKey.set(sf::Keyboard::KeyCount+ev.mouseButton.button, 1);
-			m_HeldKey.set(sf::Keyboard::KeyCount+ev.mouseButton.button, 1);
+			m_DownKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
+			m_HeldKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
 		}
 		break;
 	}
 	case sf::Event::MouseButtonReleased:
 	{
-		m_UpKey.set(sf::Keyboard::KeyCount+ev.mouseButton.button, 1);
-		m_HeldKey.set(sf::Keyboard::KeyCount+ev.mouseButton.button, 0);
+		m_UpKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
+		m_HeldKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 0);
 		break;
 	}
 	break;
@@ -61,6 +61,27 @@ void InputManager::UpdateEvent(const sf::Event& ev)
 
 void InputManager::Update(float dt)
 {
+	for (int axis = (int)Axis::Horizontal; axis <= (int)Axis::Vertical; axis++)
+	{
+		float raw = GetAxisRaw((Axis)axis);
+		float dir = raw;
+		auto& axisInfo = m_Axis[axis];
+		if (dir == 0.0f && axisInfo.m_Value != 0.0f)
+		{
+			dir = axisInfo.m_Value > 0.0f ? -1.f : 1.f;
+		}
+
+		axisInfo.m_Value += dir * axisInfo.m_Sensitivity * dt;
+		axisInfo.m_Value = util::clamp(axisInfo.m_Value, -1.f, 1.f);
+		
+		//value가 완벽하게 0이 될 수 없지만 
+		//현재 value값의 절대값이 이번 업데이트의 변위값보다 작다면 0을 지났다고 보고 0으로 보정해준다. 
+		float stopThreshold = std::fabs(dir * axisInfo.m_Sensitivity * dt);
+		if (raw == 0.0f && std::fabs(axisInfo.m_Value) < stopThreshold)
+		{
+			axisInfo.m_Value = 0.0f;
+		}
+	}
 
 }
 
@@ -72,17 +93,17 @@ void InputManager::Clear()
 	//m_UpMouse.reset();
 }
 
-bool InputManager::GetKeyDown(sf::Keyboard::Key key)
+bool InputManager::GetKeyDown(sf::Keyboard::Key key) const
 {
 	return m_DownKey.test(key);
 }
 
-bool InputManager::GetKeyUp(sf::Keyboard::Key key)
+bool InputManager::GetKeyUp(sf::Keyboard::Key key) const
 {
 	return m_UpKey.test(key);
 }
 
-bool InputManager::GetKey(sf::Keyboard::Key key)
+bool InputManager::GetKey(sf::Keyboard::Key key) const
 {
 	return m_HeldKey.test(key);
 }
@@ -97,19 +118,19 @@ sf::Vector2f InputManager::GetMouseDefaultViewPos() const
 	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos());
 }
 
-bool InputManager::GetMouseDown(sf::Mouse::Button btt)
+bool InputManager::GetMouseDown(sf::Mouse::Button btt) const
 {
 	return m_DownKey.test(sf::Keyboard::KeyCount + btt);
 }
 
-bool InputManager::GetMouseUp(sf::Mouse::Button btt)
+bool InputManager::GetMouseUp(sf::Mouse::Button btt) const
 {
 	return m_UpKey.test(sf::Keyboard::KeyCount + btt);
 }
 
-bool InputManager::GetMouse(sf::Mouse::Button btt)
+bool InputManager::GetMouse(sf::Mouse::Button btt) const
 {
-	return m_HeldKey.test(sf::Keyboard::KeyCount+btt);
+	return m_HeldKey.test(sf::Keyboard::KeyCount + btt);
 }
 
 float InputManager::GetAxis(Axis axis) const
@@ -119,7 +140,38 @@ float InputManager::GetAxis(Axis axis) const
 
 float InputManager::GetAxisRaw(Axis axis) const
 {
-	m_Axis[(int)axis].m_Value;
+	float result = 0.0f;
+	bool keyDown = false;
 
-	return 0.0f;
+	auto& positiveKeys = m_Axis[(int)axis].m_PositiveKeys;
+	auto& negativeKeys = m_Axis[(int)axis].m_NegativeKeys;
+	for (int key = 0; key < sf::Keyboard::KeyCount + sf::Mouse::ButtonCount; key++)
+	{
+		if (!GetKeyKM(key)) continue;
+		if (positiveKeys.find(key) != positiveKeys.end())
+		{
+			result += 1.0f;
+		}
+		if (negativeKeys.find(key) != negativeKeys.end())
+		{
+			result += -1.0f;
+		}
+		break;
+	}
+	return result;
+}
+
+bool InputManager::GetKeyDownKM(int key) const
+{
+	return m_DownKey.test(key);
+}
+
+bool InputManager::GetKeyUpKM(int key) const
+{
+	return m_UpKey.test(key);
+}
+
+bool InputManager::GetKeyKM(int key) const
+{
+	return m_HeldKey.test(key);
 }

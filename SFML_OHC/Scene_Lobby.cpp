@@ -28,7 +28,8 @@ bool Scene_Lobby::Initialize()
 	}
 
 	m_GameStart = AddGameObject(0, new GameStart());
-	m_Button= AddGameObject(0, new Button());
+	m_Button = AddGameObject(0, new Button());
+	
 	m_Button->SetOverlayFunc([]() { std::cout << "overlay" << std::endl; });
 	m_Button->SetClickedFunc([]() {GM->MoveViewport(0, sf::Vector2f(200, 0)); });
 	return false;
@@ -37,13 +38,14 @@ bool Scene_Lobby::Initialize()
 void Scene_Lobby::Reset()
 {
 	m_FadeSpeed = 3.0f;
+	m_Button->SetButtonPosition({ 0, 0 });
 }
 
 void Scene_Lobby::Enter()
 {
 	GM->SetViewSize(0, sf::FloatRect(0, 0, GM->GetWindow()->getSize().x, GM->GetWindow()->getSize().y));
-	GM->SetViewportSize(0, sf::FloatRect(0.f, 0.f, 2.f, 2.f));
-	GetSoundPlayer()->PlayBGM("sound/my_friend_dragon.mp3", true, 5);
+	//GM->SetViewportSize(0, sf::FloatRect(0.f, 0.f, 2.f, 2.f));
+	//GetSoundPlayer()->PlayBGM("sound/my_friend_dragon.mp3", true, 5);
 }
 
 void Scene_Lobby::Update(float dt)
@@ -62,10 +64,9 @@ void Scene_Lobby::Update(float dt)
 		}
 	}
 
-	if (IM->GetKey(sf::Keyboard::D))
-	{
-		GM->MoveViewport(0, sf::Vector2f(200 * dt, 0));
-	}
+	GM->MoveViewport(0, sf::Vector2f(200 * IM->GetAxisRaw(Axis::Horizontal) * dt, 0));
+	GM->MoveViewport(0, sf::Vector2f(0, -200 * IM->GetAxisRaw(Axis::Vertical) * dt));
+
 }
 
 void Scene_Lobby::Release()

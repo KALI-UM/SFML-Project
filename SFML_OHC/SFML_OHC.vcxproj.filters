@@ -111,10 +111,13 @@
     <ClCompile Include="Framework.cpp">
       <Filter>GameEngine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="DebugInfo.cpp">
+    <ClCompile Include="ColorPalette.cpp">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ColorPalette.cpp">
+    <ClCompile Include="DebugInfo.cpp">
       <Filter>GameEngine\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,14 +212,17 @@
     <ClInclude Include="Framework.h">
       <Filter>GameEngine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="DebugInfo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ColorPalette.h">
       <Filter>GameEngine\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="MathHelper.hpp">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugInfo.h">
+      <Filter>GameEngine\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

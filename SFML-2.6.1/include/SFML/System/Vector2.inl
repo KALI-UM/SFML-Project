@@ -173,37 +173,50 @@ inline bool operator !=(const Vector2<T>& left, const Vector2<T>& right)
 ////////////////////////////////////////////////////////////
 //길이
 template <typename T>
-inline T length(const Vector2<T>& v)
+inline T Length(const Vector2<T>& v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y));
 }
+
+template <typename T>
+inline T SqrtMagnitude(const Vector2<T>& v)
+{
+	return (v.x * v.x + v.y * v.y);
+}
+
+//template <typename T>
+//inline T Magnitude(const Vector2<T>& v)
+//{
+//	return (sqrt(SqrtMagnitude(v));
+//}
+
 ////////////////////////////////////////////////////////////
 //거리
 template <typename T>
-inline T distance(const Vector2<T>& left, const Vector2<T>& right)
+inline T Distance(const Vector2<T>& left, const Vector2<T>& right)
 {
-	return Vector2<T>(left.x-right.x, left.y-right.y).length();
+	return Magnitude(left - right);
 }
 ////////////////////////////////////////////////////////////
 //정규화
 template <typename T>
-inline Vector2<T> nomalize(const Vector2<T>& v)
+inline Vector2<T> Nomalize(const Vector2<T>& v)
 {
 	T len = length(v);
 	return Vector2<T>(v.x / len, v.y / len);
 }
 ////////////////////////////////////////////////////////////
 //clamp
-template <typename T>
-inline Vector2<T> clamp(const Vector2<T>& v, const Vector2<T>& min, const Vector2<T>& max)
-{
-	return Vector2<T>(util::clamp(v.x, min.x, max.y), util::clamp(v.y, min.y,max.y));
-}
-////////////////////////////////////////////////////////////
-//보간
-template<typename T>
-inline Vector2<T> lerp(const Vector2<T>& left, const Vector2<T>& right, float ratio)
-{
-	ratio = util::clamp(ratio, 0.f, 1.f);
-	return Vector2<T>(util::lerp(left.x, right.x, ratio), util::lerp(left.y, right.y, ratio));
-}
+//template <typename T>
+//inline Vector2<T> Clamp(const Vector2<T>& v, const Vector2<T>& min, const Vector2<T>& max)
+//{
+//	return Vector2<T>(util::clamp(v.x, min.x, max.y), util::clamp(v.y, min.y,max.y));
+//}
+//////////////////////////////////////////////////////////////
+////보간
+//template<typename T>
+//inline Vector2<T> lerp(const Vector2<T>& left, const Vector2<T>& right, float ratio)
+//{
+//	ratio = util::clamp(ratio, 0.f, 1.f);
+//	return Vector2<T>(util::lerp(left.x, right.x, ratio), util::lerp(left.y, right.y, ratio));
+//}
