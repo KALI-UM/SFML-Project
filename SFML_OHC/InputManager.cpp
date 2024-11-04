@@ -118,6 +118,11 @@ sf::Vector2f InputManager::GetMouseDefaultViewPos() const
 	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos());
 }
 
+sf::Vector2f InputManager::GetMouseViewPos(int index) const
+{
+	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos(), *GM->GetView(index));
+}
+
 bool InputManager::GetMouseDown(sf::Mouse::Button btt) const
 {
 	return m_DownKey.test(sf::Keyboard::KeyCount + btt);

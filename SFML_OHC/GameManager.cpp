@@ -109,6 +109,11 @@ sf::RenderWindow* GameManager::GetWindow()
 	return m_MainWindow;
 }
 
+sf::View* GameManager::GetView(int index)
+{
+	return &m_Views[index].view;
+}
+
 void GameManager::ResizeViews(unsigned int cnt)
 {
 	m_Views.resize(cnt);

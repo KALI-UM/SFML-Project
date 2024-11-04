@@ -49,7 +49,6 @@ protected:
 
 private:
 	const std::string							m_Name;
-
 	struct LayerInfo
 	{
 		int										viewIndex = 0;

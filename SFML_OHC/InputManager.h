@@ -45,7 +45,8 @@ public:
 	bool GetKey(sf::Keyboard::Key key) const;
 
 	sf::Vector2i GetMousePos()const;			//½ºÅ©¸° ÁÂÇ¥°è ±âÁØ
-	sf::Vector2f GetMouseDefaultViewPos()const;		//ºä ÁÂÇ¥°è ±âÁØ
+	sf::Vector2f GetMouseDefaultViewPos()const;		//±âº»ºä ÁÂÇ¥°è ±âÁØ
+	sf::Vector2f GetMouseViewPos(int index)const;		
 	bool GetMouseDown(sf::Mouse::Button btt) const;
 	bool GetMouseUp(sf::Mouse::Button btt) const;
 	bool GetMouse(sf::Mouse::Button btt) const;

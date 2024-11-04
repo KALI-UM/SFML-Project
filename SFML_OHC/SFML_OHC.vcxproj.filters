@@ -105,9 +105,6 @@
     <ClCompile Include="MusicObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework.cpp">
       <Filter>GameEngine\Manager</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DebugInfo.cpp">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
       <Filter>GameEngine\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -206,9 +206,6 @@
     <ClInclude Include="MusicObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework.h">
       <Filter>GameEngine\Manager</Filter>
     </ClInclude>
@@ -222,6 +219,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="DebugInfo.h">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
       <Filter>GameEngine\Drawable</Filter>
     </ClInclude>
   </ItemGroup>

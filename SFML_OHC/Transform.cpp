@@ -47,6 +47,41 @@ void Transform::Init(const Transform& other, sf::Transformable* transformable)
 	m_LocalScale = other.getLocalScale();
 }
 
+void Transform::SetChild(Transform* child)
+{
+	child->m_Parent = this;
+	m_Children.push_back(child);
+	child->setParentPosition(getPosition());
+	child->setParentRotation(getRotation());
+	child->setParentScale(getScale());
+}
+
+void Transform::RemoveChild(Transform* child)
+{
+	for(auto t = m_Children.begin(); t!=m_Children.end(); t++)
+	{
+		if (*t == child)
+		{
+			child->m_Parent = nullptr;
+			child->setParentPosition({0,0});
+			child->setParentRotation(0);
+			child->setParentScale({1,1});
+			m_Children.erase(t);
+			break;
+		}
+	}
+}
+
+void Transform::SetParent(Transform* parent)
+{
+	if (m_Parent)
+	{
+		m_Parent->RemoveChild(this);
+	}
+	m_Parent = parent;
+	m_Parent->SetChild(this);
+}
+
 void Transform::setPosition(const sf::Vector2f& pos)
 {
 	m_ParentPosition = pos - m_LocalPosition;
@@ -81,11 +116,19 @@ void Transform::move(const sf::Vector2f& pos)
 {
 	m_ParentPosition += pos;
 	m_T->move(pos);
+	for (auto& child : m_Children)
+	{
+		child->setParentPosition(getPosition());
+	}
 }
 
 void Transform::setPosition()
 {
 	m_T->setPosition(m_ParentPosition + m_LocalPosition);
+	for (auto& child : m_Children)
+	{
+		child->setParentPosition(getPosition());
+	}
 }
 
 void Transform::setRotation(float rot)
@@ -117,11 +160,19 @@ void Transform::rotate(float rot)
 {
 	m_ParentRotation += rot;
 	m_T->rotate(rot);
+	for (auto& child : m_Children)
+	{
+		child->setParentRotation(getRotation());
+	}
 }
 
 void Transform::setRotation()
 {
 	m_T->setRotation(m_ParentRotation + m_LocalRotation);
+	for (auto& child : m_Children)
+	{
+		child->setParentRotation(getRotation());
+	}
 }
 
 void Transform::setScale(const sf::Vector2f& scale)
@@ -157,6 +208,10 @@ void Transform::setLocalScale(const sf::Vector2f& localscale)
 void Transform::setScale()
 {
 	m_T->setScale({ m_ParentScale.x * m_LocalScale.x, m_ParentScale.y * m_LocalScale.y });
+	for (auto& child : m_Children)
+	{
+		child->setParentScale(getScale());
+	}
 }
 
 void Transform::setOrigin(const sf::Vector2f& origin)

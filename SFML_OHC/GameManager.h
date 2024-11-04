@@ -43,6 +43,7 @@ public:
 	void LateUpdate();
 
 	sf::RenderWindow* GetWindow();
+	sf::View* GetView(int index);
 	void ResizeViews(unsigned int cnt);
 	void SetViewSize(int index, const sf::FloatRect& rect);
 	void SetViewportSize(int index, const sf::FloatRect& rect);

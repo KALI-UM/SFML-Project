@@ -13,6 +13,10 @@ protected:
 	void Init(sf::Transformable* transformable);
 	void Init(const Transform& other, sf::Transformable* transformable);
 public:
+	void SetChild(Transform* child);
+	void RemoveChild(Transform* child);
+	void SetParent(Transform* parent);
+
 	void setPosition(const sf::Vector2f& pos);					//global
 	void setPosition(float posx, float posy);					//global
 	void setPosition(const sf::Vector2f& Parentpos, const sf::Vector2f& localpos);
@@ -59,7 +63,6 @@ public:
 	sf::Vector2f getOrigin()const { return m_T->getOrigin(); }
 
 private:
-	sf::Vector3f	m_GlobalPosition;	//x, y, z = 그리기 우선순위 z값이 클수록 위에 그려진다.
 	sf::Vector2f	m_ParentPosition;
 	sf::Vector2f	m_LocalPosition;
 	float			m_ParentRotation;
@@ -68,5 +71,8 @@ private:
 	sf::Vector2f	m_LocalScale;
 
 	sf::Transformable* m_T;
+
+	Transform* m_Parent = nullptr;
+	std::vector<Transform*>	m_Children;
 };
 
