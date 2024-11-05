@@ -28,23 +28,50 @@
 void Transform::Init(sf::Transformable* transformable)
 {
 	m_T = transformable;
-	m_ParentPosition = {0,0};
-	m_LocalPosition = m_T->getPosition();
-	m_ParentRotation = 0;
-	m_LocalRotation = m_T->getRotation();
-	m_ParentScale = { 1,1 };
+	if (!m_T)m_T = new sf::Transformable();
+	Reset();
 	m_LocalScale = { 1,1 };
 }
 
 void Transform::Init(const Transform& other, sf::Transformable* transformable)
 {
 	m_T = transformable;
+	if (!m_T)m_T = new sf::Transformable();
 	m_ParentPosition = other.getParentPosition();
 	m_LocalPosition = other.getLocalPosition();
 	m_ParentRotation = other.getParentRotation();
 	m_LocalRotation = other.getLocalRotation();
 	m_ParentScale = other.getParentScale();
 	m_LocalScale = other.getLocalScale();
+}
+
+void Transform::Reset()
+{
+	ResetParentTransform();
+	ResetLocalTransform();
+}
+
+void Transform::ResetParentTransform()
+{
+	if (m_Parent)
+	{
+		m_ParentPosition = m_Parent->getPosition();
+		m_ParentRotation = m_Parent->getRotation();
+		m_ParentScale = m_Parent->getScale();
+	}
+	else
+	{
+		m_ParentPosition = { 0,0 };
+		m_ParentRotation = 0;
+		m_ParentScale = { 1,1 };
+	}
+}
+
+void Transform::ResetLocalTransform()
+{
+	m_LocalPosition = m_T->getPosition();
+	m_LocalRotation = m_T->getRotation();
+	m_LocalScale = m_T->getScale();
 }
 
 void Transform::SetChild(Transform* child)
@@ -58,14 +85,14 @@ void Transform::SetChild(Transform* child)
 
 void Transform::RemoveChild(Transform* child)
 {
-	for(auto t = m_Children.begin(); t!=m_Children.end(); t++)
+	for (auto t = m_Children.begin(); t != m_Children.end(); t++)
 	{
 		if (*t == child)
 		{
 			child->m_Parent = nullptr;
-			child->setParentPosition({0,0});
+			child->setParentPosition({ 0,0 });
 			child->setParentRotation(0);
-			child->setParentScale({1,1});
+			child->setParentScale({ 1,1 });
 			m_Children.erase(t);
 			break;
 		}
@@ -84,7 +111,7 @@ void Transform::SetParent(Transform* parent)
 
 void Transform::setPosition(const sf::Vector2f& pos)
 {
-	m_ParentPosition = pos - m_LocalPosition;
+	m_LocalPosition = pos - m_ParentPosition;
 	setPosition();
 }
 
@@ -114,7 +141,7 @@ void Transform::setLocalPosition(const sf::Vector2f& localpos)
 
 void Transform::move(const sf::Vector2f& pos)
 {
-	m_ParentPosition += pos;
+	m_LocalPosition += pos;
 	m_T->move(pos);
 	for (auto& child : m_Children)
 	{
@@ -133,7 +160,7 @@ void Transform::setPosition()
 
 void Transform::setRotation(float rot)
 {
-	m_ParentRotation = rot - m_LocalRotation;
+	m_LocalRotation = rot - m_ParentRotation;
 	setRotation();
 }
 
@@ -158,7 +185,7 @@ void Transform::setLocalRotation(float localrot)
 
 void Transform::rotate(float rot)
 {
-	m_ParentRotation += rot;
+	m_LocalRotation += rot;
 	m_T->rotate(rot);
 	for (auto& child : m_Children)
 	{
@@ -177,7 +204,7 @@ void Transform::setRotation()
 
 void Transform::setScale(const sf::Vector2f& scale)
 {
-	m_ParentScale = { scale.x / m_LocalScale.x, scale.y / m_LocalScale.y };
+	m_LocalScale = { scale.x / m_ParentScale.x, scale.y / m_ParentScale.y };
 	setScale();
 }
 

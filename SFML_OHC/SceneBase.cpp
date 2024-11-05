@@ -140,6 +140,11 @@ SoundPlayer* SceneBase::GetSoundPlayer()
 	return m_SoundPlayer;
 }
 
+void SceneBase::SetLayerViewIndex(int layerIndex, int viewIndex)
+{
+	m_LayerIndex[layerIndex]->viewIndex = viewIndex;
+}
+
 void SceneBase::RemoveGameObject(GameObjectInfo gobj)
 {
 	m_WantsToRemove.push(gobj);

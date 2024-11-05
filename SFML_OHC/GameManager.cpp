@@ -98,7 +98,7 @@ void GameManager::Render()
 	GetSceneManager()->PostRender();
 }
 
-void GameManager::LateUpdate()
+void GameManager::LateUpdate(float dt)
 {
 	GetSceneManager()->LateUpdate();
 	GetInputManager()->Clear();

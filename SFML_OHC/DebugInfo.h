@@ -2,7 +2,7 @@
 class DebugInfo : public sf::Drawable, public sf::Transformable
 {
 public:
-	DebugInfo(const sf::FloatRect& target, const sf::Vector2f& pos);
+	DebugInfo(const sf::FloatRect& target, sf::Vector2f& pos);
 	~DebugInfo();
 	void Update(const sf::FloatRect& target);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -24,6 +24,7 @@ private:
 	sf::Color			m_XColor;
 
 	sf::FloatRect			m_Target;
-	const sf::Vector2f&		m_Position;
+	sf::Vector2f&			m_Position;
+	sf::Transform			m_Transform;
 };
 

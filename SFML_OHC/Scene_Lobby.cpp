@@ -18,8 +18,9 @@ Scene_Lobby::~Scene_Lobby()
 
 bool Scene_Lobby::Initialize()
 {
+	SetLayerViewIndex(1, 1);
 	m_LobbyImage = AddGameObject(0, new Background_Lobby());
-	AddGameObject(1, new MouseCursor());
+	auto cursor = AddGameObject(1, new MouseCursor());
 	m_Effects.resize(5);
 	for (auto& eff : m_Effects)
 	{
@@ -30,6 +31,8 @@ bool Scene_Lobby::Initialize()
 	m_GameStart = AddGameObject(0, new GameStart());
 	m_Button = AddGameObject(1, new Button());
 	
+	cursor->SetChild(m_Button);
+
 	m_Button->SetOverlayFunc([]() { std::cout << "overlay" << std::endl; });
 	//m_Button->SetClickedFunc([]() {GM->MoveViewport(0, sf::Vector2f(200, 0)); });
 	return false;

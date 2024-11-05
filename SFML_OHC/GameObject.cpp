@@ -9,12 +9,14 @@ int GameObject::m_IdNumber = 0;
 GameObject::GameObject()
 	:m_Id(m_IdNumber++), m_IsValid(true), m_IsMovable(true)
 {
+	Transform::Init(nullptr);
 	m_GameObjectsCount++;
 }
 
 GameObject::GameObject(const GameObject& other)
 	:m_Id(m_IdNumber++), m_IsValid(other.m_IsValid), m_IsMovable(other.m_IsMovable)
 {
+	Transform::Init(other, nullptr);
 	m_GameObjectsCount++;
 }
 
@@ -22,6 +24,7 @@ GameObject::GameObject(GameObject&& other)noexcept
 	:m_Id(other.m_Id), m_IsValid(other.m_IsValid), m_Drawable(other.m_Drawable),m_IsMovable(other.m_IsMovable)
 {
 	//¹Ì¿Ï
+	Transform::Init(other, nullptr);
 	other.m_Drawable.clear();
 	other.SetIsValid(false);
 }
@@ -117,65 +120,10 @@ DrawableObject* GameObject::GetDrawable(const std::string& name) const
 	return nullptr;
 }
 
-void GameObject::SetDrawable(DrawableObject* dobj)
+void GameObject::SetDrawable(DrawableObject* dobj, bool isChild )
 {
+	if (isChild)
+		SetChild(dobj);
 	m_Drawable.push_back(dobj);
-}
-
-void GameObject::SetPosition(const sf::Vector2f& position)
-{
-	m_Position = position;
-	for (DrawableObject*& dobj : m_Drawable)
-	{
-		dobj->setPosition(position);
-	}
-}
-
-void GameObject::SetOrigin(const sf::Vector2f& origin)
-{
-	m_Origin = origin;
-	for (DrawableObject*& dobj : m_Drawable)
-	{
-		dobj->setOrigin(origin);
-	}
-}
-
-void GameObject::SetScale(const sf::Vector2f& scale)
-{
-	m_Scale = scale;
-	for (DrawableObject*& dobj : m_Drawable)
-	{
-		sf::Vector2f originScale = dobj->getScale();
-		dobj->setScale(scale);
-	}
-}
-
-void GameObject::SetRotation(float angle)
-{
-	m_Rotation = angle;
-	for (DrawableObject*& dobj : m_Drawable)
-	{
-		dobj->setRotation(angle);
-	}
-}
-
-sf::Vector2f GameObject::GetPosition() const
-{
-	return m_Position;
-}
-
-sf::Vector2f GameObject::GetOrigin() const
-{
-	return m_Origin;
-}
-
-sf::Vector2f GameObject::GetScale() const
-{
-	return m_Scale;
-}
-
-float GameObject::GetRotation() const
-{
-	return m_Rotation;
 }
 

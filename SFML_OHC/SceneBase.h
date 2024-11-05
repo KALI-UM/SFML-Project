@@ -44,6 +44,7 @@ protected:
 		return gameObject;
 	}
 
+	void SetLayerViewIndex(int layerIndex, int viewIndex);
 	void RemoveGameObject(GameObjectInfo gobj);
 	void RemoveGameObject(int layerIndex, GameObject* gobj);
 

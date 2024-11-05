@@ -115,7 +115,7 @@ sf::Vector2i InputManager::GetMousePos() const
 
 sf::Vector2f InputManager::GetMouseDefaultViewPos() const
 {
-	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos());
+	return GameManager::GetInstance()->GetWindow()->mapPixelToCoords(GetMousePos(), GameManager::GetInstance()->GetWindow()->getDefaultView());
 }
 
 sf::Vector2f InputManager::GetMouseViewPos(int index) const

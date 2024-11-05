@@ -7,7 +7,7 @@ DrawableObject::DrawableObject(DataType datatype, DrawType drawtype, sf::Drawabl
 {
 	Init(m_Transform);
 #ifdef _DEBUG
-	m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 #endif // _DEBUG
 }
 
@@ -16,7 +16,7 @@ DrawableObject::DrawableObject(const DrawableObject& other, sf::Drawable* drawab
 {
 	Init(other, m_Transform);
 #ifdef _DEBUG
-	m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 #endif // _DEBUG
 }
 
@@ -25,7 +25,7 @@ DrawableObject::DrawableObject(DrawableObject&& other, sf::Drawable* drawable, s
 {
 	Init(other, m_Transform);
 #ifdef _DEBUG
-	m_DebugInfo = new DebugInfo(sf::FloatRect(), m_Transform->getPosition());
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 #endif // _DEBUG
 	other.m_IsValid = false;
 }
@@ -46,7 +46,7 @@ void DrawableObject::SetDebugDraw(bool debug)
 {
 	if (!m_DebugInfo && debug)
 	{
-		m_DebugInfo = new DebugInfo(GetFloatRect(), m_Transform->getPosition());
+		m_DebugInfo = new DebugInfo(GetFloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 	}
 	else if (m_DebugInfo && !debug)
 	{

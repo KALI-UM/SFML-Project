@@ -13,6 +13,9 @@ protected:
 	void Init(sf::Transformable* transformable);
 	void Init(const Transform& other, sf::Transformable* transformable);
 public:
+	void Reset();
+	void ResetParentTransform();
+	void ResetLocalTransform();
 	void SetChild(Transform* child);
 	void RemoveChild(Transform* child);
 	void SetParent(Transform* parent);

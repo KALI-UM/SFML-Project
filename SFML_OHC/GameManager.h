@@ -40,7 +40,8 @@ public:
 	void UpdateEvent(const sf::Event& ev);
 	void Update(float dt);
 	void Render();
-	void LateUpdate();
+	void LateUpdate(float dt);
+	void FixedUpdate(float dt);
 
 	sf::RenderWindow* GetWindow();
 	sf::View* GetView(int index);
