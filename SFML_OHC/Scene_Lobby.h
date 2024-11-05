@@ -5,6 +5,7 @@ class SoundPlayer;
 class DustEffect;
 class GameStart;
 class Button;
+class MouseCursor;
 class Scene_Lobby :
     public SceneBase
 {
@@ -25,6 +26,7 @@ private:
 	std::vector< DustEffect*> m_Effects;
 	GameStart*		m_GameStart;
 	Button*			m_Button;
+	MouseCursor*	m_Cursor;
 	float			m_FadeSpeed;
 };
 

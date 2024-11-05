@@ -16,7 +16,8 @@ public:
 	void RESET();
 	void ENTER();
 	void UPDATE(float dt);
-	void LATEUPDATE();
+	void LATEUPDATE(float dt);
+	void FIXEDUPDATE(float dt);
 	void PRERENDER();
 	void POSTRENDER();
 	void EXIT();
@@ -31,7 +32,8 @@ protected:
 	virtual void Reset();
 	virtual void Enter();
 	virtual void Update(float dt);
-	virtual void LateUpdate();
+	virtual void LateUpdate(float dt);
+	virtual void FixedUpdate(float dt);
 	virtual void PreRender();
 	virtual void PostRender();
 	virtual void Exit();

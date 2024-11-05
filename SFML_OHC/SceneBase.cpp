@@ -49,11 +49,6 @@ void SceneBase::ENTER()
 	Enter();
 }
 
-void SceneBase::LATEUPDATE()
-{
-	LateUpdate();
-}
-
 void SceneBase::UPDATE(float dt)
 {
 	for (auto& layer : m_GameObjects)
@@ -63,6 +58,16 @@ void SceneBase::UPDATE(float dt)
 				gobj->UPDATE(dt);
 		}
 	Update(dt);
+}
+
+void SceneBase::LATEUPDATE(float dt)
+{
+	LateUpdate(dt);
+}
+
+void SceneBase::FIXEDUPDATE(float dt)
+{
+	FixedUpdate(dt);
 }
 
 void SceneBase::PRERENDER()
@@ -110,7 +115,11 @@ void SceneBase::Update(float dt)
 {
 }
 
-void SceneBase::LateUpdate()
+void SceneBase::LateUpdate(float dt)
+{
+}
+
+void SceneBase::FixedUpdate(float dt)
 {
 }
 

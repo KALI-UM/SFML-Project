@@ -32,9 +32,14 @@ void SceneManager::Update(float dt)
 	}
 }
 
-void SceneManager::LateUpdate()
+void SceneManager::LateUpdate(float dt)
 {
-	m_CurrScene->LATEUPDATE();
+	m_CurrScene->LATEUPDATE(dt);
+}
+
+void SceneManager::FixedUpdate(float dt)
+{
+	m_CurrScene->FIXEDUPDATE(dt);
 }
 
 void SceneManager::PreRender()

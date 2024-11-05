@@ -10,7 +10,8 @@ public:
 	bool Initialize();
 	void Reset();
 	void Update(float dt);
-	void LateUpdate();
+	void LateUpdate(float dt);
+	void FixedUpdate(float dt);
 	void Release();
 	void PreRender();
 	void PostRender();

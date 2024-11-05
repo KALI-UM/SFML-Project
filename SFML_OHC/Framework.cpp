@@ -36,7 +36,8 @@ void Framework::Do()
 		m_MainWindow.clear();
 		GM->Render();
 		m_MainWindow.display();
-		GM->LateUpdate();
+		GM->LateUpdate(m_DeltaTime);
+		GM->FixedUpdate(m_DeltaTime);
 	}
 }
 

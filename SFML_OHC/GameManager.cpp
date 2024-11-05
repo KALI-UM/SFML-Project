@@ -100,8 +100,12 @@ void GameManager::Render()
 
 void GameManager::LateUpdate(float dt)
 {
-	GetSceneManager()->LateUpdate();
-	GetInputManager()->Clear();
+	GetSceneManager()->LateUpdate(dt);
+}
+
+void GameManager::FixedUpdate(float dt)
+{
+	GetSceneManager()->FixedUpdate(dt);
 }
 
 sf::RenderWindow* GameManager::GetWindow()

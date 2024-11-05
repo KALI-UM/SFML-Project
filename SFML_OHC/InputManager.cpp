@@ -82,7 +82,6 @@ void InputManager::Update(float dt)
 			axisInfo.m_Value = 0.0f;
 		}
 	}
-
 }
 
 void InputManager::Clear()
