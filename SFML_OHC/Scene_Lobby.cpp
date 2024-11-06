@@ -47,7 +47,7 @@ void Scene_Lobby::Enter()
 	GM->SetViewSize(0, sf::FloatRect(0, 0, GM->GetWindow()->getSize().x, GM->GetWindow()->getSize().y));
 	GM->SetViewSize(1, sf::FloatRect(0, 0, GM->GetWindow()->getSize().x, GM->GetWindow()->getSize().y));
 	//GM->SetViewportSize(0, sf::FloatRect(0.f, 0.f, 2.f, 2.f));
-	GetSoundPlayer()->PlayBGM("sound/my_friend_dragon.mp3", true, 5);
+	//GetSoundPlayer()->PlayBGM("sound/my_friend_dragon.mp3", true, 5);
 }
 
 void Scene_Lobby::Update(float dt)

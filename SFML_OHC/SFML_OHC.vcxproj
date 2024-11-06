@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="Background_Lobby.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="ColorPalette.cpp" />
     <ClCompile Include="DAnimation.cpp" />
     <ClCompile Include="DCircle.cpp" />
@@ -187,6 +188,7 @@
   <ItemGroup>
     <ClInclude Include="Background_Lobby.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="ColorPalette.h" />
     <ClInclude Include="DAnimation.h" />
     <ClInclude Include="DCircle.h" />
