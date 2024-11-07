@@ -9,7 +9,7 @@ public:
 
 	bool Initialize() override;
 	void Reset() override;
-	//void Update(float dt) override;
+	void Update(float dt) override;
 	//void LateUpdate(float dt) override;
 	//void FixeUpdate(float dt) override;
 	//void Release() override;

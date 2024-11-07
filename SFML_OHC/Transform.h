@@ -20,6 +20,10 @@ public:
 	void RemoveChild(Transform* child);
 	void SetParent(Transform* parent);
 
+	const sf::Transform& getTransform() { return m_T->getTransform(); }
+	const sf::Transform& getInverseTransform() { return m_T->getInverseTransform(); }
+
+
 	void setPosition(const sf::Vector2f& pos);					//global
 	void setPosition(float posx, float posy);					//global
 	void setPosition(const sf::Vector2f& Parentpos, const sf::Vector2f& localpos);
