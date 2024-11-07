@@ -18,6 +18,8 @@ public:
 	bool INITIALIZE();
 	void RESET();
 	void UPDATE(float dt);
+	void LATEUPDATE(float dt);
+	void FIXEDUPDATE(float dt);
 	void RELEASE();
 
 	void SetIsValid(bool value);
@@ -35,6 +37,8 @@ protected:
 	virtual bool Initialize();
 	virtual void Reset();
 	virtual void Update(float dt);
+	virtual void LateUpdate(float dt);
+	virtual void FixeUpdate(float dt);
 	virtual void Release();
 
 private:

@@ -13,10 +13,10 @@ MouseCursor::~MouseCursor()
 
 bool MouseCursor::Initialize()
 {
-    m_Cursor = new DSprite("ui/push.png", DrawType::UI);
-    SetDrawable(m_Cursor);
-    m_Cursor->SetPriority(1000);
-    return true;
+	m_Cursor = new DSprite("ui/push.png", DrawType::UI);
+	SetDrawable(m_Cursor);
+	m_Cursor->SetPriority(1000);
+	return true;
 }
 
 void MouseCursor::Reset()
@@ -25,9 +25,9 @@ void MouseCursor::Reset()
 
 void MouseCursor::Update(float dt)
 {
-    setPosition({ MOUSEPOS });
-    if (IM->GetMouseDown(sf::Mouse::Left))
-    {
-        SM->GetSoundPlayer()->PlayEffect("sound/ButtonClick.wav");
-    }
+	setPosition({ MOUSEPOS });
+	if (IM->GetMouseDown(sf::Mouse::Left))
+	{
+		SM->GetSoundPlayer()->PlayEffect("sound/ButtonClick.wav");
+	}
 }

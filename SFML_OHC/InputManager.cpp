@@ -72,7 +72,7 @@ void InputManager::Update(float dt)
 		}
 
 		axisInfo.m_Value += dir * axisInfo.m_Sensitivity * dt;
-		axisInfo.m_Value = util::clamp(axisInfo.m_Value, -1.f, 1.f);
+		axisInfo.m_Value = Utils::Clamp(axisInfo.m_Value, -1.f, 1.f);
 		
 		//value가 완벽하게 0이 될 수 없지만 
 		//현재 value값의 절대값이 이번 업데이트의 변위값보다 작다면 0을 지났다고 보고 0으로 보정해준다. 

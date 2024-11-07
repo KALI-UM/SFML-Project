@@ -22,6 +22,9 @@
     <Filter Include="GameEngine\Drawable">
       <UniqueIdentifier>{ed74a6ef-8021-446c-b4f5-40eaa77dca59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Scene">
+      <UniqueIdentifier>{c5f736f6-101f-4dba-a36f-fa1afd156da1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,12 +32,6 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene_Test.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>GameEngine\Manager</Filter>
@@ -81,12 +78,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene_Loading.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene_Lobby.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SoundObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -111,17 +102,38 @@
     <ClCompile Include="ColorPalette.cpp">
       <Filter>GameEngine\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="DebugInfo.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
       <Filter>GameEngine\Drawable</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>GameEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Lobby.cpp">
+      <Filter>GameEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Loading.cpp">
+      <Filter>GameEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TileGrid.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DThickLine.cpp">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Test.cpp">
+      <Filter>GameEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>GameEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,12 +142,6 @@
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBase.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene_Test.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>GameEngine\Manager</Filter>
@@ -188,12 +194,6 @@
     <ClInclude Include="MouseCursor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene_Loading.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene_Lobby.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SoundObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -215,20 +215,44 @@
     <ClInclude Include="ColorPalette.h">
       <Filter>GameEngine\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="MathHelper.hpp">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="DebugInfo.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
       <Filter>GameEngine\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPoolable.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>GameEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Lobby.h">
+      <Filter>GameEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Loading.h">
+      <Filter>GameEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TileGrid.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DThickLine.h">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>GameEngine\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Test.h">
+      <Filter>GameEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>GameEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,16 +17,18 @@ public:
 	bool INITIALIZE();
 	void FIXEDUPDATE(float dt);
 
-	void SetCollisionDetectionMode(CollisionDetectionMode mode);
+	void SetCollisionDetectionMode(CollisionDetectionMode mode) { m_Mode = mode; };
 
 	GameObject* GetGameObject() { return m_Owner; }
-	void SetCollisionEnter(std::function<void(Collider*)> func) { m_CollisionEnterFunc };
+	void SetCollisionEnter(std::function<void(Collider*)> func) { m_CollisionEnterFunc; };
+	void SetCollisionStay(std::function<void(Collider*)> func) { m_CollisionStayFunc; };
+	void SetCollisionExit(std::function<void(Collider*)> func) { m_CollisionExitFunc; };
 protected:
 	GameObject* m_Owner;
 
 	CollisionDetectionMode m_Mode = CollisionDetectionMode::Discrete;
+	sf::Vector2f m_Direction;
 	sf::Vector2f m_PrevPosition;
-
 
 	virtual bool Initialize() = 0;
 	virtual void FixedUpdate(float dt) = 0;

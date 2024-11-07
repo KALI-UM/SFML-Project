@@ -3,6 +3,7 @@
 #include "SFML/Window.hpp"
 #include "Scene_Test.h"
 #include "Scene_Lobby.h"
+#include "Scene_Test.h"
 
 
 GameManager::GameManager()
@@ -44,7 +45,7 @@ bool GameManager::Initialize(sf::RenderWindow* window)
 
 	m_Volume = 0.8f;
 
-	Scene_Lobby* lobby = new Scene_Lobby();
+	Scene_Test* lobby = new Scene_Test();
 	SM->PushScene(lobby);
 	SM->SetCurrentScene(lobby->GetName());
 	lobby->ENTER();

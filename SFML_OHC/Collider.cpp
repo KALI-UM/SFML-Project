@@ -18,6 +18,7 @@ bool Collider::INITIALIZE()
 
 void Collider::FIXEDUPDATE(float dt)
 {
+	m_Direction = Nomalize(getPosition() - m_PrevPosition);
 	FixedUpdate(dt);
 	m_PrevPosition = getPosition();
 }

@@ -3,7 +3,6 @@
 class Layer;
 class GameObject;
 class SoundPlayer;
-typedef std::pair<int, GameObject*> GameObjectInfo;
 class SceneBase
 {
 public:
@@ -24,6 +23,11 @@ public:
 	void RELEASE();
 
 	std::string GetName()const;
+
+	typedef std::pair<int, GameObject*> GameObjectInfo;
+	void RemoveGameObject(GameObjectInfo gobj);
+	void RemoveGameObject(int layerIndex, GameObject* gobj);
+	
 	SoundPlayer* GetSoundPlayer();
 
 	const unsigned int				m_ViewCnt;
@@ -47,8 +51,7 @@ protected:
 	}
 
 	void SetLayerViewIndex(int layerIndex, int viewIndex);
-	void RemoveGameObject(GameObjectInfo gobj);
-	void RemoveGameObject(int layerIndex, GameObject* gobj);
+
 
 private:
 	const std::string							m_Name;
@@ -68,8 +71,6 @@ private:
 	void PushToDrawQue();
 	void RemoveGameObject();
 
-
 	SoundPlayer* m_SoundPlayer;
-
 };
 

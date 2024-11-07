@@ -63,6 +63,7 @@ void SceneBase::UPDATE(float dt)
 void SceneBase::LATEUPDATE(float dt)
 {
 	LateUpdate(dt);
+	RemoveGameObject();
 }
 
 void SceneBase::FIXEDUPDATE(float dt)

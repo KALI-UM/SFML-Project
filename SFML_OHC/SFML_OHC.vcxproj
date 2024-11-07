@@ -161,6 +161,7 @@
     <ClCompile Include="DShape.cpp" />
     <ClCompile Include="DSprite.cpp" />
     <ClCompile Include="DText.cpp" />
+    <ClCompile Include="DThickLine.cpp" />
     <ClCompile Include="DustEffect.cpp" />
     <ClCompile Include="EffectObject.cpp" />
     <ClCompile Include="Framework.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStart.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MouseCursor.cpp" />
     <ClCompile Include="MusicObject.cpp" />
@@ -182,6 +184,7 @@
     <ClCompile Include="Scene_Test.cpp" />
     <ClCompile Include="SoundObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="TileGrid.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
@@ -199,6 +202,7 @@
     <ClInclude Include="DShape.h" />
     <ClInclude Include="DSprite.h" />
     <ClInclude Include="DText.h" />
+    <ClInclude Include="DThickLine.h" />
     <ClInclude Include="DustEffect.h" />
     <ClInclude Include="EffectObject.h" />
     <ClInclude Include="Framework.h" />
@@ -206,9 +210,11 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStart.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="MathHelper.hpp" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="MouseCursor.h" />
     <ClInclude Include="MusicObject.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="ObjectPoolable.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneBase.h" />
@@ -219,6 +225,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundObject.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="TileGrid.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

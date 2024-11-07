@@ -22,7 +22,6 @@
 //
 ////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////
 template <typename T>
 inline Vector2<T>::Vector2() :
@@ -173,23 +172,34 @@ inline bool operator !=(const Vector2<T>& left, const Vector2<T>& right)
 ////////////////////////////////////////////////////////////
 //길이
 template <typename T>
-inline T Length(const Vector2<T>& v)
-{
-	return (sqrt(v.x * v.x + v.y * v.y));
-}
-
-template <typename T>
 inline T SqrtMagnitude(const Vector2<T>& v)
 {
 	return (v.x * v.x + v.y * v.y);
 }
 
-//template <typename T>
-//inline T Magnitude(const Vector2<T>& v)
-//{
-//	return (sqrt(SqrtMagnitude(v));
-//}
+template <typename T>
+inline T Magnitude(const Vector2<T>& v)
+{
+	return sqrtf(SqrtMagnitude<T>(v));
+}
 
+template <>
+inline float Magnitude(const Vector2<float>& v)
+{
+	return sqrtf(SqrtMagnitude<float>(v));
+}
+
+template <>
+inline double Magnitude(const Vector2<double>& v)
+{
+	return sqrt(SqrtMagnitude<double>(v));
+}
+
+template <typename T>
+inline T Length(const Vector2<T>& v)
+{
+	return Magnitude(v);
+}
 ////////////////////////////////////////////////////////////
 //거리
 template <typename T>
@@ -202,21 +212,13 @@ inline T Distance(const Vector2<T>& left, const Vector2<T>& right)
 template <typename T>
 inline Vector2<T> Nomalize(const Vector2<T>& v)
 {
-	T len = length(v);
+	T len = Length(v);
 	return Vector2<T>(v.x / len, v.y / len);
 }
 ////////////////////////////////////////////////////////////
-//clamp
-//template <typename T>
-//inline Vector2<T> Clamp(const Vector2<T>& v, const Vector2<T>& min, const Vector2<T>& max)
-//{
-//	return Vector2<T>(util::clamp(v.x, min.x, max.y), util::clamp(v.y, min.y,max.y));
-//}
-//////////////////////////////////////////////////////////////
-////보간
-//template<typename T>
-//inline Vector2<T> lerp(const Vector2<T>& left, const Vector2<T>& right, float ratio)
-//{
-//	ratio = util::clamp(ratio, 0.f, 1.f);
-//	return Vector2<T>(util::lerp(left.x, right.x, ratio), util::lerp(left.y, right.y, ratio));
-//}
+//Dot
+template <typename T>
+inline T Dot(const Vector2<T>& left, const Vector2<T>& right)
+{
+	return left.x * right.x + left.y * right.y;
+}

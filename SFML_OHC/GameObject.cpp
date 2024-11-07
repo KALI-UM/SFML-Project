@@ -56,6 +56,16 @@ void GameObject::UPDATE(float dt)
 	}
 }
 
+void GameObject::LATEUPDATE(float dt)
+{
+	LateUpdate(dt);
+}
+
+void GameObject::FIXEDUPDATE(float dt)
+{
+	FixeUpdate(dt);
+}
+
 void GameObject::RELEASE()
 {
 	Release();
@@ -76,6 +86,14 @@ void GameObject::Reset()
 }
 
 void GameObject::Update(float dt)
+{
+}
+
+void GameObject::LateUpdate(float dt)
+{
+}
+
+void GameObject::FixeUpdate(float dt)
 {
 }
 

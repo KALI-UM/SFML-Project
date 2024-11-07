@@ -4,6 +4,7 @@
 void Framework::Initialize(int width, int height, const std::string& name)
 {
 	m_MainWindow.create(sf::VideoMode(width, height), name);
+	Utils::Initialize();
 	GM->Initialize(&m_MainWindow);
 	IM->Initialize();
 	SM->Initialize();
