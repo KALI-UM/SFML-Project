@@ -28,7 +28,9 @@ public:
 	void SetOutlineColor(int r, int g, int b, int a = 255);
 	void SetOutlineThickness(float v);
 	void SetCharacterSize(unsigned int v);
-	sf::FloatRect GetFloatRect()const;
+	sf::FloatRect GetGlobalBounds()const;
+	sf::FloatRect GetLocalBounds()const;
+
 private:
 	sf::Text m_Text;
 };

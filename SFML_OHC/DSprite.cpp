@@ -64,6 +64,16 @@ DSprite::~DSprite()
 {
 }
 
+sf::FloatRect DSprite::GetLocalBounds() const
+{
+	return m_Sprite.getLocalBounds();
+}
+
+sf::FloatRect DSprite::GetGlobalBounds() const
+{
+	return m_Sprite.getGlobalBounds();
+}
+
 void DSprite::SetTexture(sf::Texture* tex)
 {
 	if (tex)
@@ -82,11 +92,6 @@ void DSprite::SetOrigin(OriginType type, const sf::Vector2f& detail)
 {
 	setOrigin(((GetTextureSize().x / 2) * ((int)type % 3)) + detail.x,
 		((GetTextureSize().y / 2) * ((int)type / 3)) + detail.y);
-}
-
-sf::FloatRect DSprite::GetFloatRect() const
-{
-	return m_Sprite.getGlobalBounds();
 }
 
 sf::Vector2u DSprite::GetTextureSize() const

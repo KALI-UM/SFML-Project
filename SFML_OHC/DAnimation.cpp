@@ -156,9 +156,14 @@ void DAnimation::SetOutlineColor(int r, int g, int b, int a)
 	SetOutlineColor(sf::Color(r, g, b, a));
 }
 
-sf::FloatRect DAnimation::GetFloatRect() const
+sf::FloatRect DAnimation::GetGlobalBounds() const
 {
 	return m_Sprite.getGlobalBounds();
+}
+
+sf::FloatRect DAnimation::GetLocalBounds() const
+{
+	return m_Sprite.getLocalBounds();
 }
 
 sf::Vector2u DAnimation::GetTextureSize() const

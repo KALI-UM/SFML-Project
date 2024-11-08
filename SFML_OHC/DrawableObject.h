@@ -84,7 +84,8 @@ public:
 	sf::Vector2f GetPoint(int index) const; 
 
 	virtual sf::Vector2u GetTextureSize()const;
-	virtual sf::FloatRect GetFloatRect()const = 0;
+	virtual sf::FloatRect GetGlobalBounds()const = 0;
+	virtual sf::FloatRect GetLocalBounds()const = 0;
 
 	virtual sf::Color GetColor() const = 0;
 	virtual void SetColor(const sf::Color& color) = 0;

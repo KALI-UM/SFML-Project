@@ -32,7 +32,7 @@ bool Button::Initialize()
 void Button::Reset()
 {
 	m_ButtonSprite->SetColor(m_DefaultColor);
-	m_ButtonArea = m_ButtonSprite->GetFloatRect();
+	m_ButtonArea = m_ButtonSprite->GetGlobalBounds();
 	m_IsOverlaying = false;
 	m_IsClicked = false;
 }
@@ -68,7 +68,7 @@ void Button::SetButtonPosition(const sf::Vector2f& pos)
 {
 	m_ButtonSprite->setPosition(pos);
 	m_ButtonText->setPosition(pos);
-	m_ButtonArea = m_ButtonSprite->GetFloatRect();
+	m_ButtonArea = m_ButtonSprite->GetGlobalBounds();
 }
 
 void Button::SetButtonText(const std::string& text)

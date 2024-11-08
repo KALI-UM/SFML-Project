@@ -1,8 +1,7 @@
 #pragma once
 #include "Singleton.h"
-
 class Framework :
-    public Singleton<Framework>
+	public Singleton<Framework>
 {
 	friend Singleton<Framework>;
 
@@ -14,6 +13,7 @@ protected:
 	Framework& operator=(const Framework& other) = delete;
 
 	sf::RenderWindow m_MainWindow;
+
 
 	sf::Clock clock;
 	float m_TimeScale = 1.f;

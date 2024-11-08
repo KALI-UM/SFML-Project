@@ -7,7 +7,7 @@ DrawableObject::DrawableObject(DataType datatype, DrawType drawtype, sf::Drawabl
 {
 	Init(m_Transform);
 #ifdef _DEBUG
-	m_DebugInfo = new DebugInfo(sf::FloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), getTransform(),const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 #endif // _DEBUG
 }
 
@@ -16,7 +16,7 @@ DrawableObject::DrawableObject(const DrawableObject& other, sf::Drawable* drawab
 {
 	Init(other, m_Transform);
 #ifdef _DEBUG
-	m_DebugInfo = new DebugInfo(sf::FloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), getTransform(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 #endif // _DEBUG
 }
 
@@ -25,7 +25,7 @@ DrawableObject::DrawableObject(DrawableObject&& other, sf::Drawable* drawable, s
 {
 	Init(other, m_Transform);
 #ifdef _DEBUG
-	m_DebugInfo = new DebugInfo(sf::FloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
+	m_DebugInfo = new DebugInfo(sf::FloatRect(), getTransform(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 #endif // _DEBUG
 	other.m_IsValid = false;
 }
@@ -38,7 +38,7 @@ DrawableObject::~DrawableObject()
 DebugInfo* DrawableObject::GetDebugDraw()
 {
 	if(m_DebugInfo)
-	m_DebugInfo->Update(GetFloatRect());
+	m_DebugInfo->Update(GetLocalBounds(), getTransform());
 	return m_DebugInfo;
 }
 
@@ -46,7 +46,7 @@ void DrawableObject::SetDebugDraw(bool debug)
 {
 	if (!m_DebugInfo && debug)
 	{
-		m_DebugInfo = new DebugInfo(GetFloatRect(), const_cast<sf::Vector2f&>(m_Transform->getPosition()));
+		m_DebugInfo = new DebugInfo(GetLocalBounds(), getTransform(),const_cast<sf::Vector2f&>(m_Transform->getPosition()));
 	}
 	else if (m_DebugInfo && !debug)
 	{
@@ -62,16 +62,16 @@ void DrawableObject::SetOriginCenter()
 
 void DrawableObject::SetOrigin(OriginType type, const sf::Vector2f& detail)
 {
-	setOrigin(((GetFloatRect().width / 2) * ((int)type % 3)) + detail.x,
-		((GetFloatRect().height / 2) * ((int)type / 3)) + detail.y);
+	setOrigin(((GetGlobalBounds().width / 2) * ((int)type % 3)) + detail.x,
+		((GetGlobalBounds().height / 2) * ((int)type / 3)) + detail.y);
 }
 
 sf::Vector2f DrawableObject::GetPoint(int index) const
 {
 	//0 , 1
 	//2 , 3 ¿Œµ¶Ω∫
-	return sf::Vector2f(GetFloatRect().getPosition().x + (index % 2) * GetFloatRect().width,
-		GetFloatRect().getPosition().y + (index / 2) * GetFloatRect().height);
+	return sf::Vector2f(GetGlobalBounds().getPosition().x + (index % 2) * GetGlobalBounds().width,
+		GetGlobalBounds().getPosition().y + (index / 2) * GetGlobalBounds().height);
 }
 
 sf::Vector2u DrawableObject::GetTextureSize() const

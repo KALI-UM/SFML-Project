@@ -24,3 +24,5 @@
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "SpriteObject.h"
+

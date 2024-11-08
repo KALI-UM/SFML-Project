@@ -26,6 +26,11 @@ const sf::Color& Line::getColor() const
 
 sf::FloatRect Line::getGlobalBounds() const
 {
+	return getTransform().transformRect(m_Vertices.getBounds());
+}
+
+sf::FloatRect Line::getLocalBounds() const
+{
 	return m_Vertices.getBounds();
 }
 

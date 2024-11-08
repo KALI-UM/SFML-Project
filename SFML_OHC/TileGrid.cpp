@@ -37,9 +37,6 @@ bool TileGrid::Initialize()
 
 void TileGrid::Reset()
 {
-	GetDrawable(1)->setRotation(45);
-	GetDrawable(2)->setRotation(45);
-
 
 }
 

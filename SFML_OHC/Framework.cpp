@@ -12,6 +12,8 @@ void Framework::Initialize(int width, int height, const std::string& name)
 
 void Framework::Do()
 {
+
+
 	while (m_MainWindow.isOpen())
 	{
 		sf::Time dt = clock.restart();
@@ -33,12 +35,16 @@ void Framework::Do()
 
 		// 업데이트
 		GM->Update(m_DeltaTime);
-		// 드로우
-		m_MainWindow.clear();
-		GM->Render();
-		m_MainWindow.display();
 		GM->LateUpdate(m_DeltaTime);
 		GM->FixedUpdate(m_DeltaTime);
+		// 드로우
+		m_MainWindow.clear();
+
+		GM->Render();
+
+		m_MainWindow.display();
+
+
 	}
 }
 

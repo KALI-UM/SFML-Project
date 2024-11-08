@@ -3,8 +3,10 @@
 #include "DSprite.h"
 #include "SoundPlayer.h"
 
-MouseCursor::MouseCursor()
+MouseCursor::MouseCursor(const std::string& texId)
+	:m_TextureId(texId)
 {
+
 }
 
 MouseCursor::~MouseCursor()
@@ -13,7 +15,7 @@ MouseCursor::~MouseCursor()
 
 bool MouseCursor::Initialize()
 {
-	m_Cursor = new DSprite("ui/push.png", DrawType::UI);
+	m_Cursor = new DSprite(m_TextureId, DrawType::UI);
 	SetDrawable(m_Cursor);
 	m_Cursor->SetPriority(1000);
 	return true;

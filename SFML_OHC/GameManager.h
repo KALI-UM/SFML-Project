@@ -46,10 +46,17 @@ public:
 	sf::RenderWindow* GetWindow();
 	sf::View* GetView(int index);
 	void ResizeViews(unsigned int cnt);
+
+	sf::Vector2f GetScreenToViewPos(int index, const sf::Vector2i& screenPos);
+	sf::Vector2i GetViewToScreenPos(int index, const sf::Vector2f& viewPos);
+
+
 	void SetViewSize(int index, const sf::FloatRect& rect);
 	void SetViewportSize(int index, const sf::FloatRect& rect);
-	void SetViewportCenter(int index, const sf::Vector2f& pos);
-	void MoveViewport(int index, const sf::Vector2f& offset);
+	void SetViewCenter(int index, const sf::Vector2f& pos);
+	void MoveView(int index, const sf::Vector2f& offset);
+	void SetViewRotation(int index, float rot);
+	void RotateView(int index, float rot);
 
 	void PushDrawableObject(int viewindex, DrawableObject* dobj);
 	void PushDebugDrawObject(int viewindex, DebugInfo* dobj);

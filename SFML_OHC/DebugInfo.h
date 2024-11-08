@@ -1,10 +1,10 @@
 #pragma once
-class DebugInfo : public sf::Drawable, public sf::Transformable
+class DebugInfo : public sf::Drawable
 {
 public:
-	DebugInfo(const sf::FloatRect& target, sf::Vector2f& pos);
+	DebugInfo(const sf::FloatRect& target, const sf::Transform& transform, sf::Vector2f& pos);
 	~DebugInfo();
-	void Update(const sf::FloatRect& target);
+	void Update(const sf::FloatRect& localBound, const sf::Transform& transform);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
@@ -23,8 +23,8 @@ private:
 	sf::VertexArray		m_X;
 	sf::Color			m_XColor;
 
-	sf::FloatRect			m_Target;
 	sf::Vector2f&			m_Position;
-	sf::Transform			m_Transform;
+	sf::Transform			m_RectTransform;
+	sf::Transform			m_XTransform;
 };
 

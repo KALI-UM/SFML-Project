@@ -64,9 +64,14 @@ void DLine::SetPoint(int index, const sf::Vector2f& p)
 	m_Line.m_Vertices[index].position = p;
 }
 
-sf::FloatRect DLine::GetFloatRect() const
+sf::FloatRect DLine::GetGlobalBounds() const
 {
 	return m_Line.getGlobalBounds();
+}
+
+sf::FloatRect DLine::GetLocalBounds() const
+{
+	return m_Line.getLocalBounds();
 }
 
 sf::Color DLine::GetColor() const

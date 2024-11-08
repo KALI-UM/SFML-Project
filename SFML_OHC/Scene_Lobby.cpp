@@ -65,8 +65,8 @@ void Scene_Lobby::Update(float dt)
 		}
 	}
 
-	GM->MoveViewport(0, sf::Vector2f(200 * IM->GetAxisRaw(Axis::Horizontal) * dt, 0));
-	GM->MoveViewport(0, sf::Vector2f(0, -200 * IM->GetAxisRaw(Axis::Vertical) * dt));
+	GM->MoveView(0, sf::Vector2f(200 * IM->GetAxisRaw(Axis::Horizontal) * dt, 0));
+	GM->MoveView(0, sf::Vector2f(0, -200 * IM->GetAxisRaw(Axis::Vertical) * dt));
 }
 
 void Scene_Lobby::Release()

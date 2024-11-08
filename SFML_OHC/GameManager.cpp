@@ -129,6 +129,16 @@ void GameManager::ResizeViews(unsigned int cnt)
 #endif // _DEBUG
 }
 
+sf::Vector2f GameManager::GetScreenToViewPos(int index, const sf::Vector2i& screenPos)
+{
+	return m_MainWindow->mapPixelToCoords(screenPos, m_Views[index].view);
+}
+
+sf::Vector2i GameManager::GetViewToScreenPos(int index, const sf::Vector2f& viewPos)
+{
+	return m_MainWindow->mapCoordsToPixel(viewPos, m_Views[index].view);
+}
+
 void GameManager::SetViewSize(int index, const sf::FloatRect& rect)
 {
 	m_Views[index].view.reset(rect);
@@ -145,7 +155,7 @@ void GameManager::SetViewportSize(int index, const sf::FloatRect& rect)
 #endif // _DEBUG
 }
 
-void GameManager::SetViewportCenter(int index, const sf::Vector2f& pos)
+void GameManager::SetViewCenter(int index, const sf::Vector2f& pos)
 {
 	m_Views[index].view.setCenter(pos);
 #ifdef _DEBUG
@@ -153,11 +163,27 @@ void GameManager::SetViewportCenter(int index, const sf::Vector2f& pos)
 #endif // _DEBUG
 }
 
-void GameManager::MoveViewport(int index, const sf::Vector2f& offset)
+void GameManager::MoveView(int index, const sf::Vector2f& offset)
 {
 	m_Views[index].view.move(offset);
 #ifdef _DEBUG
 	m_DebugViews[index].view.move(offset);
+#endif // _DEBUG
+}
+
+void GameManager::SetViewRotation(int index, float rot)
+{
+	m_Views[index].view.setRotation(rot);
+#ifdef _DEBUG
+	m_DebugViews[index].view.setRotation(rot);
+#endif // _DEBUG
+}
+
+void GameManager::RotateView(int index, float rot)
+{
+	m_Views[index].view.rotate(rot);
+#ifdef _DEBUG
+	m_DebugViews[index].view.rotate(rot);
 #endif // _DEBUG
 }
 

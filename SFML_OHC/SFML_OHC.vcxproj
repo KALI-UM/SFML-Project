@@ -184,6 +184,7 @@
     <ClCompile Include="Scene_Test.cpp" />
     <ClCompile Include="SoundObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="SpriteObject.cpp" />
     <ClCompile Include="TileGrid.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundObject.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="SpriteObject.h" />
     <ClInclude Include="TileGrid.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Utils.h" />

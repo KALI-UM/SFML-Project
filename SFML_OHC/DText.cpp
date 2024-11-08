@@ -142,7 +142,12 @@ void DText::SetCharacterSize(unsigned int v)
 	m_Text.setCharacterSize(v);
 }
 
-sf::FloatRect DText::GetFloatRect() const
+sf::FloatRect DText::GetLocalBounds() const
+{
+	return m_Text.getLocalBounds();
+}
+
+sf::FloatRect DText::GetGlobalBounds() const
 {
 	return m_Text.getGlobalBounds();
 }

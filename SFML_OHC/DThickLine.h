@@ -16,7 +16,9 @@ public:
 	void SetPoint(int index, const sf::Vector2f& p);
 	void SetThickness(float thick);
 
-	sf::FloatRect GetFloatRect()const;
+	sf::FloatRect GetGlobalBounds()const;
+	sf::FloatRect GetLocalBounds()const;
+
 	sf::Color GetColor() const;								//GetFillColor客 悼老		
 	void SetColor(const sf::Color& color);					//SetFillColor客 悼老
 	void SetColor(int r, int g, int b, int a = 255);		//SetFillColor客 悼老

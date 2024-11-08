@@ -25,6 +25,8 @@ public:
 	std::string GetName()const;
 
 	typedef std::pair<int, GameObject*> GameObjectInfo;
+	
+
 	void RemoveGameObject(GameObjectInfo gobj);
 	void RemoveGameObject(int layerIndex, GameObject* gobj);
 	
