@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "DThickLine.h"
 
-DThickLine::DThickLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line, float thick, DrawType type)
-	:DrawableObject(DataType::Shape, type, &m_ThickLine, &m_ThickLine)
+DThickLine::DThickLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line, float thick)
+	:DrawableObject(DataType::Shape, &m_ThickLine, &m_ThickLine)
 	, m_Thickness(thick), m_HalfThickness(thick / 2)
 {
 	m_ThickLine.m_Color = line;
@@ -10,8 +10,8 @@ DThickLine::DThickLine(const sf::Vector2f& point1, const sf::Vector2f& point2, c
 	m_IsValid = true;
 }
 
-DThickLine::DThickLine(sf::Vector2f points[], int size, const sf::Color& line, float thick, DrawType type)
-	:DrawableObject(DataType::Shape, type, &m_ThickLine, &m_ThickLine)
+DThickLine::DThickLine(sf::Vector2f points[], int size, const sf::Color& line, float thick)
+	:DrawableObject(DataType::Shape, &m_ThickLine, &m_ThickLine)
 {
 	m_ThickLine.m_Color = line;
 	SetPoints(points, size);

@@ -15,9 +15,8 @@ MouseCursor::~MouseCursor()
 
 bool MouseCursor::Initialize()
 {
-	m_Cursor = new DSprite(m_TextureId, DrawType::UI);
+	m_Cursor = new DSprite(m_TextureId);
 	SetDrawable(m_Cursor);
-	m_Cursor->SetPriority(1000);
 	return true;
 }
 

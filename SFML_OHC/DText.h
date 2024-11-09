@@ -5,11 +5,11 @@ class DText :
 	public DrawableObject
 {
 public:
-	DText(sf::Font* font, const std::string& text, unsigned int charsize = 10, DrawType type = DrawType::Normal);
-	DText(const std::string& filepath, const std::string& text, unsigned int charsize = 10, DrawType type = DrawType::Normal);
-	DText(const sf::Vector2f& position, sf::Font* font, const std::string& text, unsigned int charsize = 10, DrawType type = DrawType::Normal);
-	DText(const sf::Vector2f& position, const std::string& filepath, const std::string& text, unsigned int charsize = 10, DrawType type = DrawType::Normal);
-	DText(DrawType type = DrawType::Normal);
+	DText(sf::Font* font, const std::string& text, unsigned int charsize = 10);
+	DText(const std::string& filepath, const std::string& text, unsigned int charsize = 10);
+	DText(const sf::Vector2f& position, sf::Font* font, const std::string& text, unsigned int charsize = 10);
+	DText(const sf::Vector2f& position, const std::string& filepath, const std::string& text, unsigned int charsize = 10);
+	DText();
 	DText(const DText& other);
 	DText(DText&& other);
 	virtual ~DText();

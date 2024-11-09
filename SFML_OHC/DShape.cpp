@@ -1,14 +1,14 @@
 #include "pch.h"
 #include "DShape.h"
 
-DShape::DShape(sf::Shape* shape, const sf::Color& line, float thick, const sf::Color& fill, DrawType type)
-	:m_Shape(shape), DrawableObject(DataType::Shape, type, shape, shape)
+DShape::DShape(sf::Shape* shape, const sf::Color& line, float thick, const sf::Color& fill)
+	:m_Shape(shape), DrawableObject(DataType::Shape, shape, shape)
 {
 	m_IsValid = m_Shape;
 }
 
-DShape::DShape(sf::Shape* shape, sf::Texture* tex, DrawType type)
-	:m_Shape(shape), DrawableObject(DataType::Shape, type, shape, shape)
+DShape::DShape(sf::Shape* shape, sf::Texture* tex)
+	:m_Shape(shape), DrawableObject(DataType::Shape, shape, shape)
 {
 	m_IsValid = m_Shape;
 	SetTexture(tex);

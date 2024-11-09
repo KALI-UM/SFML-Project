@@ -163,12 +163,7 @@ inline bool operator !=(const Vector2<T>& left, const Vector2<T>& right)
 //자체 제작 수정
 // 
 ////////////////////////////////////////////////////////////
-//캐스팅
-//template <typename T, typename U>
-//inline Vector2<T>(const Vector2<U>& v)
-//{
-//	return Vector2<T>(static_cast<T>(v.x), static_cast<T>(v.y));
-//}
+
 ////////////////////////////////////////////////////////////
 //길이
 template <typename T>
@@ -222,3 +217,4 @@ inline T Dot(const Vector2<T>& left, const Vector2<T>& right)
 {
 	return left.x * right.x + left.y * right.y;
 }
+

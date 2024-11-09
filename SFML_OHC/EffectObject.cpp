@@ -54,7 +54,6 @@ bool EffectObject::Initialize()
 	for (auto& drawable : m_Particles)
 	{
 		SetDrawable(drawable);
-		drawable->SetPriority(90);
 	}
 
 	return true;

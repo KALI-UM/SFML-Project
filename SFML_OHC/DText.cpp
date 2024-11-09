@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "DText.h"
 
-DText::DText(sf::Font* font, const std::string& text, unsigned int charsize, DrawType type)
-	:DrawableObject(DataType::Text, type, &m_Text, &m_Text)
+DText::DText(sf::Font* font, const std::string& text, unsigned int charsize)
+	:DrawableObject(DataType::Text, &m_Text, &m_Text)
 {
 	if (font)
 	{
@@ -13,8 +13,8 @@ DText::DText(sf::Font* font, const std::string& text, unsigned int charsize, Dra
 	m_Text.setCharacterSize(charsize);
 }
 
-DText::DText(const std::string& filepath, const std::string& text, unsigned int charsize, DrawType type)
-	:DrawableObject(DataType::Text, type, &m_Text, &m_Text)
+DText::DText(const std::string& filepath, const std::string& text, unsigned int charsize)
+	:DrawableObject(DataType::Text, &m_Text, &m_Text)
 {
 	sf::Font* font = ResourceManager<sf::Font>::GetInstance()->GetByFilepath(filepath);
 	if (font)
@@ -26,8 +26,8 @@ DText::DText(const std::string& filepath, const std::string& text, unsigned int 
 	m_Text.setCharacterSize(charsize);
 }
 
-DText::DText(const sf::Vector2f& position, sf::Font* font, const std::string& text, unsigned int charsize, DrawType type)
-	:DrawableObject(DataType::Text, type, &m_Text, &m_Text)
+DText::DText(const sf::Vector2f& position, sf::Font* font, const std::string& text, unsigned int charsize)
+	:DrawableObject(DataType::Text, &m_Text, &m_Text)
 {
 	m_Text.setPosition(position);
 	if (font)
@@ -39,8 +39,8 @@ DText::DText(const sf::Vector2f& position, sf::Font* font, const std::string& te
 	m_Text.setCharacterSize(charsize);
 }
 
-DText::DText(const sf::Vector2f& position, const std::string& filepath, const std::string& text, unsigned int charsize, DrawType type)
-	:DrawableObject(DataType::Text, type, &m_Text, &m_Text)
+DText::DText(const sf::Vector2f& position, const std::string& filepath, const std::string& text, unsigned int charsize)
+	:DrawableObject(DataType::Text, &m_Text, &m_Text)
 {
 	m_Text.setPosition(position);
 	sf::Font* font = ResourceManager<sf::Font>::GetInstance()->GetByFilepath(filepath);
@@ -54,8 +54,8 @@ DText::DText(const sf::Vector2f& position, const std::string& filepath, const st
 }
 
 
-DText::DText(DrawType type)
-	:DrawableObject(DataType::Text, type, &m_Text, &m_Text)
+DText::DText()
+	:DrawableObject(DataType::Text, &m_Text, &m_Text)
 {
 }
 

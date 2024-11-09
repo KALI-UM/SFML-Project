@@ -12,10 +12,10 @@ Background_Lobby::~Background_Lobby()
 
 bool Background_Lobby::Initialize()
 {
-	m_Logo = new DSprite("ui/logo.png", DrawType::UI);
-	m_Background[0] = new DSprite("background/001.png", DrawType::Background);
-	m_Background[1] = new DSprite("background/001.png", DrawType::Background);
-	m_LobbyCharacter = new DSprite("ui/character_01.png", DrawType::Normal);
+	m_Logo = new DSprite("ui/logo.png");
+	m_Background[0] = new DSprite("background/001.png");
+	m_Background[1] = new DSprite("background/001.png");
+	m_LobbyCharacter = new DSprite("ui/character_01.png");
 
 	SetDrawable(m_Background[0]);
 	SetDrawable(m_Background[1]);

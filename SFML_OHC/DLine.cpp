@@ -1,16 +1,16 @@
 #include "pch.h"
 #include "DLine.h"
 
-DLine::DLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line, DrawType type)
-	:DrawableObject(DataType::Shape, type, &m_Line, &m_Line)
+DLine::DLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line)
+	:DrawableObject(DataType::Shape, &m_Line, &m_Line)
 {
 	m_Line.m_Color = line;
 	SetPoint(point1, point2);
 	m_IsValid = true;
 }
 
-DLine::DLine(sf::Vector2f points[], int size, const sf::Color& line, bool isStrip, DrawType type)
-	:DrawableObject(DataType::Shape, type, &m_Line, &m_Line)
+DLine::DLine(sf::Vector2f points[], int size, const sf::Color& line, bool isStrip)
+	:DrawableObject(DataType::Shape, &m_Line, &m_Line)
 {
 	m_Line.m_Color = line;
 	SetPoints(points, size, isStrip);

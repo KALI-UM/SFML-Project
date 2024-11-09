@@ -44,9 +44,10 @@ public:
 	bool GetKeyUp(sf::Keyboard::Key key) const;
 	bool GetKey(sf::Keyboard::Key key) const;
 
-	sf::Vector2i GetMousePos()const;			//½ºÅ©¸° ÁÂÇ¥°è ±âÁØ
-	sf::Vector2f GetMouseDefaultViewPos()const;		//±âº»ºä ÁÂÇ¥°è ±âÁØ
-	sf::Vector2f GetMouseViewPos(int index)const;		
+	sf::Vector2i GetMousePos()const;					//½ºÅ©¸° ÁÂÇ¥°è ±âÁØ
+	sf::Vector2f GetMouseDefaultViewPos() const;		//±âº»ºä ÁÂÇ¥°è ±âÁØ
+	sf::Vector2f GetMouseViewPos(int index) const;
+
 	bool GetMouseDown(sf::Mouse::Button btt) const;
 	bool GetMouseUp(sf::Mouse::Button btt) const;
 	bool GetMouse(sf::Mouse::Button btt) const;
@@ -57,6 +58,9 @@ private:
 	bool GetKeyDownKM(int key) const;
 	bool GetKeyUpKM(int key) const;
 	bool GetKeyKM(int key) const;
+
+	bool GetIsValidKey(int key) const;
+	bool GetIsValidMouse(int key) const;
 
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_HeldKey;
 	std::bitset<sf::Keyboard::KeyCount + sf::Mouse::ButtonCount>		m_DownKey;

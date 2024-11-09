@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "DRectangle.h"
 
-DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthheight, const sf::Color& line, float thick, const sf::Color& fill, DrawType type)
-	:DShape(&m_Rectangle, line, thick, fill, type)
+DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthheight, const sf::Color& line, float thick, const sf::Color& fill)
+	:DShape(&m_Rectangle, line, thick, fill)
 {
 	m_Rectangle.setPosition(position);
 	SetSize(widthheight);
@@ -11,8 +11,8 @@ DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthhe
 	SetFillColor(fill);
 }
 
-DRectangle::DRectangle(const sf::FloatRect& rect, const sf::Color& line, float thick, const sf::Color& fill, DrawType type)
-	:DShape(&m_Rectangle, line, thick, fill, type)
+DRectangle::DRectangle(const sf::FloatRect& rect, const sf::Color& line, float thick, const sf::Color& fill)
+	:DShape(&m_Rectangle, line, thick, fill)
 {
 	m_Rectangle.setPosition(rect.getPosition());
 	SetSize(rect.getSize());
@@ -21,8 +21,8 @@ DRectangle::DRectangle(const sf::FloatRect& rect, const sf::Color& line, float t
 	SetFillColor(fill);
 }
 
-DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthheight, sf::Texture* tex, DrawType type)
-	:DShape(&m_Rectangle, tex, type)
+DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthheight, sf::Texture* tex)
+	:DShape(&m_Rectangle, tex)
 {
 	m_Rectangle.setPosition(position);
 	SetSize(widthheight);
@@ -32,8 +32,8 @@ DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthhe
 	}
 }
 
-DRectangle::DRectangle(const sf::FloatRect& rect, sf::Texture* tex, DrawType type)
-:DShape(&m_Rectangle, tex, type)
+DRectangle::DRectangle(const sf::FloatRect& rect, sf::Texture* tex)
+:DShape(&m_Rectangle, tex)
 {
 	m_Rectangle.setPosition(rect.getPosition());
 	SetSize(rect.getSize());
@@ -43,15 +43,15 @@ DRectangle::DRectangle(const sf::FloatRect& rect, sf::Texture* tex, DrawType typ
 	}
 }
 
-DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthheight, const std::string& filepath, DrawType type)
-	:DShape(&m_Rectangle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath), type)
+DRectangle::DRectangle(const sf::Vector2f& position, const sf::Vector2f& widthheight, const std::string& filepath)
+	:DShape(&m_Rectangle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath))
 {
 	m_Rectangle.setPosition(position);
 	SetSize(widthheight);
 }
 
-DRectangle::DRectangle(const sf::FloatRect& rect, const std::string& filepath, DrawType type)
-	:DShape(&m_Rectangle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath), type)
+DRectangle::DRectangle(const sf::FloatRect& rect, const std::string& filepath)
+	:DShape(&m_Rectangle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath))
 {
 	m_Rectangle.setPosition(rect.getPosition());
 	SetSize(rect.getSize());

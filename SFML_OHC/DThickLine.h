@@ -5,8 +5,8 @@ class DThickLine
 	: public DrawableObject
 {
 public:
-	DThickLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line, float thick = 5.0f, DrawType type = DrawType::Normal);
-	DThickLine(sf::Vector2f points[], int size, const sf::Color& line, float thick = 5.0f, DrawType type = DrawType::Normal);
+	DThickLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line, float thick = 5.0f);
+	DThickLine(sf::Vector2f points[], int size, const sf::Color& line, float thick = 5.0f);
 	DThickLine(const DThickLine& other);
 	DThickLine(DThickLine&& other);
 	virtual ~DThickLine();

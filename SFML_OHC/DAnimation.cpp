@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "DAnimation.h"
 
-DAnimation::DAnimation(sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
-	:DrawableObject(DataType::Animation, type, &m_Sprite, &m_Sprite),
+DAnimation::DAnimation(sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop)
+	:DrawableObject(DataType::Animation, &m_Sprite, &m_Sprite),
 	m_FrameCount(FrameCnt), m_FrameSize({ tex->getSize().x / FrameCnt.x, tex->getSize().y / FrameCnt.y }), m_CurrFrame({ 0,0 }),
 	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
 {
@@ -14,8 +14,8 @@ DAnimation::DAnimation(sf::Texture* tex, const sf::Vector2u& FrameCnt, float spe
 	}
 }
 
-DAnimation::DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
-	:DrawableObject(DataType::Animation, type, &m_Sprite, &m_Sprite),
+DAnimation::DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop)
+	:DrawableObject(DataType::Animation, &m_Sprite, &m_Sprite),
 	m_FrameCount(FrameCnt), m_FrameSize(), m_CurrFrame({ 0,0 }),
 	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
 {
@@ -29,8 +29,8 @@ DAnimation::DAnimation(const std::string& filepath, const sf::Vector2u& FrameCnt
 	}
 }
 
-DAnimation::DAnimation(const sf::Vector2f& position, sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
-	:DrawableObject(DataType::Animation, type, &m_Sprite, &m_Sprite),
+DAnimation::DAnimation(const sf::Vector2f& position, sf::Texture* tex, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop)
+	:DrawableObject(DataType::Animation,&m_Sprite, &m_Sprite),
 	m_FrameCount(FrameCnt), m_FrameSize({ tex->getSize().x / FrameCnt.x, tex->getSize().y / FrameCnt.y }), m_CurrFrame({ 0,0 }),
 	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
 {
@@ -43,8 +43,8 @@ DAnimation::DAnimation(const sf::Vector2f& position, sf::Texture* tex, const sf:
 	}
 }
 
-DAnimation::DAnimation(const sf::Vector2f& position, const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop, DrawType type)
-	:DrawableObject(DataType::Animation, type, &m_Sprite, &m_Sprite),
+DAnimation::DAnimation(const sf::Vector2f& position, const std::string& filepath, const sf::Vector2u& FrameCnt, float speed, bool playnow, bool loop)
+	:DrawableObject(DataType::Animation, &m_Sprite, &m_Sprite),
 	m_FrameCount(FrameCnt), m_FrameSize(), m_CurrFrame({ 0,0 }),
 	m_Speed(speed), m_IsPlaying(playnow), m_IsLoopAnim(loop)
 {

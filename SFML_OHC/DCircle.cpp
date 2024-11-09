@@ -4,8 +4,8 @@
 #include "pch.h"
 #include "DCircle.h"
 
-DCircle::DCircle(const sf::Vector2f& position, float radius, const sf::Color& line, float thick, const sf::Color& fill, int pointcnt, DrawType type)
-	:DShape(&m_Circle, line, thick, fill, type)
+DCircle::DCircle(const sf::Vector2f& position, float radius, const sf::Color& line, float thick, const sf::Color& fill, int pointcnt)
+	:DShape(&m_Circle, line, thick, fill)
 {
 	m_Circle.setPosition(position);
 	SetPointCount(pointcnt);
@@ -15,8 +15,8 @@ DCircle::DCircle(const sf::Vector2f& position, float radius, const sf::Color& li
 	SetFillColor(fill);
 }
 
-DCircle::DCircle(const sf::Vector2f& position, float radius, sf::Texture* tex, int pointcnt, DrawType type)
-	:DShape(&m_Circle, tex, type)
+DCircle::DCircle(const sf::Vector2f& position, float radius, sf::Texture* tex, int pointcnt)
+	:DShape(&m_Circle, tex)
 {
 	m_Circle.setPosition(position);
 	SetPointCount(pointcnt);
@@ -27,8 +27,8 @@ DCircle::DCircle(const sf::Vector2f& position, float radius, sf::Texture* tex, i
 	}
 }
 
-DCircle::DCircle(const sf::Vector2f& position, float radius, const std::string& filepath, int pointcnt, DrawType type)
-	:DShape(&m_Circle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath), type)
+DCircle::DCircle(const sf::Vector2f& position, float radius, const std::string& filepath, int pointcnt)
+	:DShape(&m_Circle, ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath))
 {
 	m_Circle.setPosition(position);
 	m_Circle.setPointCount(pointcnt);

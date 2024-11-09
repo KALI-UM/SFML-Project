@@ -70,6 +70,14 @@ public:
     explicit Vector2(const Vector2<U>& vector);
 
     ////////////////////////////////////////////////////////////
+    //쉬운 변환을 위해 추가함
+    template <typename U>
+    Vector2<U> To() const
+    {
+        return Vector2<U>(x, y);
+    }
+
+    ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
     T x; //!< X coordinate of the vector
@@ -246,6 +254,9 @@ bool operator ==(const Vector2<T>& left, const Vector2<T>& right);
 ////////////////////////////////////////////////////////////
 template <typename T>
 bool operator !=(const Vector2<T>& left, const Vector2<T>& right);
+
+
+////////////////////////////////////////////////////////////
 
 
 

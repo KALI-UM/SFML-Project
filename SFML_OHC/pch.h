@@ -13,6 +13,7 @@
 #include <queue>
 
 #include "yaml-cpp/yaml.h"
+#include "rapidcsv.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "ColorPalette.h"

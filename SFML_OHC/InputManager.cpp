@@ -23,10 +23,12 @@ bool InputManager::Initialize()
 
 void InputManager::UpdateEvent(const sf::Event& ev)
 {
+
 	switch (ev.type)
 	{
 	case sf::Event::KeyPressed:
 	{
+		if (!GetIsValidKey(ev.key.code))break;
 		if (!GetKey(ev.key.code))
 		{
 			m_DownKey.set(ev.key.code, 1);
@@ -36,12 +38,14 @@ void InputManager::UpdateEvent(const sf::Event& ev)
 	}
 	case sf::Event::KeyReleased:
 	{
+		if (!GetIsValidKey(ev.key.code))break;
 		m_UpKey.set(ev.key.code, 1);
 		m_HeldKey.set(ev.key.code, 0);
 		break;
 	}
 	case sf::Event::MouseButtonPressed:
 	{
+		if (!GetIsValidMouse(ev.mouseButton.button))break;
 		if (!GetMouse(ev.mouseButton.button))
 		{
 			m_DownKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
@@ -51,6 +55,7 @@ void InputManager::UpdateEvent(const sf::Event& ev)
 	}
 	case sf::Event::MouseButtonReleased:
 	{
+		if (!GetIsValidMouse(ev.mouseButton.button))break;
 		m_UpKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
 		m_HeldKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 0);
 		break;
@@ -73,7 +78,7 @@ void InputManager::Update(float dt)
 
 		axisInfo.m_Value += dir * axisInfo.m_Sensitivity * dt;
 		axisInfo.m_Value = Utils::Clamp(axisInfo.m_Value, -1.f, 1.f);
-		
+
 		//value가 완벽하게 0이 될 수 없지만 
 		//현재 value값의 절대값이 이번 업데이트의 변위값보다 작다면 0을 지났다고 보고 0으로 보정해준다. 
 		float stopThreshold = std::fabs(dir * axisInfo.m_Sensitivity * dt);
@@ -178,4 +183,14 @@ bool InputManager::GetKeyUpKM(int key) const
 bool InputManager::GetKeyKM(int key) const
 {
 	return m_HeldKey.test(key);
+}
+
+bool InputManager::GetIsValidKey(int key) const
+{
+	return key >= 0 && key <= sf::Keyboard::KeyCount;
+}
+
+bool InputManager::GetIsValidMouse(int key) const
+{
+	return key >= 0 && key <= sf::Mouse::ButtonCount;
 }

@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "DSprite.h"
 
-DSprite::DSprite(sf::Texture* tex, DrawType type)
-	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+DSprite::DSprite(sf::Texture* tex)
+	:DrawableObject(DataType::Sprite, &m_Sprite, &m_Sprite)
 {
 	if (tex)
 	{
@@ -11,8 +11,8 @@ DSprite::DSprite(sf::Texture* tex, DrawType type)
 	}
 }
 
-DSprite::DSprite(const std::string& filepath, DrawType type)
-	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+DSprite::DSprite(const std::string& filepath)
+	:DrawableObject(DataType::Sprite, &m_Sprite, &m_Sprite)
 {
 	sf::Texture* tex = ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath);
 	if (tex)
@@ -22,8 +22,8 @@ DSprite::DSprite(const std::string& filepath, DrawType type)
 	}
 }
 
-DSprite::DSprite(const sf::Vector2f& position, sf::Texture* tex, DrawType type)
-	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+DSprite::DSprite(const sf::Vector2f& position, sf::Texture* tex)
+	:DrawableObject(DataType::Sprite, &m_Sprite, &m_Sprite)
 {
 	m_Sprite.setPosition(position);
 	if (tex)
@@ -33,8 +33,8 @@ DSprite::DSprite(const sf::Vector2f& position, sf::Texture* tex, DrawType type)
 	}
 }
 
-DSprite::DSprite(const sf::Vector2f& position, const std::string& filepath, DrawType type)
-	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+DSprite::DSprite(const sf::Vector2f& position, const std::string& filepath)
+	:DrawableObject(DataType::Sprite, &m_Sprite, &m_Sprite)
 {
 	m_Sprite.setPosition(position);
 	sf::Texture* tex = ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath);
@@ -45,8 +45,8 @@ DSprite::DSprite(const sf::Vector2f& position, const std::string& filepath, Draw
 	}
 }
 
-DSprite::DSprite(DrawType type)
-	:DrawableObject(DataType::Sprite, type, &m_Sprite, &m_Sprite)
+DSprite::DSprite()
+	:DrawableObject(DataType::Sprite, &m_Sprite, &m_Sprite)
 {
 }
 

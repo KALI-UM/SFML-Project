@@ -185,6 +185,7 @@
     <ClCompile Include="SoundObject.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
     <ClCompile Include="SpriteObject.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileGrid.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="ObjectPoolable.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="rapidcsv.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
@@ -227,6 +229,7 @@
     <ClInclude Include="SoundObject.h" />
     <ClInclude Include="SoundPlayer.h" />
     <ClInclude Include="SpriteObject.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="TileGrid.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Utils.h" />

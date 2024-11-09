@@ -5,8 +5,8 @@ class DLine :
 	public DrawableObject
 {
 public:
-	DLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line, DrawType type = DrawType::Normal);
-	DLine(sf::Vector2f points[], int size, const sf::Color& line, bool isStrip = true, DrawType type = DrawType::Normal);
+	DLine(const sf::Vector2f& point1, const sf::Vector2f& point2, const sf::Color& line);
+	DLine(sf::Vector2f points[], int size, const sf::Color& line, bool isStrip = true);
 	DLine(const DLine& other);
 	DLine(DLine&& other);
 	virtual ~DLine();

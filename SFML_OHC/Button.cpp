@@ -15,14 +15,12 @@ Button::~Button()
 
 bool Button::Initialize()
 {
-	m_ButtonSprite = new DSprite("ui/button.png", DrawType::UI);
+	m_ButtonSprite = new DSprite("ui/button.png");
 	m_ButtonSprite->SetOriginCenter();
-	m_ButtonSprite->SetPriority(10);
-	m_ButtonText = new DText("resource/CookieRun Black.ttf", "", 30, DrawType::UI);
+	m_ButtonText = new DText("resource/CookieRun Black.ttf", "", 30);
 	m_ButtonText->SetOutlineColor(sf::Color::Black);
 	m_ButtonText->SetOutlineThickness(1);
 	m_ButtonText->SetOriginCenter();
-	m_ButtonText->SetPriority(100);
 	SetDrawable(m_ButtonSprite);
 	SetDrawable(m_ButtonText);
 

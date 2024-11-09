@@ -5,11 +5,11 @@ class DSprite :
 	public DrawableObject
 {
 public:
-	DSprite(sf::Texture* tex, DrawType type = DrawType::Normal);
-	DSprite(const std::string& filepath, DrawType type = DrawType::Normal);
-	DSprite(const sf::Vector2f& position, sf::Texture* tex, DrawType type = DrawType::Normal);
-	DSprite(const sf::Vector2f& position, const std::string& filepath, DrawType type = DrawType::Normal);
-	DSprite(DrawType type = DrawType::Normal);
+	DSprite(sf::Texture* tex);
+	DSprite(const std::string& filepath);
+	DSprite(const sf::Vector2f& position, sf::Texture* tex);
+	DSprite(const sf::Vector2f& position, const std::string& filepath);
+	DSprite();
 	DSprite(const DSprite& other);
 	DSprite(DSprite&& other);
 	virtual ~DSprite();

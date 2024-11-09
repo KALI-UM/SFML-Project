@@ -5,8 +5,8 @@ class DShape :
 	public DrawableObject
 {
 protected:
-	DShape(sf::Shape* shape, const sf::Color& line, float thick = 1.0f, const sf::Color& fill = sf::Color::Transparent, DrawType type = DrawType::Normal);
-	DShape(sf::Shape* shape, sf::Texture* tex, DrawType type = DrawType::Normal);
+	DShape(sf::Shape* shape, const sf::Color& line, float thick = 1.0f, const sf::Color& fill = sf::Color::Transparent);
+	DShape(sf::Shape* shape, sf::Texture* tex);
 	DShape(const DShape& other);
 	DShape(DShape&& other);
 	virtual ~DShape();

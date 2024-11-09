@@ -2,6 +2,7 @@
 #include "SceneBase.h"
 
 class TileGrid;
+class Tile;
 class SpriteObject;
 class Scene_Test :
     public SceneBase
@@ -21,9 +22,8 @@ protected:
 	//void Release() override;
 	TileGrid* m_Tile_1;
 	TileGrid* m_Tile_2;
-	SpriteObject* m_Sprite;
+	Tile* m_Tile;
 
-	sf::Transform trans;
 	sf::Vector2f tilepos;
 };
 

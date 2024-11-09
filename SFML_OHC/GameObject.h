@@ -41,10 +41,10 @@ protected:
 	virtual void FixeUpdate(float dt);
 	virtual void Release();
 
+	std::vector<DrawableObject*> m_Drawable;
 private:
 	bool			m_IsValid;
 	const bool		m_IsMovable;
-	std::vector<DrawableObject*> m_Drawable;
 
 private:
 	static int m_GameObjectsCount;
