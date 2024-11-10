@@ -77,6 +77,7 @@ void GameManager::Update(float dt)
 
 void GameManager::Render()
 {
+	const sf::View& defaultView = m_MainWindow->getView();
 	for (int i = 0; i < m_Views.size(); i++)
 	{
 		m_MainWindow->setView(m_Views[i].view);
@@ -96,6 +97,7 @@ void GameManager::Render()
 		}
 #endif // _DEBUG
 	}
+	m_MainWindow->setView(defaultView);
 	GetSceneManager()->PostRender();
 }
 
@@ -117,6 +119,11 @@ sf::RenderWindow* GameManager::GetWindow()
 sf::View* GameManager::GetView(int index)
 {
 	return &m_Views[index].view;
+}
+
+const sf::FloatRect& GameManager::GetViewRect(int index)
+{
+	return m_Views[index].viewRect;
 }
 
 void GameManager::ResizeViews(unsigned int cnt)
@@ -185,6 +192,14 @@ void GameManager::RotateView(int index, float rot)
 #ifdef _DEBUG
 	m_DebugViews[index].view.rotate(rot);
 #endif // _DEBUG
+}
+
+void GameManager::UpdateViewRect()
+{
+	for (auto& view : m_Views)
+	{
+		view.viewRect = sf::FloatRect(view.view.getCenter() - view.view.getSize() / 2.0f, view.view.getSize());
+	}
 }
 
 void GameManager::PushDrawableObject(int viewindex, DrawableObject* dobj)

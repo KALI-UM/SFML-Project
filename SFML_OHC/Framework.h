@@ -22,6 +22,8 @@ protected:
 	float m_DeltaTime = 0.f;
 	float m_RealTime = 0.f;
 	float m_RealDeltaTime = 0.f;
+	float m_FixedTimeStamp = 0.02f;
+	float m_FixedTimePrev = 0.f;
 
 public:
 	float GetTime() const { return m_Time; }

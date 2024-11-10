@@ -19,7 +19,8 @@ bool Scene_Test::Initialize()
 {
 	SetLayerViewIndex(1, 1);
 	SetLayerViewIndex(2, 2);
-	AddGameObject(2, new MouseCursor("background/1013.png"));
+	AddGameObject(2, new MouseCursor("background/1013.png", 2));
+
 	m_Tile_2 = AddGameObject(1, new TileGrid());
 	m_Tile = AddGameObject(0, new Tile());
 	m_Tile_2->SetCellSize({ 90,90 });
@@ -37,7 +38,11 @@ void Scene_Test::Enter()
 	sf::Transform t;
 	t.scale(1.0f, 0.5f);
 	t.rotate(-45);
-	m_Tile->SetTileTransform(GM->GetScreenToViewPos(0,GM->GetViewToScreenPos(1, {0,0})), t);
+	m_Tile->SetTileTransform({0,0}, t);
+	//m_Tile_1->setPosition(0, 0);
+	//m_Tile_1->setRotation(-45);
+	//m_Tile_1->setScale(0.79f, 0.79f);
+	m_Tile_2->setPosition(GM->GetScreenToViewPos(1, GM->GetViewToScreenPos(0, { 0,0 })));
 }
 
 void Scene_Test::Update(float dt)

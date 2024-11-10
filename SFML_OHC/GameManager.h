@@ -45,11 +45,13 @@ public:
 
 	sf::RenderWindow* GetWindow();
 	sf::View* GetView(int index);
+	const sf::FloatRect& GetViewRect(int index);
+
 	void ResizeViews(unsigned int cnt);
+	int GetViewCount()const { (int)m_Views.size(); }
 
 	sf::Vector2f GetScreenToViewPos(int index, const sf::Vector2i& screenPos);
 	sf::Vector2i GetViewToScreenPos(int index, const sf::Vector2f& viewPos);
-
 
 	void SetViewSize(int index, const sf::FloatRect& rect);
 	void SetViewportSize(int index, const sf::FloatRect& rect);
@@ -57,6 +59,7 @@ public:
 	void MoveView(int index, const sf::Vector2f& offset);
 	void SetViewRotation(int index, float rot);
 	void RotateView(int index, float rot);
+	void UpdateViewRect();
 
 	void PushDrawableObject(int viewindex, DrawableObject* dobj);
 	void PushDebugDrawObject(int viewindex, DebugInfo* dobj);
@@ -78,6 +81,7 @@ private:
 	struct ViewDrawInfo
 	{
 		sf::View							view;
+		sf::FloatRect						viewRect;
 		std::priority_queue<DrawableObject*, std::vector<DrawableObject*>, PriorityComp> drawQue;
 	};
 	std::vector<ViewDrawInfo>				m_Views;

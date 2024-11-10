@@ -27,21 +27,20 @@ bool Tile::Initialize()
 			SetDrawable(tileSprite);
 		}
 	}
-
 	return false;
 }
 
 void Tile::Reset()
 {
-
 }
 
 void Tile::Update(float dt)
 {
+	sf::Vector2f tilepos = m_TileTransform.getInverse().transformPoint(IM->GetMouseViewPos(0));
+	sf::Vector2i tileindex = sf::Vector2i(tilepos.x / m_CellSize.x, tilepos.y / m_CellSize.y);
+	std::cout << tileindex.x << ", " << tileindex.y << std::endl;
 	if (IM->GetMouseDown(sf::Mouse::Left))
 	{
-		sf::Vector2f tilepos = IM->GetMouseViewPos(1);
-		sf::Vector2i tileindex = sf::Vector2i(tilepos.x / m_CellSize.x, tilepos.y / m_CellSize.y);
 		GetDrawable(tileindex.x + tileindex.y * 100)->SetFillColor(sf::Color::Blue);
 	}
 }

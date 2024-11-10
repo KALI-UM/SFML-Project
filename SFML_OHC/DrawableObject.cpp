@@ -72,7 +72,10 @@ void DrawableObject::SetOrigin(OriginType type, const sf::Vector2f& detail)
 sf::Vector2f DrawableObject::GetPoint(int index) const
 {
 	//0 , 1
-	//2 , 3 ¿Œµ¶Ω∫
+	//3 , 2 ¿Œµ¶Ω∫
+	if (index == 2)index = 3;
+	else if (index == 3) index = 2;
+
 	return sf::Vector2f(GetGlobalBounds().getPosition().x + (index % 2) * GetGlobalBounds().width,
 		GetGlobalBounds().getPosition().y + (index / 2) * GetGlobalBounds().height);
 }

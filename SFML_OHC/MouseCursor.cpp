@@ -3,10 +3,9 @@
 #include "DSprite.h"
 #include "SoundPlayer.h"
 
-MouseCursor::MouseCursor(const std::string& texId)
-	:m_TextureId(texId)
+MouseCursor::MouseCursor(const std::string& texId, int viewIndex)
+	:m_TextureId(texId), m_ViewIndex(viewIndex)
 {
-
 }
 
 MouseCursor::~MouseCursor()
@@ -15,8 +14,11 @@ MouseCursor::~MouseCursor()
 
 bool MouseCursor::Initialize()
 {
-	m_Cursor = new DSprite(m_TextureId);
-	SetDrawable(m_Cursor);
+	m_WhenDownFunc.resize(sf::Mouse::ButtonCount);
+	m_WhenUpFunc.resize(sf::Mouse::ButtonCount);
+	m_WhenFunc.resize(sf::Mouse::ButtonCount);
+
+	SetDrawable(new DSprite(m_TextureId));
 	return true;
 }
 
@@ -26,9 +28,38 @@ void MouseCursor::Reset()
 
 void MouseCursor::Update(float dt)
 {
-	setPosition({ MOUSEPOS });
-	if (IM->GetMouseDown(sf::Mouse::Left))
+	setPosition(IM->GetMouseViewPos(m_ViewIndex));
+
+	for (int mbtt = 0; mbtt < (int)sf::Mouse::ButtonCount; mbtt++)
 	{
-		SM->GetSoundPlayer()->PlayEffect("sound/ButtonClick.wav");
+		if (IM->GetMouseDown((sf::Mouse::Button)mbtt) && m_WhenDownFunc[mbtt])
+		{
+			m_WhenDownFunc[mbtt]();
+		}
+
+		if (IM->GetMouseUp((sf::Mouse::Button)mbtt) && m_WhenUpFunc[mbtt])
+		{
+			m_WhenUpFunc[mbtt]();
+		}
+
+		if (IM->GetMouse((sf::Mouse::Button)mbtt) && m_WhenFunc[mbtt])
+		{
+			m_WhenFunc[mbtt]();
+		}
 	}
+}
+
+void MouseCursor::SetMouseDownFunc(sf::Mouse::Button btt, const std::function<void()>& func)
+{
+	m_WhenDownFunc[btt] = func;
+}
+
+void MouseCursor::SetMouseUpFunc(sf::Mouse::Button btt, const std::function<void()>& func)
+{
+	m_WhenUpFunc[btt] = func;
+}
+
+void MouseCursor::SetMouseFunc(sf::Mouse::Button btt, const std::function<void()>& func)
+{
+	m_WhenFunc[btt] = func;
 }

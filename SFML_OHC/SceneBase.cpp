@@ -9,7 +9,7 @@ SceneBase::SceneBase(const std::string& name, unsigned int layercnt, int viewcnt
 	m_GameObjects.resize(layercnt);
 	m_LayerIndex.resize(layercnt);
 	int viewIndex = 0;
-	for (auto it = m_GameObjects.begin(); it!=m_GameObjects.end(); it++)
+	for (auto it = m_GameObjects.begin(); it != m_GameObjects.end(); it++)
 	{
 		m_LayerIndex[viewIndex] = it;
 		viewIndex++;
@@ -22,7 +22,7 @@ SceneBase::~SceneBase()
 
 bool SceneBase::INITIALIZE()
 {
-	m_SoundPlayer = AddGameObject(0,new SoundPlayer());
+	m_SoundPlayer = AddGameObject(0, new SoundPlayer());
 	bool result = Initialize();
 	for (auto& layer : m_GameObjects)
 		for (auto& gobj : layer.gameObjects)
@@ -74,6 +74,7 @@ void SceneBase::FIXEDUPDATE(float dt)
 void SceneBase::PRERENDER()
 {
 	PreRender();
+	GM->UpdateViewRect();
 	PushToDrawQue();
 }
 
@@ -165,7 +166,6 @@ void SceneBase::RemoveGameObject(int layerIndex, GameObject* gobj)
 	RemoveGameObject({ layerIndex, gobj });
 }
 
-
 std::vector<GameObject*>& SceneBase::GetGameObjectsLayerIter(int index)
 {
 	return m_LayerIndex[index]->gameObjects;
@@ -173,7 +173,7 @@ std::vector<GameObject*>& SceneBase::GetGameObjectsLayerIter(int index)
 
 void SceneBase::PushToDrawQue()
 {
-	for (int layerIndex =0; layerIndex <m_GameObjects.size(); layerIndex++)
+	for (int layerIndex = 0; layerIndex < m_GameObjects.size(); layerIndex++)
 	{
 		for (auto& gobj : GetGameObjectsLayerIter(layerIndex))
 		{
@@ -184,11 +184,16 @@ void SceneBase::PushToDrawQue()
 					if (gobj->GetIsVisible(i))
 					{
 						DrawableObject* dobj = gobj->GetDrawable(i);
-						GM->PushDrawableObject(m_LayerIndex[layerIndex]->viewIndex, dobj);
+						int viewIndex = m_LayerIndex[layerIndex]->viewIndex;
+						
+						if (GM->GetViewRect(viewIndex).intersects(dobj->GetGlobalBounds()))
+						{
+							GM->PushDrawableObject(viewIndex, dobj);
 #ifdef _DEBUG
-						if (dobj->GetDebugDraw())
-							GM->PushDebugDrawObject(m_LayerIndex[layerIndex]->viewIndex, dobj->GetDebugDraw());
+							if (dobj->GetDebugDraw())
+								GM->PushDebugDrawObject(viewIndex, dobj->GetDebugDraw());
 #endif // _DEBUG
+						}
 					}
 				}
 			}
@@ -202,9 +207,9 @@ void SceneBase::RemoveGameObject()
 	{
 		int layerIndex = m_WantsToRemove.front().first;
 		GameObject* target = m_WantsToRemove.front().second;
-		
+
 		std::remove(GetGameObjectsLayerIter(layerIndex).begin(), GetGameObjectsLayerIter(layerIndex).end(), target);
-		
+
 		m_WantsToRemove.pop();
 	}
 }

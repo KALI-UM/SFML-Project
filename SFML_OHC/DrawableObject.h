@@ -82,10 +82,11 @@ public:
 
 	const DataType m_DataType;
 protected:
-	sf::Drawable* m_Drawable;
-	sf::Transformable* m_Transform;
 	bool					m_IsValid;
 	std::string				m_Name;
-	DebugInfo* m_DebugInfo;
+	sf::Drawable*			m_Drawable;
+	sf::Transformable*		m_Transform;
+
+	DebugInfo*				m_DebugInfo;
 
 };

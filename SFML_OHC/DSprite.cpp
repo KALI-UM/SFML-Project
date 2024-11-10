@@ -74,18 +74,18 @@ sf::FloatRect DSprite::GetGlobalBounds() const
 	return m_Sprite.getGlobalBounds();
 }
 
-void DSprite::SetTexture(sf::Texture* tex)
+void DSprite::SetTexture(sf::Texture* tex, bool resetRect)
 {
 	if (tex)
 	{
 		m_IsValid = true;
-		m_Sprite.setTexture(*tex);
+		m_Sprite.setTexture(*tex, resetRect);
 	}
 }
 
-void DSprite::SetTexture(const std::string& filepath)
+void DSprite::SetTexture(const std::string& filepath, bool resetRect)
 {
-	SetTexture(ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath));
+	SetTexture(ResourceManager<sf::Texture>::GetInstance()->GetByFilepath(filepath),resetRect);
 }
 
 void DSprite::SetOrigin(OriginType type, const sf::Vector2f& detail)

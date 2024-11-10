@@ -12,11 +12,11 @@ void Framework::Initialize(int width, int height, const std::string& name)
 
 void Framework::Do()
 {
-
+	m_MainWindow.setFramerateLimit(60);
+	sf::Time dt = clock.restart();
 
 	while (m_MainWindow.isOpen())
 	{
-		sf::Time dt = clock.restart();
 		m_RealDeltaTime = m_DeltaTime = dt.asSeconds();
 		m_DeltaTime *= m_TimeScale;
 		m_RealTime += m_RealDeltaTime;
@@ -34,17 +34,21 @@ void Framework::Do()
 		}
 
 		// 업데이트
+		if (m_RealTime - m_FixedTimePrev > m_FixedTimeStamp)
+		{
+			m_FixedTimePrev = m_RealTime;
+			GM->FixedUpdate(m_RealDeltaTime);
+		}
+
 		GM->Update(m_DeltaTime);
 		GM->LateUpdate(m_DeltaTime);
-		GM->FixedUpdate(m_DeltaTime);
 		// 드로우
 		m_MainWindow.clear();
 
+		//std::cout << 1.0f / m_RealDeltaTime << std::endl;
 		GM->Render();
-
 		m_MainWindow.display();
-
-
+		dt = clock.restart();
 	}
 }
 

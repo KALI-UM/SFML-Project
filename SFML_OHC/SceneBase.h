@@ -69,7 +69,7 @@ private:
 	std::vector<GameObject*>& GetGameObjectsLayerIter(int index);
 	std::vector<std::list<LayerInfo>::iterator> m_LayerIndex;
 
-
+	void UpdateScreenRect();
 	void PushToDrawQue();
 	void RemoveGameObject();
 
