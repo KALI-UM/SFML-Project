@@ -38,3 +38,19 @@ void TileGrid::Reset()
 void TileGrid::Update(float dt)
 {
 }
+
+void TileGrid::SetTileTransform(const sf::Vector2f& zero, const sf::Transform& trans)
+{
+	m_TileTransform = trans;
+	setPosition(zero);
+	for (auto& tile : m_Drawable)
+	{
+		DLine* line = dynamic_cast<DLine*>(tile);
+		tile->setLocalPosition(m_TileTransform.transformPoint(tile->getLocalPosition()));
+		for (int index = 0; index < line->GetPointsSize(); index++)
+		{
+			
+			//line->SetPoint(index, m_TileTransform.transformPoint(line->GetPoint(index)));
+		}
+	}
+}

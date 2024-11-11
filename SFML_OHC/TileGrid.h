@@ -15,8 +15,11 @@ public:
 	//void Release() override;
 
 	void SetCellSize(const sf::Vector2f& cell) { m_CellSize = cell; }
+	void SetTileTransform(const sf::Vector2f& zero, const sf::Transform& trans);
 
 protected:
 	sf::Vector2f m_CellSize = { 100.f,100.f };
+	sf::Transform m_TileTransform;
+
 };
 

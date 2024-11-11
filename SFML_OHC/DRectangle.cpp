@@ -74,8 +74,8 @@ DRectangle::~DRectangle()
 void DRectangle::SetSize(const sf::Vector2f& widthheight)
 {
 	m_Rectangle.setSize(widthheight);
-	m_FloatRect.left = GetPoint(0).x;
-	m_FloatRect.top = GetPoint(0).y;
+	m_FloatRect.left = GetBoundPointPosition(0).x;
+	m_FloatRect.top = GetBoundPointPosition(0).y;
 	m_FloatRect.width = widthheight.x;
 	m_FloatRect.height = widthheight.y;
 }

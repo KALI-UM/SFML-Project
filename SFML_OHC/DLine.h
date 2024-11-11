@@ -14,6 +14,8 @@ public:
 	void SetPoint(const sf::Vector2f& p1, const sf::Vector2f& p2);
 	void SetPoints(sf::Vector2f points[], int size, bool isStrip = true);
 	void SetPoint(int index, const sf::Vector2f& p);
+	sf::Vector2f GetPoint(int index) const;
+	int GetPointsSize() const;
 
 	sf::FloatRect GetGlobalBounds()const;
 	sf::FloatRect GetLocalBounds()const;

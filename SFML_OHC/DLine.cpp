@@ -55,6 +55,18 @@ void DLine::SetPoints(sf::Vector2f points[], int size, bool isStrip)
 	SetColor(m_Line.m_Color);
 }
 
+sf::Vector2f DLine::GetPoint(int index) const
+{
+	if (index >= m_Line.m_Vertices.getVertexCount())
+		return sf::Vector2f(0, 0);
+	return m_Line.m_Vertices[index].position;
+}
+
+int DLine::GetPointsSize() const
+{
+	return m_Line.m_Vertices.getVertexCount();
+}
+
 void DLine::SetPoint(int index, const sf::Vector2f& p)
 {
 	if (m_Line.m_Vertices.getVertexCount() <= index)

@@ -64,7 +64,7 @@ public:
 
 	void SetOriginCenter();
 	virtual void SetOrigin(OriginType type, const sf::Vector2f& detail = sf::Vector2f(0, 0));
-	sf::Vector2f GetPoint(int index) const;
+	sf::Vector2f GetBoundPointPosition(int index) const;
 
 	virtual sf::Vector2u GetTextureSize()const;
 	virtual sf::FloatRect GetGlobalBounds()const = 0;

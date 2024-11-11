@@ -69,7 +69,7 @@ void DrawableObject::SetOrigin(OriginType type, const sf::Vector2f& detail)
 		((GetGlobalBounds().height / 2) * ((int)type / 3)) + detail.y);
 }
 
-sf::Vector2f DrawableObject::GetPoint(int index) const
+sf::Vector2f DrawableObject::GetBoundPointPosition(int index) const
 {
 	//0 , 1
 	//3 , 2 ¿Œµ¶Ω∫

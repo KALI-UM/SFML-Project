@@ -20,8 +20,7 @@ protected:
 	//void LateUpdate(float dt) override;
 	//void FixedUpdate(float dt) override;
 	//void Release() override;
-	TileGrid* m_Tile_1;
-	TileGrid* m_Tile_2;
+	TileGrid* m_TileGrid;
 	Tile* m_Tile;
 
 	sf::Vector2f tilepos;
