@@ -66,6 +66,16 @@ void GameObject::FIXEDUPDATE(float dt)
 	FixeUpdate(dt);
 }
 
+void GameObject::IMGUIUPDATE()
+{
+	ImGuiUpdate();
+
+	for (auto& drawable : m_Drawable)
+	{
+		drawable->ImGuiUpdate();
+	}
+}
+
 void GameObject::RELEASE()
 {
 	Release();
@@ -94,6 +104,10 @@ void GameObject::LateUpdate(float dt)
 }
 
 void GameObject::FixeUpdate(float dt)
+{
+}
+
+void GameObject::ImGuiUpdate()
 {
 }
 

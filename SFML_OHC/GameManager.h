@@ -42,6 +42,7 @@ public:
 	void Render();
 	void LateUpdate(float dt);
 	void FixedUpdate(float dt);
+	void ImGuiUpdate();
 
 	sf::RenderWindow* GetWindow();
 	sf::View* GetView(int index);

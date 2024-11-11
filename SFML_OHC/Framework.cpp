@@ -8,6 +8,7 @@ void Framework::Initialize(int width, int height, const std::string& name)
 	GM->Initialize(&m_MainWindow);
 	IM->Initialize();
 	SM->Initialize();
+	ImGuiManager::Init(&m_MainWindow);
 }
 
 void Framework::Do()
@@ -29,7 +30,7 @@ void Framework::Do()
 		{
 			if (event.type == sf::Event::Closed)
 				m_MainWindow.close();
-
+			ImGuiManager::PollEvent(event);
 			IM->UpdateEvent(event);
 		}
 
@@ -42,17 +43,28 @@ void Framework::Do()
 
 		GM->Update(m_DeltaTime);
 		GM->LateUpdate(m_DeltaTime);
+
 		// µå·Î¿ì
 		m_MainWindow.clear();
 
 		//std::cout << 1.0f / m_RealDeltaTime << std::endl;
+
 		GM->Render();
+
+		{ // ImGui Layer
+			ImGuiManager::Begin(dt);
+			GM->ImGuiUpdate();
+			ImGuiManager::End();
+		}
+
 		m_MainWindow.display();
+
 		dt = clock.restart();
 	}
 }
 
 void Framework::Release()
 {
+	ImGuiManager::Release();
 }
 

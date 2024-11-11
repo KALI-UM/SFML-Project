@@ -111,6 +111,11 @@ void GameManager::FixedUpdate(float dt)
 	GetSceneManager()->FixedUpdate(dt);
 }
 
+void GameManager::ImGuiUpdate()
+{
+	GetSceneManager()->ImGuiUpdate();
+}
+
 sf::RenderWindow* GameManager::GetWindow()
 {
 	return m_MainWindow;

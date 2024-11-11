@@ -42,6 +42,11 @@ void SceneManager::FixedUpdate(float dt)
 	m_CurrScene->FIXEDUPDATE(dt);
 }
 
+void SceneManager::ImGuiUpdate()
+{
+	m_CurrScene->IMGUIUPDATE();
+}
+
 void SceneManager::PreRender()
 {
 	m_CurrScene->PRERENDER();

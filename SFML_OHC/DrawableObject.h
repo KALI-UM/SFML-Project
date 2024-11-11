@@ -53,6 +53,7 @@ public:
 	}
 
 	virtual void Update(float dt) {};
+	virtual void ImGuiUpdate() {};
 
 	sf::Drawable* GetDrawable()const { return m_Drawable; }
 	DebugInfo* GetDebugDraw();

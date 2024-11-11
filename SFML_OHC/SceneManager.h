@@ -12,6 +12,7 @@ public:
 	void Update(float dt);
 	void LateUpdate(float dt);
 	void FixedUpdate(float dt);
+	void ImGuiUpdate();
 	void Release();
 	void PreRender();
 	void PostRender();

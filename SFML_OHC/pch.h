@@ -27,3 +27,6 @@
 #include "SceneManager.h"
 #include "SpriteObject.h"
 
+// ImGui
+#include "ImGuiManager.h"
+

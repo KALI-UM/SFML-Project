@@ -20,6 +20,7 @@ public:
 	void UPDATE(float dt);
 	void LATEUPDATE(float dt);
 	void FIXEDUPDATE(float dt);
+	void IMGUIUPDATE();
 	void RELEASE();
 
 	void SetIsValid(bool value);
@@ -39,6 +40,7 @@ protected:
 	virtual void Update(float dt);
 	virtual void LateUpdate(float dt);
 	virtual void FixeUpdate(float dt);
+	virtual void ImGuiUpdate();
 	virtual void Release();
 
 	std::vector<DrawableObject*> m_Drawable;

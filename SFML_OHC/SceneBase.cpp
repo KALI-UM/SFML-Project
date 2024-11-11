@@ -45,6 +45,7 @@ void SceneBase::RESET()
 
 void SceneBase::ENTER()
 {
+	ImGuiManager::SetShowDemo(false);
 	GM->ResizeViews(m_ViewCnt);
 	Enter();
 }
@@ -69,6 +70,17 @@ void SceneBase::LATEUPDATE(float dt)
 void SceneBase::FIXEDUPDATE(float dt)
 {
 	FixedUpdate(dt);
+}
+
+void SceneBase::IMGUIUPDATE()
+{
+	for (auto& layer : m_GameObjects)
+		for (auto& gobj : layer.gameObjects)
+		{
+			if (gobj->GetIsValid())
+				gobj->IMGUIUPDATE();
+		}
+	ImGuiUpdate();
 }
 
 void SceneBase::PRERENDER()
@@ -122,6 +134,10 @@ void SceneBase::LateUpdate(float dt)
 }
 
 void SceneBase::FixedUpdate(float dt)
+{
+}
+
+void SceneBase::ImGuiUpdate()
 {
 }
 

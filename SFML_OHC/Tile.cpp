@@ -41,7 +41,8 @@ void Tile::Update(float dt)
 	std::cout << tileindex.x << ", " << tileindex.y << std::endl;
 	if (IM->GetMouseDown(sf::Mouse::Left))
 	{
-		GetDrawable(tileindex.x + tileindex.y * 100)->SetFillColor(sf::Color::Blue);
+		if (tileindex.x >= 0 && tileindex.x < 100 || tileindex.y >= 0 || tileindex.y < 100)
+			GetDrawable(tileindex.x + tileindex.y * 100)->SetFillColor(sf::Color::Blue);
 	}
 }
 

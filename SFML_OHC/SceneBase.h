@@ -17,6 +17,7 @@ public:
 	void UPDATE(float dt);
 	void LATEUPDATE(float dt);
 	void FIXEDUPDATE(float dt);
+	void IMGUIUPDATE();
 	void PRERENDER();
 	void POSTRENDER();
 	void EXIT();
@@ -40,6 +41,7 @@ protected:
 	virtual void Update(float dt);
 	virtual void LateUpdate(float dt);
 	virtual void FixedUpdate(float dt);
+	virtual void ImGuiUpdate();
 	virtual void PreRender();
 	virtual void PostRender();
 	virtual void Exit();

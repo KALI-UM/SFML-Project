@@ -3,7 +3,6 @@
 
 Line::Line()
 {
-
 }
 
 Line::~Line()
