@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Tile.h"
-#include "DSprite.h"
 
 Tile::Tile()
 {

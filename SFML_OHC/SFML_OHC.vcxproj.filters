@@ -30,86 +30,14 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>GameEngine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>GameEngine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>GameEngine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="DRectangle.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DCircle.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DSprite.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DText.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DShape.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DAnimation.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DustEffect.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="GameStart.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseCursor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SoundObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundPlayer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Background_Lobby.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DLine.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawableObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MusicObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework.cpp">
-      <Filter>GameEngine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorPalette.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugInfo.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>GameEngine\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Lobby.cpp">
       <Filter>GameEngine\Scene</Filter>
@@ -120,28 +48,100 @@
     <ClCompile Include="TileGrid.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DThickLine.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Line.cpp">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="Scene_Test.cpp">
       <Filter>GameEngine\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteObject.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiManager.cpp">
+    <ClCompile Include="Drawable\ColorPalette.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\Line.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DThickLine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DText.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DShape.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DebugInfo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DCircle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DAnimation.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DLine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DrawableObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DRectangle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable\DSprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Framework.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\GameManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ImGuiManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\InputManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SceneBase.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SceneManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SoundPlayer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Transform.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Utils.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Button.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\DustEffect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\EffectObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MouseCursor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MusicObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\SoundObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\SpriteObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,95 +149,11 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>GameEngine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>GameEngine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>GameEngine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>GameEngine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>GameEngine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableObject.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DSprite.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DCircle.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DAnimation.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DRectangle.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DShape.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DText.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DustEffect.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameStart.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseCursor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundPlayer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Background_Lobby.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DLine.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="MusicObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework.h">
-      <Filter>GameEngine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorPalette.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugInfo.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectPool.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectPoolable.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneBase.h">
-      <Filter>GameEngine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Lobby.h">
       <Filter>GameEngine\Scene</Filter>
@@ -248,31 +164,124 @@
     <ClInclude Include="TileGrid.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DThickLine.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Line.h">
-      <Filter>GameEngine\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="Scene_Test.h">
       <Filter>GameEngine\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="rapidcsv.h">
-      <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiManager.h">
+    <ClInclude Include="Drawable\ColorPalette.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\Line.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DThickLine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DSprite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DrawableObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DAnimation.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DCircle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DebugInfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DLine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DRectangle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DShape.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable\DText.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\GameManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ImGuiManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\InputManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ObjectPool.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ObjectPoolable.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\rapidcsv.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ResourceManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SceneBase.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SoundPlayer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Transform.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Button.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\DustEffect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\EffectObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MouseCursor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MusicObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\SoundObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\SpriteObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable_headers.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject_headers.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers_header.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

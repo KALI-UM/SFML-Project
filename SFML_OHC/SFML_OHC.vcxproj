@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);YAML_CPP_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.6.1\include;$(SolutionDir)yaml-cpp\include;$(SolutionDir)ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.6.1\include;$(SolutionDir)yaml-cpp\include;$(SolutionDir)ImGui;$(SolutionDir)$(ProjectName)\;$(SolutionDir)$(ProjectName)\Framework;$(SolutionDir)$(ProjectName)\Drawable;$(SolutionDir)$(ProjectName)\GameObject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -133,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);YAML_CPP_STATIC_DEFINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.6.1\include;$(SolutionDir)yaml-cpp\include;$(SolutionDir)ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.6.1\include;$(SolutionDir)yaml-cpp\include;$(SolutionDir)ImGui;$(SolutionDir)$(ProjectName)\;$(SolutionDir)$(ProjectName)\Framework;$(SolutionDir)$(ProjectName)\Drawable;$(SolutionDir)$(ProjectName)\GameObject;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -149,92 +149,95 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background_Lobby.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="ColorPalette.cpp" />
-    <ClCompile Include="DAnimation.cpp" />
-    <ClCompile Include="DCircle.cpp" />
-    <ClCompile Include="DebugInfo.cpp" />
-    <ClCompile Include="DLine.cpp" />
-    <ClCompile Include="DrawableObject.cpp" />
-    <ClCompile Include="DRectangle.cpp" />
-    <ClCompile Include="DShape.cpp" />
-    <ClCompile Include="DSprite.cpp" />
-    <ClCompile Include="DText.cpp" />
-    <ClCompile Include="DThickLine.cpp" />
-    <ClCompile Include="DustEffect.cpp" />
-    <ClCompile Include="EffectObject.cpp" />
-    <ClCompile Include="Framework.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Drawable\ColorPalette.cpp" />
+    <ClCompile Include="Drawable\DAnimation.cpp" />
+    <ClCompile Include="Drawable\DCircle.cpp" />
+    <ClCompile Include="Drawable\DebugInfo.cpp" />
+    <ClCompile Include="Drawable\DLine.cpp" />
+    <ClCompile Include="Drawable\DrawableObject.cpp" />
+    <ClCompile Include="Drawable\DRectangle.cpp" />
+    <ClCompile Include="Drawable\DShape.cpp" />
+    <ClCompile Include="Drawable\DSprite.cpp" />
+    <ClCompile Include="Drawable\DText.cpp" />
+    <ClCompile Include="Drawable\DThickLine.cpp" />
+    <ClCompile Include="Drawable\Line.cpp" />
+    <ClCompile Include="Framework\Collider.cpp" />
+    <ClCompile Include="Framework\Framework.cpp" />
+    <ClCompile Include="Framework\GameManager.cpp" />
+    <ClCompile Include="Framework\ImGuiManager.cpp" />
+    <ClCompile Include="Framework\InputManager.cpp" />
+    <ClCompile Include="Framework\SceneBase.cpp" />
+    <ClCompile Include="Framework\SceneManager.cpp" />
+    <ClCompile Include="Framework\SoundPlayer.cpp" />
+    <ClCompile Include="Framework\Transform.cpp" />
+    <ClCompile Include="Framework\Utils.cpp" />
+    <ClCompile Include="GameObject\Button.cpp" />
+    <ClCompile Include="GameObject\DustEffect.cpp" />
+    <ClCompile Include="GameObject\EffectObject.cpp" />
+    <ClCompile Include="GameObject\GameObject.cpp" />
+    <ClCompile Include="GameObject\MouseCursor.cpp" />
+    <ClCompile Include="GameObject\MusicObject.cpp" />
+    <ClCompile Include="GameObject\SoundObject.cpp" />
+    <ClCompile Include="GameObject\SpriteObject.cpp" />
     <ClCompile Include="GameStart.cpp" />
-    <ClCompile Include="ImGuiManager.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MouseCursor.cpp" />
-    <ClCompile Include="MusicObject.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SceneBase.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Loading.cpp" />
     <ClCompile Include="Scene_Lobby.cpp" />
     <ClCompile Include="Scene_Test.cpp" />
-    <ClCompile Include="SoundObject.cpp" />
-    <ClCompile Include="SoundPlayer.cpp" />
-    <ClCompile Include="SpriteObject.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileGrid.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background_Lobby.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="Collider.h" />
-    <ClInclude Include="ColorPalette.h" />
-    <ClInclude Include="DAnimation.h" />
-    <ClInclude Include="DCircle.h" />
-    <ClInclude Include="DebugInfo.h" />
-    <ClInclude Include="DLine.h" />
-    <ClInclude Include="DrawableObject.h" />
-    <ClInclude Include="DRectangle.h" />
-    <ClInclude Include="DShape.h" />
-    <ClInclude Include="DSprite.h" />
-    <ClInclude Include="DText.h" />
-    <ClInclude Include="DThickLine.h" />
-    <ClInclude Include="DustEffect.h" />
-    <ClInclude Include="EffectObject.h" />
-    <ClInclude Include="Framework.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Drawable\ColorPalette.h" />
+    <ClInclude Include="Drawable\DAnimation.h" />
+    <ClInclude Include="Drawable\DCircle.h" />
+    <ClInclude Include="Drawable\DebugInfo.h" />
+    <ClInclude Include="Drawable\DLine.h" />
+    <ClInclude Include="Drawable\DrawableObject.h" />
+    <ClInclude Include="Drawable\DRectangle.h" />
+    <ClInclude Include="Drawable\DShape.h" />
+    <ClInclude Include="Drawable\DSprite.h" />
+    <ClInclude Include="Drawable\DText.h" />
+    <ClInclude Include="Drawable\DThickLine.h" />
+    <ClInclude Include="Drawable\Line.h" />
+    <ClInclude Include="Drawable_headers.h" />
+    <ClInclude Include="Framework\Collider.h" />
+    <ClInclude Include="Framework\Framework.h" />
+    <ClInclude Include="Framework\GameManager.h" />
+    <ClInclude Include="Framework\ImGuiManager.h" />
+    <ClInclude Include="Framework\InputManager.h" />
+    <ClInclude Include="Framework\ObjectPool.h" />
+    <ClInclude Include="Framework\ObjectPoolable.h" />
+    <ClInclude Include="Framework\rapidcsv.h" />
+    <ClInclude Include="Framework\ResourceManager.h" />
+    <ClInclude Include="Framework\SceneBase.h" />
+    <ClInclude Include="Framework\SceneManager.h" />
+    <ClInclude Include="Framework\Singleton.h" />
+    <ClInclude Include="Framework\SoundPlayer.h" />
+    <ClInclude Include="Framework\Transform.h" />
+    <ClInclude Include="Framework\Utils.h" />
+    <ClInclude Include="GameObject\Button.h" />
+    <ClInclude Include="GameObject\DustEffect.h" />
+    <ClInclude Include="GameObject\EffectObject.h" />
+    <ClInclude Include="GameObject\GameObject.h" />
+    <ClInclude Include="GameObject\MouseCursor.h" />
+    <ClInclude Include="GameObject\MusicObject.h" />
+    <ClInclude Include="GameObject\SoundObject.h" />
+    <ClInclude Include="GameObject\SpriteObject.h" />
+    <ClInclude Include="GameObject_headers.h" />
     <ClInclude Include="GameStart.h" />
-    <ClInclude Include="ImGuiManager.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Line.h" />
-    <ClInclude Include="MouseCursor.h" />
-    <ClInclude Include="MusicObject.h" />
-    <ClInclude Include="ObjectPool.h" />
-    <ClInclude Include="ObjectPoolable.h" />
+    <ClInclude Include="Managers_header.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="rapidcsv.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="SceneBase.h" />
-    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Loading.h" />
     <ClInclude Include="Scene_Lobby.h" />
     <ClInclude Include="Scene_Test.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="SoundObject.h" />
-    <ClInclude Include="SoundPlayer.h" />
-    <ClInclude Include="SpriteObject.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileGrid.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

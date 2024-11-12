@@ -12,21 +12,18 @@
 #include <set>
 #include <queue>
 
-#include "yaml-cpp/yaml.h"
-#include "rapidcsv.h"
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "ColorPalette.h"
-#include "Line.h"
 
-#include "Utils.h"
-#include "Framework.h"
-#include "GameManager.h"
-#include "ResourceManager.h"
-#include "InputManager.h"
-#include "SceneManager.h"
-#include "SpriteObject.h"
+#include "Framework/Utils.h"
+#include "Framework/rapidcsv.h"
 
-// ImGui
-#include "ImGuiManager.h"
+#include "Framework/Framework.h"
+#include "Framework/Transform.h"
+
+#include "Drawable/DebugInfo.h"
+#include "Drawable_headers.h"
+#include "GameObject_headers.h"
+#include "Managers_header.h"
 
