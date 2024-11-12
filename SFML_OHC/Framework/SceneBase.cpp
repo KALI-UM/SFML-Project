@@ -96,7 +96,7 @@ void SceneBase::POSTRENDER()
 
 void SceneBase::EXIT()
 {
-	FM->SetTimeScale(1);
+	FRAMEWORK->SetTimeScale(1);
 	m_SoundPlayer->StopAllSound();
 	Exit();
 }

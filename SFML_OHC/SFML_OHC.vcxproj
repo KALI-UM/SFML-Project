@@ -188,6 +188,7 @@
     <ClCompile Include="Scene_Loading.cpp" />
     <ClCompile Include="Scene_Lobby.cpp" />
     <ClCompile Include="Scene_Test.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileGrid.cpp" />
   </ItemGroup>
@@ -236,6 +237,7 @@
     <ClInclude Include="Scene_Loading.h" />
     <ClInclude Include="Scene_Lobby.h" />
     <ClInclude Include="Scene_Test.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileGrid.h" />
   </ItemGroup>

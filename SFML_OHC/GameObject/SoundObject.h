@@ -1,13 +1,13 @@
 #pragma once
 #include "SFML/Audio.hpp"
 
-class SoundObject
+class SoundData
 {
 public:
-	SoundObject(const std::string& filepath, float volume);
-	SoundObject(const SoundObject& other);
-	SoundObject(SoundObject&& other);
-	~SoundObject();
+	SoundData(const std::string& filepath, float volume);
+	SoundData(const SoundData& other);
+	SoundData(SoundData&& other);
+	~SoundData();
 
 	void Play();
 	void Pause();
@@ -22,7 +22,7 @@ private:
 	bool			m_IsValid;
 	sf::Sound		m_Sound;
 
-	float			m_DefaultVolume;
+	float			defaultVolume;
 	float			m_SoundDuration;
 };
 

@@ -64,7 +64,7 @@ void EffectObject::Reset()
 void EffectObject::Update(float dt)
 {
 	if (!m_IsUsingDT)
-		dt = FM->GetRealDeltaTime();
+		dt = FRAMEWORK->GetRealDeltaTime();
 	m_PlayTime += dt;
 	EffectPlay(dt);
 

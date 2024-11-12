@@ -30,8 +30,7 @@ class GameManager :
 {
 public:
 	GameManager();
-	//ResourceManager<sf::Texture>* GetTextureManager() const;
-	//ResourceManager<sf::Font>* GetFontManager() const;
+
 	InputManager* GetInputManager() const;
 	SceneManager* GetSceneManager() const;
 

@@ -11,10 +11,10 @@ SoundPlayer::~SoundPlayer()
 
 bool SoundPlayer::Initialize()
 {
-	m_Effects.insert({ "sound/ButtonClick.wav", new SoundObject("sound/ButtonClick.wav", 100) });
-	m_Effects.insert({ "sound/NextScene.wav", new SoundObject("sound/NextScene.wav", 80) });
-	m_Effects.insert({ "sound/mon_die.wav", new SoundObject("sound/mon_die.wav", 50 ) });
-	m_Effects.insert({ "sound/baby_dragon_die.wav", new SoundObject("sound/baby_dragon_die.wav", 70) });
+	m_Effects.insert({ "sound/ButtonClick.wav", new SoundData("sound/ButtonClick.wav", 100) });
+	m_Effects.insert({ "sound/NextScene.wav", new SoundData("sound/NextScene.wav", 80) });
+	m_Effects.insert({ "sound/mon_die.wav", new SoundData("sound/mon_die.wav", 50 ) });
+	m_Effects.insert({ "sound/baby_dragon_die.wav", new SoundData("sound/baby_dragon_die.wav", 70) });
 
 	m_BGMs.insert({ "sound/dragon_flight.mp3", new MusicObject("sound/dragon_flight.mp3", 20) });
 	m_BGMs.insert({ "sound/my_friend_dragon.mp3", new MusicObject("sound/my_friend_dragon.mp3", 20) });
@@ -28,7 +28,7 @@ void SoundPlayer::Reset()
 
 void SoundPlayer::Update(float dt)
 {
-	dt = FM->GetRealDeltaTime();
+	dt = FRAMEWORK->GetRealDeltaTime();
 	for (auto it = m_BGMs.begin(); it != m_BGMs.end(); it++)
 	{
 		it->second->Update(dt);

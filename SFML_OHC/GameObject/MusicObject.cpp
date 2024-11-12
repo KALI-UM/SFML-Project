@@ -56,7 +56,7 @@ void MusicObject::SetLoop(bool loop)
 
 void MusicObject::Update(float dt)
 {
-	dt = FM->GetRealDeltaTime();
+	dt = FRAMEWORK->GetRealDeltaTime();
 
 	if (m_FadeInSpeed > 0)
 	{

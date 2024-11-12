@@ -39,7 +39,7 @@ public:
 	virtual void Release();
 };
 
-#define FM (Framework::GetInstance())
+#define FRAMEWORK (Framework::GetInstance())
 #define GM (GameManager::GetInstance())
 #define IM (InputManager::GetInstance())
 #define SM (SceneManager::GetInstance())

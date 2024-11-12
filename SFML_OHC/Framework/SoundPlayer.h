@@ -5,7 +5,7 @@ namespace sf
 	class Sound;
 }
 
-class SoundObject;
+class SoundData;
 class MusicObject;
 class SoundPlayer :
 	public GameObject
@@ -27,6 +27,6 @@ public:
 	void FadeOutBGM(const std::string& filepath, float duration, float endVolume = 0);
 	//void FadeInBGM(const std::string& filepath, float duration, float startVolume = 0);
 private:
-	std::unordered_map<std::string, SoundObject*> m_Effects;
+	std::unordered_map<std::string, SoundData*> m_Effects;
 	std::unordered_map<std::string, MusicObject*> m_BGMs;
 };

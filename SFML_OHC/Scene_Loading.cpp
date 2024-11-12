@@ -20,9 +20,9 @@ void Scene_Loading::Update(float dt)
 {
     if (m_StartTime < 0)
     {
-        m_StartTime = FM->GetRealTime();
+        m_StartTime = FRAMEWORK->GetRealTime();
     }
-    else if (m_StartTime + m_PauseTime > FM->GetRealTime())
+    else if (m_StartTime + m_PauseTime > FRAMEWORK->GetRealTime())
     {
 
     }
