@@ -3,7 +3,9 @@
 
 class TileGrid;
 class Tile;
-class SpriteObject;
+class MouseCursor;
+class DustEffect;
+
 class Scene_Test :
     public SceneBase
 {
@@ -20,10 +22,14 @@ protected:
 	//void LateUpdate(float dt) override;
 	//void FixedUpdate(float dt) override;
 	//void Release() override;
+
+	MouseCursor* m_Cursor;
 	TileGrid* m_TileGrid;
 	Tile* m_Tile;
 
 	sf::Vector2f tilepos;
+
+	ObjectPool<DustEffect> m_ObjectPool;
 };
 
 

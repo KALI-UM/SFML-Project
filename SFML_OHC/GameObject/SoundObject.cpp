@@ -2,7 +2,7 @@
 #include "SoundObject.h"
 
 SoundData::SoundData(const std::string& filepath, float volume)
-	:m_IsValid(false), defaultVolume(volume* GM->GetGlobalVolume()), m_SoundDuration(0)
+	:m_IsValid(false), defaultVolume(volume* GAME_MGR->GetGlobalVolume()), m_SoundDuration(0)
 {
 	sf::SoundBuffer* soundbuff = ResourceManager<sf::SoundBuffer>::GetInstance()->GetByFilepath(filepath);
 	if (soundbuff)
@@ -21,7 +21,7 @@ SoundData::SoundData(const SoundData& other)
 	{
 		SetIsValid(true);
 		m_Sound = other.m_Sound;
-		m_Sound.setVolume(defaultVolume * GM->GetGlobalVolume());
+		m_Sound.setVolume(defaultVolume * GAME_MGR->GetGlobalVolume());
 	}
 }
 

@@ -34,7 +34,7 @@ void Button::Reset()
 void Button::Update(float dt)
 {
 	m_IsOverlaying = m_ButtonArea.contains({ (float)MOUSEPOS.x,(float)MOUSEPOS.y });
-	m_IsClicked = m_IsOverlaying && IM->GetMouseDown(sf::Mouse::Left);
+	m_IsClicked = m_IsOverlaying && INPUT_MGR->GetMouseDown(sf::Mouse::Left);
 
 	if (m_IsOverlaying)
 	{

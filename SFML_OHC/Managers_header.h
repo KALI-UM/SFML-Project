@@ -4,6 +4,7 @@
 #include "Framework/GameManager.h"
 #include "Framework/InputManager.h"
 #include "Framework/ResourceManager.h"
+#include "Framework/SoundManager.h"
 #include "Framework/SceneManager.h"
 
 #include "Framework/ImGuiManager.h"

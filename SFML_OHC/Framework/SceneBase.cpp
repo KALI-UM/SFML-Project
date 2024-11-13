@@ -3,7 +3,7 @@
 #include "SoundPlayer.h"
 
 SceneBase::SceneBase(const std::string& name, unsigned int layercnt, int viewcnt)
-	:m_ViewCnt(viewcnt), m_Name(name), m_SoundPlayer(nullptr)
+	:m_ViewCnt(viewcnt), m_Name(name)
 {
 	m_GameObjects.resize(layercnt);
 	m_LayerIndex.resize(layercnt);
@@ -21,14 +21,12 @@ SceneBase::~SceneBase()
 
 bool SceneBase::INITIALIZE()
 {
-	m_SoundPlayer = AddGameObject(0, new SoundPlayer());
 	bool result = Initialize();
 	for (auto& layer : m_GameObjects)
 		for (auto& gobj : layer.gameObjects)
 		{
 			result &= gobj->INITIALIZE();
 		}
-	RESET();
 	return result;
 }
 
@@ -44,8 +42,8 @@ void SceneBase::RESET()
 
 void SceneBase::ENTER()
 {
-	ImGuiManager::SetShowDemo(false);
-	GM->ResizeViews(m_ViewCnt);
+	ImGuiManager::SetShowDemo(true);
+	GAME_MGR->ResizeViews(m_ViewCnt);
 	Enter();
 }
 
@@ -85,7 +83,7 @@ void SceneBase::IMGUIUPDATE()
 void SceneBase::PRERENDER()
 {
 	PreRender();
-	GM->UpdateViewRect();
+	GAME_MGR->UpdateViewRect();
 	PushToDrawQue();
 }
 
@@ -97,7 +95,8 @@ void SceneBase::POSTRENDER()
 void SceneBase::EXIT()
 {
 	FRAMEWORK->SetTimeScale(1);
-	m_SoundPlayer->StopAllSound();
+	SOUND_MGR->StopAllSfx();
+	SOUND_MGR->StopBgm();
 	Exit();
 }
 
@@ -161,11 +160,6 @@ std::string SceneBase::GetName() const
 	return m_Name;
 }
 
-SoundPlayer* SceneBase::GetSoundPlayer()
-{
-	return m_SoundPlayer;
-}
-
 void SceneBase::SetLayerViewIndex(int layerIndex, int viewIndex)
 {
 	m_LayerIndex[layerIndex]->viewIndex = viewIndex;
@@ -192,25 +186,34 @@ void SceneBase::PushToDrawQue()
 	{
 		for (auto& gobj : GetGameObjectsLayerIter(layerIndex))
 		{
-			if (gobj->GetIsValid())
+			if (gobj->GetIsVisible())
 			{
-				for (int i = 0; i < gobj->GetDrawbleCount(); i++)
-				{
-					if (gobj->GetIsVisible(i))
+				int viewIndex = m_LayerIndex[layerIndex]->viewIndex;
+				//if (gobj->GetIsDrawSelf())
+				//{
+				//	//게임오브젝트 내의 DrawableObject를 직접 드로우한다
+				//	//GAME_MGR->PushDrawableObject(viewIndex, gobj);
+				//	//를 하고싶음
+				//}
+				//else
+				//{
+					//게임오브젝트 내의 DrawableObject를 드로우큐에 넣는다
+					for (int i = 0; i < gobj->GetDrawbleCount(); i++)
 					{
-						DrawableObject* dobj = gobj->GetDrawable(i);
-						int viewIndex = m_LayerIndex[layerIndex]->viewIndex;
-						
-						if (GM->GetViewRect(viewIndex).intersects(dobj->GetGlobalBounds()))
+						if (gobj->GetIsVisible(i))
 						{
-							GM->PushDrawableObject(viewIndex, dobj);
+							DrawableObject* dobj = gobj->GetDrawable(i);
+							if (GAME_MGR->GetViewRect(viewIndex).intersects(dobj->GetGlobalBounds()))
+							{
+								GAME_MGR->PushDrawableObject(viewIndex, dobj);
 #ifdef _DEBUG
-							if (dobj->GetDebugDraw())
-								GM->PushDebugDrawObject(viewIndex, dobj->GetDebugDraw());
+								if (dobj->GetDebugDraw())
+									GAME_MGR->PushDebugDrawObject(viewIndex, dobj->GetDebugDraw());
 #endif // _DEBUG
+							}
 						}
 					}
-				}
+				//}
 			}
 		}
 	}

@@ -15,6 +15,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Framework/Utils.h"
 #include "Framework/rapidcsv.h"
@@ -24,6 +25,9 @@
 
 #include "Drawable/DebugInfo.h"
 #include "Drawable_headers.h"
+#include "Framework/SceneBase.h"
 #include "GameObject_headers.h"
 #include "Managers_header.h"
+
+#include "Framework/ObjectPool.h"
 

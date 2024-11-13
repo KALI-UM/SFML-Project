@@ -1,6 +1,6 @@
 #pragma once
-#include "SceneBase.h"
 
+//ObjectPoolable을 상속받은 오브젝트만 가능
 enum class ExpandOption
 {
 	MakeNew,
@@ -8,40 +8,38 @@ enum class ExpandOption
 	Nullptr,
 };
 
-
-//ObjectPoolable을 상속받은 오브젝트만 가능
 template<typename T>
 class ObjectPool
 {
 private:
-	std::list<T*> unused;
-	std::list<T*> used;
-	std::queue<T*> needToReturn;
+	std::list<T*>	unused;
+	std::list<T*>	used;
+	std::queue<T*>	needToReturn;
 
-	bool	m_AutoExpand;						//take해줄 수 없을때 오브젝트를 생성할 것인지
-	int		m_LayerIndex;
-	T*		m_Original;							//원하는 값으로 세팅된 복사원본
-	SceneBase*	m_Scene;
+	ExpandOption	m_Expand;						//take해줄 수 없을때 오브젝트를 생성할 것인지
+	int				m_LayerIndex;
+	SceneBase*		m_Scene;
 public:
 	ObjectPool()
 	{
 	}
 
-	void Initialize(SceneBase* scene, int count, bool autoExpand, int layerIndex, T* copy)
+	void Initialize(SceneBase* scene, int count, ExpandOption autoExpand, int layerIndex)
 	{
-		m_AutoExpand = autoExpand;
+		m_Scene = scene;
+		m_Expand = autoExpand;
 		m_LayerIndex = layerIndex;
-		m_Original = copy;
 		for (int i = 0; i < count; ++i)
 		{
-			auto obj = new T(*m_Original);
+			auto obj = new T();
+			obj->InitForObjectPool();
 			unused.push_back(obj);
 		}
 	}
 
 	void Reset()
 	{
-		while(!used.empty())
+		while (!used.empty())
 		{
 			auto& obj = used.front();
 			Return(obj);
@@ -70,8 +68,6 @@ public:
 		{
 			delete obj;
 		}
-
-		delete m_Original;
 	}
 
 	~ObjectPool()
@@ -82,19 +78,41 @@ public:
 	{
 		if (unused.empty())
 		{
-			if (m_AutoExpand!) return nullptr;
-			auto obj = new T(*m_Original);
-			used.push_back(obj);
-			scene->AddGameObject(layerIndex, obj);
-			return obj;
+			switch (m_Expand)
+			{
+			case ExpandOption::MakeNew:
+			{
+				auto obj = new T();
+				obj->InitForObjectPool();
+				obj->SetIsValid(true);
+				used.push_back(obj);
+				m_Scene->AddGameObject(m_LayerIndex, obj);
+				return obj;
+			}
+				break;
+			case ExpandOption::GetOldUsed:
+			{
+				auto obj = used.front();
+				used.pop_front();
+				obj->InitForObjectPool();
+				obj->SetIsValid(true);
+				used.push_back(obj);
+				return obj;
+			}
+				break;
+			case ExpandOption::Nullptr:
+			{
+				return nullptr;
+			}
+				break;
+			}		
 		}
 
 		auto obj = unused.front();
 		unused.pop_front();
 		used.push_back(obj);
-		obj->SetActive(true);
-		*obj = *m_Original;
-		scene->AddGameObject(layerIndex, obj);
+		obj->SetIsValid(true);
+		m_Scene->AddGameObject(m_LayerIndex, obj);
 		return obj;
 	}
 
@@ -107,7 +125,8 @@ public:
 			return;
 		}
 		used.erase(find);
-		obj->SetActive(false);
+		obj->InitForObjectPool();
+		obj->SetIsValid(false);
 		unused.push_back(obj);
 		m_Scene->RemoveGameObject(m_LayerIndex, obj);
 	}

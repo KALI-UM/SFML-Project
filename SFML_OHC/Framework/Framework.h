@@ -40,6 +40,7 @@ public:
 };
 
 #define FRAMEWORK (Framework::GetInstance())
-#define GM (GameManager::GetInstance())
-#define IM (InputManager::GetInstance())
-#define SM (SceneManager::GetInstance())
+#define GAME_MGR (GameManager::GetInstance())
+#define INPUT_MGR (InputManager::GetInstance())
+#define SCENE_MGR (SceneManager::GetInstance())
+#define SOUND_MGR (SoundManager::GetInstance())

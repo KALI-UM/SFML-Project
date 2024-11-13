@@ -33,7 +33,7 @@ private:
 	void SetRawToVertex(sf::Vector2f points[], int size);
 
 private:
-	Line	m_ThickLine;
+	sfLine	m_ThickLine;
 	std::vector<sf::Vector2f> m_RawVertices;
 	float	m_Thickness;
 	float	m_HalfThickness;

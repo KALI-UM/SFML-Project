@@ -4,6 +4,9 @@ class DustEffect :
     public EffectObject
 {
 public:
+	void InitForObjectPool();
+
+public:
 	DustEffect();
 	~DustEffect();
 

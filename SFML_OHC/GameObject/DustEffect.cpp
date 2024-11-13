@@ -1,6 +1,12 @@
 #include "pch.h"
 #include "DustEffect.h"
 
+void DustEffect::InitForObjectPool()
+{
+	this->INITIALIZE();
+	this->RESET();
+}
+
 DustEffect::DustEffect()
 	:EffectObject(5, new DSprite())
 {
@@ -13,7 +19,7 @@ DustEffect::~DustEffect()
 bool DustEffect::Initialize()
 {
 	bool result = EffectObject::Initialize();
-	
+
 	DSprite* sprite;
 	for (auto& particle : m_Particles)
 	{

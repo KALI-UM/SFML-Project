@@ -27,10 +27,10 @@ bool Background_Lobby::Initialize()
 void Background_Lobby::Reset()
 {
 	m_Logo->SetOriginCenter();
-	m_Logo->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 4);
+	m_Logo->setPosition(GAME_MGR->GetWindow()->getSize().x / 2, GAME_MGR->GetWindow()->getSize().y / 4);
 	m_LobbyCharacter->setScale(0.5f, 0.5f);
 	m_LobbyCharacter->SetOriginCenter();
-	m_LobbyCharacter->setPosition(GM->GetWindow()->getSize().x / 2, GM->GetWindow()->getSize().y / 2);
+	m_LobbyCharacter->setPosition(GAME_MGR->GetWindow()->getSize().x / 2, GAME_MGR->GetWindow()->getSize().y / 2);
 	sf::Vector2f v1 = m_LobbyCharacter->getOrigin();
 	sf::Vector2f v2 = m_LobbyCharacter->getPosition();
 	m_FadeOutSpeed = -1;
@@ -53,7 +53,7 @@ void Background_Lobby::Update(float dt)
 
 		if (m_CurrvColorValue >= 255)
 		{
-			SM->ChangeScene("Play1");
+			SCENE_MGR->ChangeScene("Play1");
 		}
 	}
 }

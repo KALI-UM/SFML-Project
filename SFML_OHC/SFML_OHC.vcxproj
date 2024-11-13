@@ -160,7 +160,8 @@
     <ClCompile Include="Drawable\DSprite.cpp" />
     <ClCompile Include="Drawable\DText.cpp" />
     <ClCompile Include="Drawable\DThickLine.cpp" />
-    <ClCompile Include="Drawable\Line.cpp" />
+    <ClCompile Include="Drawable\sfLine.cpp" />
+    <ClCompile Include="DTile.cpp" />
     <ClCompile Include="Framework\Collider.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameManager.cpp" />
@@ -168,7 +169,6 @@
     <ClCompile Include="Framework\InputManager.cpp" />
     <ClCompile Include="Framework\SceneBase.cpp" />
     <ClCompile Include="Framework\SceneManager.cpp" />
-    <ClCompile Include="Framework\SoundPlayer.cpp" />
     <ClCompile Include="Framework\Transform.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
     <ClCompile Include="GameObject\Button.cpp" />
@@ -176,8 +176,6 @@
     <ClCompile Include="GameObject\EffectObject.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="GameObject\MouseCursor.cpp" />
-    <ClCompile Include="GameObject\MusicObject.cpp" />
-    <ClCompile Include="GameObject\SoundObject.cpp" />
     <ClCompile Include="GameObject\SpriteObject.cpp" />
     <ClCompile Include="GameStart.cpp" />
     <ClCompile Include="main.cpp" />
@@ -188,7 +186,7 @@
     <ClCompile Include="Scene_Loading.cpp" />
     <ClCompile Include="Scene_Lobby.cpp" />
     <ClCompile Include="Scene_Test.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Framework\SoundManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileGrid.cpp" />
   </ItemGroup>
@@ -205,8 +203,9 @@
     <ClInclude Include="Drawable\DSprite.h" />
     <ClInclude Include="Drawable\DText.h" />
     <ClInclude Include="Drawable\DThickLine.h" />
-    <ClInclude Include="Drawable\Line.h" />
+    <ClInclude Include="Drawable\sfLine.h" />
     <ClInclude Include="Drawable_headers.h" />
+    <ClInclude Include="DTile.h" />
     <ClInclude Include="Framework\Collider.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Framework\GameManager.h" />
@@ -219,7 +218,6 @@
     <ClInclude Include="Framework\SceneBase.h" />
     <ClInclude Include="Framework\SceneManager.h" />
     <ClInclude Include="Framework\Singleton.h" />
-    <ClInclude Include="Framework\SoundPlayer.h" />
     <ClInclude Include="Framework\Transform.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="GameObject\Button.h" />
@@ -227,19 +225,24 @@
     <ClInclude Include="GameObject\EffectObject.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="GameObject\MouseCursor.h" />
-    <ClInclude Include="GameObject\MusicObject.h" />
-    <ClInclude Include="GameObject\SoundObject.h" />
     <ClInclude Include="GameObject\SpriteObject.h" />
     <ClInclude Include="GameObject_headers.h" />
     <ClInclude Include="GameStart.h" />
     <ClInclude Include="Managers_header.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene_Loading.h" />
     <ClInclude Include="Scene_Lobby.h" />
     <ClInclude Include="Scene_Test.h" />
-    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Framework\SoundManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileGrid.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFML_OHC.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="toolbar1.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

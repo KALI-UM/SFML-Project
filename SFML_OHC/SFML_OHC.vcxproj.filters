@@ -57,7 +57,7 @@
     <ClCompile Include="Drawable\ColorPalette.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Drawable\Line.cpp">
+    <ClCompile Include="Drawable\sfLine.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Drawable\DThickLine.cpp">
@@ -111,9 +111,6 @@
     <ClCompile Include="Framework\SceneManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\SoundPlayer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Transform.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -135,16 +132,13 @@
     <ClCompile Include="GameObject\MouseCursor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject\MusicObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject\SoundObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject\SpriteObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
+    <ClCompile Include="Framework\SoundManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DTile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,7 +170,7 @@
     <ClInclude Include="Drawable\ColorPalette.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Drawable\Line.h">
+    <ClInclude Include="Drawable\sfLine.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Drawable\DThickLine.h">
@@ -245,9 +239,6 @@
     <ClInclude Include="Framework\Singleton.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\SoundPlayer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Transform.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -269,12 +260,6 @@
     <ClInclude Include="GameObject\MouseCursor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject\MusicObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject\SoundObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject\SpriteObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -287,8 +272,24 @@
     <ClInclude Include="Managers_header.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
+    <ClInclude Include="Framework\SoundManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DTile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFML_OHC.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="toolbar1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 class DrawableObject;
 class SceneBase;
 class DebugInfo;
-class GameObject :public Transform
+class GameObject : public Transform
 {
 public:
 	const int	m_Id;
@@ -31,7 +31,12 @@ public:
 	DrawableObject* GetDrawable(const std::string& name) const;
 	void SetDrawable(DrawableObject* dobj, bool isChild = true);
 	int GetDrawbleCount()const { return (int)m_Drawable.size(); }
+
+	//bool GetIsDrawSelf() const { return m_IsDrawSelf; }
+	//void SetIsDrawSelf(bool drawSelf) { m_IsDrawSelf = drawSelf; }
 	bool GetIsMovable() const { return m_IsMovable; }
+
+	//void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 protected:
 	virtual bool Initialize();
@@ -45,6 +50,7 @@ protected:
 	std::vector<DrawableObject*> m_Drawable;
 private:
 	bool			m_IsValid;
+	//bool			m_IsDrawSelf;
 	const bool		m_IsMovable;
 
 private:

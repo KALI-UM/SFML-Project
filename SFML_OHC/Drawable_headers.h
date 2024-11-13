@@ -2,7 +2,7 @@
 
 #include "Drawable/ColorPalette.h"
 
-#include "Drawable/Line.h"
+#include "Drawable/sfLine.h"
 
 #include "Drawable/DrawableObject.h"
 #include "Drawable/DShape.h"

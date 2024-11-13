@@ -2,7 +2,7 @@
 #include "MusicObject.h"
 
 MusicObject::MusicObject(const std::string& filepath, float volume)
-	:m_IsValid(false), m_DefaultVolume(volume* GM->GetGlobalVolume()), m_FadeInSpeed(-1), m_FadeOutSpeed(-1), m_FadeOutVolume(m_DefaultVolume)
+	:m_IsValid(false), m_DefaultVolume(volume* GAME_MGR->GetGlobalVolume()), m_FadeInSpeed(-1), m_FadeOutSpeed(-1), m_FadeOutVolume(m_DefaultVolume)
 {
 	if (m_Music.openFromFile(filepath))
 	{
@@ -95,7 +95,7 @@ bool MusicObject::GetIsPlaying() const
 
 void MusicObject::SetFadeInSpeed(float duration, float start)
 {
-	start *= GM->GetGlobalVolume();
+	start *= GAME_MGR->GetGlobalVolume();
 	if (m_FadeInSpeed > 0 || start > m_DefaultVolume)return;
 	if (m_MusicDuration < duration)
 		duration = m_MusicDuration;
@@ -104,7 +104,7 @@ void MusicObject::SetFadeInSpeed(float duration, float start)
 
 void MusicObject::SetFadeOutSpeed(float duration, float end)
 {
-	end *= GM->GetGlobalVolume();
+	end *= GAME_MGR->GetGlobalVolume();
 	if (m_FadeOutSpeed > 0 || end > m_DefaultVolume)return;
 	if (m_MusicDuration < duration)
 		duration = m_MusicDuration;

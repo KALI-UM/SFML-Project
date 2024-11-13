@@ -31,9 +31,6 @@ class GameManager :
 public:
 	GameManager();
 
-	InputManager* GetInputManager() const;
-	SceneManager* GetSceneManager() const;
-
 	bool Initialize(sf::RenderWindow* window);
 	void UpdateEvent(const sf::Event& ev);
 	void Update(float dt);
@@ -64,17 +61,12 @@ public:
 	void PushDebugDrawObject(int viewindex, DebugInfo* dobj);
 
 	const GameMode& GetGameMode()const;
-	float GetGlobalVolume()const;
-	void SetGlobalVolume(float volume);
+
 
 private:
-	sf::RenderWindow* m_MainWindow;
-
-	InputManager* const						m_InputManager;
-	SceneManager* const						m_SceneManager;
+	sf::RenderWindow*						m_MainWindow;
 
 	GameMode								m_GameMode;
-	float									m_Volume;
 
 
 	struct ViewDrawInfo

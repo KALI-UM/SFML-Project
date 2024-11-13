@@ -1,13 +1,13 @@
 #pragma once
 #include "SFML/Audio.hpp"
 
-class SoundData
+class SoundObject
 {
 public:
-	SoundData(const std::string& filepath, float volume);
-	SoundData(const SoundData& other);
-	SoundData(SoundData&& other);
-	~SoundData();
+	SoundObject(const std::string& filepath, float volume);
+	SoundObject(const SoundObject& other);
+	SoundObject(SoundObject&& other);
+	~SoundObject();
 
 	void Play();
 	void Pause();

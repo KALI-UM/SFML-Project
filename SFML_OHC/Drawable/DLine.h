@@ -29,6 +29,6 @@ public:
 	void SetOutlineColor(int r, int g, int b, int a = 255);
 
 private:
-	Line	m_Line;
+	sfLine	m_Line;
 };
 

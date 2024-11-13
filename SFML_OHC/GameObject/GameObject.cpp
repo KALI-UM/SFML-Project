@@ -19,7 +19,7 @@ GameObject::GameObject(const GameObject& other)
 }
 
 GameObject::GameObject(GameObject&& other)noexcept
-	:m_Id(other.m_Id), m_IsValid(other.m_IsValid), m_Drawable(other.m_Drawable),m_IsMovable(other.m_IsMovable)
+	:m_Id(other.m_Id), m_IsValid(other.m_IsValid), m_Drawable(other.m_Drawable), m_IsMovable(other.m_IsMovable)
 {
 	//¹Ì¿Ï
 	Transform::Init(other, nullptr);
@@ -35,7 +35,6 @@ GameObject::~GameObject()
 bool GameObject::INITIALIZE()
 {
 	bool result = Initialize();
-	RESET();
 	return result;
 }
 
@@ -84,6 +83,14 @@ void GameObject::RELEASE()
 	}
 }
 
+//void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
+//{
+//	states.transform *= getTransform(); // getTransform() is defined by sf::Transformable
+//
+//	for (auto& dobj : m_Drawable)
+//		target.draw(*dobj->GetDrawable(), states);
+//}
+
 bool GameObject::Initialize()
 {
 	return true;
@@ -125,7 +132,7 @@ bool GameObject::GetIsValid() const
 
 bool GameObject::GetIsVisible() const
 {
-	return GetIsValid() && GetDrawbleCount()!=0;
+	return GetIsValid() && GetDrawbleCount() != 0;
 }
 
 bool GameObject::GetIsVisible(size_t index) const
@@ -150,7 +157,7 @@ DrawableObject* GameObject::GetDrawable(const std::string& name) const
 	return nullptr;
 }
 
-void GameObject::SetDrawable(DrawableObject* dobj, bool isChild )
+void GameObject::SetDrawable(DrawableObject* dobj, bool isChild)
 {
 	if (isChild)
 		SetChild(dobj);

@@ -21,7 +21,6 @@ void SceneManager::Update(float dt)
 	{
 		m_CurrScene->EXIT();
 		SetCurrentScene(m_WantsTo);
-		m_CurrSoundPlayer = m_CurrScene->GetSoundPlayer();
 		m_WantsTo = nullptr;
 		m_CurrScene->ENTER();
 		m_CurrScene->RESET();
@@ -74,7 +73,6 @@ void SceneManager::SetCurrentScene(const std::string& name)
 {
 	m_CurrSceneName = name;
 	m_CurrScene = m_Scenes[m_CurrSceneName];
-	m_CurrSoundPlayer = m_CurrScene->GetSoundPlayer();
 }
 
 SceneBase* SceneManager::GetCurrentScene()
@@ -97,14 +95,8 @@ void SceneManager::PushScene(SceneBase* scene)
 	m_Scenes.insert({ scene->GetName(), scene });
 }
 
-SoundPlayer* SceneManager::GetSoundPlayer()
-{
-	return m_CurrSoundPlayer;
-}
-
 void SceneManager::SetCurrentScene(SceneBase* scene)
 {
 	m_CurrSceneName = scene->GetName();
 	m_CurrScene = scene;
-	m_CurrSoundPlayer = m_CurrScene->GetSoundPlayer();
 }

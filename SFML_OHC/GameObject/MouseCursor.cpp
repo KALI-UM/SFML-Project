@@ -26,21 +26,21 @@ void MouseCursor::Reset()
 
 void MouseCursor::Update(float dt)
 {
-	setPosition(IM->GetMouseViewPos(m_ViewIndex));
+	setPosition(INPUT_MGR->GetMouseViewPos(m_ViewIndex));
 
 	for (int mbtt = 0; mbtt < (int)sf::Mouse::ButtonCount; mbtt++)
 	{
-		if (IM->GetMouseDown((sf::Mouse::Button)mbtt) && m_WhenDownFunc[mbtt])
+		if (INPUT_MGR->GetMouseDown((sf::Mouse::Button)mbtt) && m_WhenDownFunc[mbtt])
 		{
 			m_WhenDownFunc[mbtt]();
 		}
 
-		if (IM->GetMouseUp((sf::Mouse::Button)mbtt) && m_WhenUpFunc[mbtt])
+		if (INPUT_MGR->GetMouseUp((sf::Mouse::Button)mbtt) && m_WhenUpFunc[mbtt])
 		{
 			m_WhenUpFunc[mbtt]();
 		}
 
-		if (IM->GetMouse((sf::Mouse::Button)mbtt) && m_WhenFunc[mbtt])
+		if (INPUT_MGR->GetMouse((sf::Mouse::Button)mbtt) && m_WhenFunc[mbtt])
 		{
 			m_WhenFunc[mbtt]();
 		}

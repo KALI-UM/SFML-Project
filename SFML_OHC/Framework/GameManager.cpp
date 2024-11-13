@@ -1,32 +1,9 @@
 #include "pch.h"
+#include "Scene_Test.h"
 
 GameManager::GameManager()
-	:m_MainWindow(nullptr),
-	//m_RTextureManager(ResourceManager<sf::Texture>::GetInstance()),
-	//m_RFontManager(ResourceManager<sf::Font>::GetInstance()),
-	m_InputManager(InputManager::GetInstance()),
-	m_SceneManager(SceneManager::GetInstance())
+	:m_MainWindow(nullptr)
 {
-}
-
-//ResourceManager<sf::Texture>* GameManager::GetTextureManager() const
-//{
-//	return m_RTextureManager;
-//}
-//
-//ResourceManager<sf::Font>* GameManager::GetFontManager() const
-//{
-//	return m_RFontManager;
-//}
-
-InputManager* GameManager::GetInputManager() const
-{
-	return m_InputManager;
-}
-
-SceneManager* GameManager::GetSceneManager() const
-{
-	return m_SceneManager;
 }
 
 bool GameManager::Initialize(sf::RenderWindow* window)
@@ -34,39 +11,35 @@ bool GameManager::Initialize(sf::RenderWindow* window)
 	m_MainWindow = window;
 	bool success = true;
 	//m_MainWindow->setMouseCursorVisible(false);
-	success &= GetInputManager()->Initialize();
-	success &= GetSceneManager()->Initialize();
+	success &= SCENE_MGR->Initialize();
 
-	m_Volume = 0.8f;
-
-	/*Scene_Test* lobby = new Scene_Test();
-	SM->PushScene(lobby);
-	SM->SetCurrentScene(lobby->GetName());
-	lobby->ENTER();*/
+	Scene_Test* lobby = new Scene_Test();
+	SCENE_MGR->PushScene(lobby);
+	SCENE_MGR->SetCurrentScene(lobby->GetName());
+	lobby->RESET();
+	lobby->ENTER();
 	return success;
 }
 
 void GameManager::UpdateEvent(const sf::Event& ev)
 {
-	GetInputManager()->UpdateEvent(ev);
 }
 
 void GameManager::Update(float dt)
 {
-	if (IM->GetKeyDown(sf::Keyboard::F1))
+	if (INPUT_MGR->GetKeyDown(sf::Keyboard::F1))
 	{
 		std::cout << "Play Mode - Debug\n";
 		m_GameMode = GameMode::Debug;
 	}
-	if (IM->GetKeyDown(sf::Keyboard::F2))
+	if (INPUT_MGR->GetKeyDown(sf::Keyboard::F2))
 	{
 		std::cout << "Play Mode - Normal\n";
 		m_GameMode = GameMode::Normal;
 	}
 
-	GetInputManager()->Update(dt);
-	GetSceneManager()->Update(dt);
-	GetSceneManager()->PreRender();
+	SCENE_MGR->Update(dt);
+	SCENE_MGR->PreRender();
 }
 
 void GameManager::Render()
@@ -92,22 +65,22 @@ void GameManager::Render()
 #endif // _DEBUG
 	}
 	m_MainWindow->setView(defaultView);
-	GetSceneManager()->PostRender();
+	SCENE_MGR->PostRender();
 }
 
 void GameManager::LateUpdate(float dt)
 {
-	GetSceneManager()->LateUpdate(dt);
+	SCENE_MGR->LateUpdate(dt);
 }
 
 void GameManager::FixedUpdate(float dt)
 {
-	GetSceneManager()->FixedUpdate(dt);
+	SCENE_MGR->FixedUpdate(dt);
 }
 
 void GameManager::ImGuiUpdate()
 {
-	GetSceneManager()->ImGuiUpdate();
+	SCENE_MGR->ImGuiUpdate();
 }
 
 sf::RenderWindow* GameManager::GetWindow()
@@ -214,16 +187,6 @@ void GameManager::PushDebugDrawObject(int viewindex, DebugInfo* dobj)
 const GameMode& GameManager::GetGameMode() const
 {
 	return m_GameMode;
-}
-
-float GameManager::GetGlobalVolume() const
-{
-	return m_Volume;
-}
-
-void GameManager::SetGlobalVolume(float volume)
-{
-	m_Volume = volume;
 }
 
 bool PriorityComp::operator()(DrawableObject*& lhs, DrawableObject*& rhs)

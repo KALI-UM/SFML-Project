@@ -71,4 +71,4 @@ private:
 	std::vector<AxisInfo>							m_Axis;
 };
 
-#define MOUSEPOS (IM->GetMouseDefaultViewPos())
+#define MOUSEPOS (INPUT_MGR->GetMouseDefaultViewPos())

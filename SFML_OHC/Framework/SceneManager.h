@@ -21,7 +21,6 @@ public:
 	SceneBase* GetCurrentScene();
 	bool ChangeScene(const std::string& name);
 	void PushScene(SceneBase* scene);
-	SoundPlayer* GetSoundPlayer();
 private:
 	void SetCurrentScene(SceneBase* scene);
 
