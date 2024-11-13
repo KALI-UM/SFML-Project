@@ -101,11 +101,16 @@ const sf::FloatRect& GameManager::GetViewRect(int index)
 void GameManager::ResizeViews(unsigned int cnt)
 {
 	m_Views.resize(cnt);
-	m_Views[0].view.reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
+	m_Views[0].view.reset(sf::FloatRect(0, 0, (float)m_MainWindow->getSize().x, (float)m_MainWindow->getSize().y));
 #ifdef _DEBUG
 	m_DebugViews.resize(cnt);
-	m_DebugViews[0].view.reset(sf::FloatRect(0, 0, m_MainWindow->getSize().x, m_MainWindow->getSize().y));
+	m_DebugViews[0].view.reset(sf::FloatRect(0, 0, (float)m_MainWindow->getSize().x, (float)m_MainWindow->getSize().y));
 #endif // _DEBUG
+}
+
+int GameManager::GetViewCount()const
+{
+	return (int)m_Views.size();
 }
 
 sf::Vector2f GameManager::GetScreenToViewPos(int index, const sf::Vector2i& screenPos)

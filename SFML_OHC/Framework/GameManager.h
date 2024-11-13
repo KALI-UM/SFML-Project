@@ -44,7 +44,7 @@ public:
 	const sf::FloatRect& GetViewRect(int index);
 
 	void ResizeViews(unsigned int cnt);
-	int GetViewCount()const { (int)m_Views.size(); }
+	int GetViewCount()const;
 
 	sf::Vector2f GetScreenToViewPos(int index, const sf::Vector2i& screenPos);
 	sf::Vector2i GetViewToScreenPos(int index, const sf::Vector2f& viewPos);

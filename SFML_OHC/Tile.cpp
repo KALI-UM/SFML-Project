@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Tile.h"
+#include "DTile.h"
 
 Tile::Tile()
 {
@@ -11,15 +12,16 @@ Tile::~Tile()
 
 bool Tile::Initialize()
 {
-	m_TextureId.push_back("tiles/1001.png");
-	m_TextureId.push_back("tiles/1221.png");
+	m_TextureId.push_back("background/001.png");
+	m_TextureId.push_back("tiles/1002.png");
 
 	rapidcsv::Document doc("file/tiletest.csv", rapidcsv::LabelParams(-1, -1));
 	for (int j = 0; j < 100; j++)
 	{
 		for (int i = 0; i < 100; i++)
 		{
-			DSprite* tileSprite = new DSprite(m_TextureId[doc.GetCell<int>(i, j)]);
+			DTile* tileSprite = new DTile(m_TextureId[doc.GetCell<int>(i, j)]);
+			tileSprite->SetLot({ 1, 1 });
 			tileSprite->SetDebugDraw(false);
 			tileSprite->SetOrigin(OriginType::BC);
 			tileSprite->setLocalPosition({ (i)*m_CellSize.x, (j + 1) * m_CellSize.y });
