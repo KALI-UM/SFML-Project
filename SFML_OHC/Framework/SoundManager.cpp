@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "SoundManager.h"
 
+
 SoundManager::SoundManager()
 {
 }
 
 void SoundManager::Initialize(int totalChannels)
 {
+	//UINT numOutputDevices = waveOutGetNumDevs();
 	m_Listener.setGlobalVolume(m_GlobalVolume);
 	for (int i = 0; i < totalChannels; ++i)
 	{
@@ -16,6 +18,8 @@ void SoundManager::Initialize(int totalChannels)
 
 void SoundManager::Release()
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	for (auto sound : m_WaitingSfx)
 	{
 		delete sound;
@@ -30,6 +34,8 @@ void SoundManager::Release()
 
 void SoundManager::Update(float dt)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	auto it = m_PlayingSfx.begin();
 	while (it != m_PlayingSfx.end())
 	{
@@ -74,12 +80,16 @@ void SoundManager::Update(float dt)
 
 void SoundManager::SetGlobalVolume(float volume)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	m_GlobalVolume = volume;
 	m_Listener.setGlobalVolume(volume);
 }
 
 void SoundManager::PlayBgm(std::string id, bool loop, bool fadeIn, float fadeTime, float startvolume)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	PlayBgm(*ResourceManager<sf::SoundBuffer>::GetInstance()->GetByFilepath(id),
 		loop,
 		fadeIn,
@@ -89,6 +99,8 @@ void SoundManager::PlayBgm(std::string id, bool loop, bool fadeIn, float fadeTim
 
 void SoundManager::PlayBgm(sf::SoundBuffer& buffer, bool loop, bool fadeIn, float fadeTime, float startvolume)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	m_Bgm.stop();
 	m_BgmData.duration = buffer.getDuration().asSeconds();
 
@@ -109,6 +121,8 @@ void SoundManager::PlayBgm(sf::SoundBuffer& buffer, bool loop, bool fadeIn, floa
 
 void SoundManager::StopBgm(bool fadeOut, float fadeTime, float endvolume)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	if (fadeOut)
 	{
 		if (SetFadeOutSpeed(m_BgmData, fadeTime, endvolume)) return;
@@ -118,11 +132,15 @@ void SoundManager::StopBgm(bool fadeOut, float fadeTime, float endvolume)
 
 void SoundManager::PlaySfx(std::string id, bool loop)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	PlaySfx(*ResourceManager<sf::SoundBuffer>::GetInstance()->GetByFilepath(id), loop);
 }
 
 void SoundManager::PlaySfx(sf::SoundBuffer& buffer, bool loop)
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	//nullcheck ÇÊ¿äÇÔ
 	sf::Sound* sound = nullptr;
 	if (m_WaitingSfx.empty())
@@ -146,6 +164,8 @@ void SoundManager::PlaySfx(sf::SoundBuffer& buffer, bool loop)
 
 void SoundManager::StopAllSfx()
 {
+	if (!m_IsSoundDeviceValid)return;
+
 	for (auto sound : m_PlayingSfx)
 	{
 		sound->stop();

@@ -39,7 +39,7 @@ void Tile::Update(float dt)
 {
 	sf::Vector2f tilepos = m_TileTransform.getInverse().transformPoint(INPUT_MGR->GetMouseViewPos(0));
 	sf::Vector2i tileindex = sf::Vector2i(tilepos.x / m_CellSize.x, tilepos.y / m_CellSize.y);
-	std::cout << tileindex.x << ", " << tileindex.y << std::endl;
+	//std::cout << tileindex.x << ", " << tileindex.y << std::endl;
 	if (INPUT_MGR->GetMouseDown(sf::Mouse::Left))
 	{
 		if (tileindex.x >= 0 && tileindex.x < 100 || tileindex.y >= 0 || tileindex.y < 100)
