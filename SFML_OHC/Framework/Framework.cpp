@@ -73,6 +73,7 @@ void Framework::Do()
 
 void Framework::Release()
 {
+	GAME_MGR->Release();
 	SOUND_MGR->Release();
 	ImGuiManager::Release();
 }

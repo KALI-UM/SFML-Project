@@ -18,8 +18,9 @@ public:
 
 	void SetCursorViewIndex(int index) { m_ViewIndex = index; }
 
-private:
+protected:
 	std::string m_TextureId;
+	DSprite* m_CursorSprite;
 
 	int m_ViewIndex = 0;
 	std::vector<std::function<void()>> m_WhenDownFunc;

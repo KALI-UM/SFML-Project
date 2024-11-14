@@ -1,16 +1,23 @@
 #pragma once
 
+class SimCityCursor;
 class TileGrid;
 class Tile;
-class MouseCursor;
-class DustEffect;
 
-class Scene_Test :
+struct InGameInfo
+{
+	int rotation;		//0,1,2,3,
+	int currSelect;		//-1 none
+
+};
+
+
+class Scene_SimCityInGame :
     public SceneBase
 {
 public:
-    Scene_Test();
-    ~Scene_Test();
+	Scene_SimCityInGame();
+	~Scene_SimCityInGame();
 
 
 protected:
@@ -22,15 +29,13 @@ protected:
 	//void FixedUpdate(float dt) override;
 	//void Release() override;
 
-	MouseCursor* m_Cursor;
-	TileGrid* m_TileGrid;
-	Tile* m_Tile;
 
-	sf::Vector2f tilepos;
 
-	ObjectPool<DustEffect> m_ObjectPool;
+
+	SimCityCursor*		m_Cursor;
+	TileGrid*			m_TileGrid;
+	Tile*				m_Tile;
+
+	sf::Vector2f		m_TilePosition;
 };
-
-
-
 

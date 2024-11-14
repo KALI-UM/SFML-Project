@@ -2,10 +2,6 @@
 #include "SoundManager.h"
 
 
-SoundManager::SoundManager()
-{
-}
-
 void SoundManager::Initialize(int totalChannels)
 {
 	//UINT numOutputDevices = waveOutGetNumDevs();

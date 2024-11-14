@@ -1,5 +1,12 @@
 #pragma once
 
+enum class TileShapeType
+{
+	Convex,
+	Diamond,
+	Rectangle,
+};
+
 class sfTile :public sf::Drawable, public sf::Transformable
 {
 public:
@@ -8,7 +15,7 @@ public:
 	sf::VertexArray m_Vertices;
 	sf::Color m_Color;
 	const sf::Texture* m_Texture;
-	sf::Vector2u m_Lot;		//NxM 타일
+	sf::Vector2u m_LotSize;		//NxM 타일
 
 	void setTexture(const sf::Texture& tex);
 	void setColor(const sf::Color& color);
@@ -23,6 +30,8 @@ private:
 class DTile :
     public DrawableObject
 {
+protected:
+	static std::vector<sf::VertexArray> m_TileShapes;
 public:
 	DTile(sf::Texture* tex);
 	DTile(const std::string& filepath);
@@ -34,7 +43,7 @@ public:
 
 
 	void SetLot(const sf::Vector2u& lot);
-	void SetTexture(sf::Texture* tex, const sf::Vector2u& lot);
+	void SetTexture(sf::Texture* tex, const sf::Vector2u& lot, TileShapeType type=TileShapeType::Convex);
 
 	sf::FloatRect GetGlobalBounds()const;
 	sf::FloatRect GetLocalBounds()const;
@@ -48,7 +57,8 @@ public:
 	void SetOutlineColor(const sf::Color& color);
 	void SetOutlineColor(int r, int g, int b, int a = 255);
 private:
-	float		m_Unit = 64;
-	sfTile		m_Tile;
+	float			m_Unit = 64;
+	TileShapeType	m_ShapeType;
+	sfTile			m_Tile;
 };
 

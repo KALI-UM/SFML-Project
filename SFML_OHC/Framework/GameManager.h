@@ -32,6 +32,8 @@ public:
 	GameManager();
 
 	bool Initialize(sf::RenderWindow* window);
+	void Release();
+
 	void UpdateEvent(const sf::Event& ev);
 	void Update(float dt);
 	void Render();

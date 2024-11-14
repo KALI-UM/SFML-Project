@@ -1,4 +1,24 @@
 #pragma once
+
+enum class TileType
+{
+	Terrain,
+	Building,
+	Zone,
+	Road,
+	Rail,
+	Highway,
+	Underground,
+	Other,
+};
+
+struct TileInfo
+{
+	TileType type;
+	std::string name;
+	std::string filepath;
+};
+
 class Tile :
 	public GameObject
 {
@@ -16,11 +36,13 @@ public:
 	void SetCellSize(const sf::Vector2f& cell) { m_CellSize = cell; }
 
 protected:
-	std::vector<std::vector<int>> m_TileInfo;
-	std::vector<std::string> m_TextureId;
+	std::vector<std::vector<TileInfo>> m_TileInfos;
 
 	sf::Vector2f m_CellSize = { 100.f,100.f };
+	sf::Vector2u m_CellCount = { 100,100 };
 	sf::Transform m_TileTransform;
 
+
+	std::string GetTypeToString(TileType type) const;
 };
 

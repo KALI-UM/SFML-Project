@@ -26,7 +26,7 @@ bool Scene_Test::Initialize()
 	m_TileGrid = AddGameObject(1, new TileGrid());
 	m_TileGrid->SetCellSize({ 45,45 });
 	m_ObjectPool.Initialize(this, 10, ExpandOption::MakeNew, 2);
-	return false;
+	return true;
 }
 
 void Scene_Test::Enter()

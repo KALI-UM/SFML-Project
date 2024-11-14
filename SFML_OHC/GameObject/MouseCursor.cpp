@@ -16,12 +16,14 @@ bool MouseCursor::Initialize()
 	m_WhenUpFunc.resize(sf::Mouse::ButtonCount);
 	m_WhenFunc.resize(sf::Mouse::ButtonCount);
 
-	SetDrawable(new DSprite(m_TextureId));
+	m_CursorSprite = new DSprite(m_TextureId);
+	SetDrawable(m_CursorSprite);
 	return true;
 }
 
 void MouseCursor::Reset()
 {
+	m_CursorSprite->SetTexture(m_TextureId);
 }
 
 void MouseCursor::Update(float dt)

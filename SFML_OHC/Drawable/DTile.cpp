@@ -108,9 +108,9 @@ DTile::~DTile()
 
 void DTile::SetLot(const sf::Vector2u& lot)
 {
-	if (m_Tile.m_Lot == lot)return;
-	m_Tile.m_Lot = lot;
-	auto lot_float = m_Tile.m_Lot.To<float>();
+	if (m_Tile.m_LotSize == lot)return;
+	m_Tile.m_LotSize = lot;
+	auto lot_float = m_Tile.m_LotSize.To<float>();
 	m_Tile.m_Vertices[0].position = { lot_float.x ,0 };
 	m_Tile.m_Vertices[1].position = { 0,0 };
 	m_Tile.m_Vertices[2].position = { lot_float.x , lot_float.y - lot_float.x * 0.25f };
@@ -125,7 +125,7 @@ void DTile::SetLot(const sf::Vector2u& lot)
 	}
 }
 
-void DTile::SetTexture(sf::Texture* tex, const sf::Vector2u& lot)
+void DTile::SetTexture(sf::Texture* tex, const sf::Vector2u& lot, TileShapeType type)
 {
 	if (tex)
 	{

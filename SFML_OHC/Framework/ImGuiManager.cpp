@@ -59,6 +59,7 @@ void ImGuiManager::Begin(const sf::Time& dt)
 	{
 		ImGuiManager::ShowDemo();
 	}
+
 }
 
 bool ImGuiManager::IsFocusedWindow()
@@ -113,7 +114,6 @@ void ImGuiManager::End()
 void ImGuiManager::ShowDemo()
 {
 	bool show_demo_window = true;
-	bool show_another_window = true;
 	// ImGui::ShowDemoWindow(&show_demo_window);
 	static float f = 0.0f;
 	static int counter = 0;
@@ -123,12 +123,7 @@ void ImGuiManager::ShowDemo()
 	bool blockInput = true; 
 
 	ImGui::Begin("Hello, world!");
-	ImGui::Text("This is some useful text.");               
-	ImGui::Checkbox("Demo Window", &show_demo_window);    
-	ImGui::Checkbox("Another Window", &show_another_window);
-
 	ImGui::SliderFloat("float", &f, 0.0f, 1.0f);         
-
 	if (ImGui::Button("Button"))                          
 		counter++;
 	ImGui::SameLine();
@@ -137,9 +132,26 @@ void ImGuiManager::ShowDemo()
 	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
 	ImGui::End();
 
-	ImGui::Begin("Another Window", &show_another_window);   
-	ImGui::Text("Hello from another window!");
-	if (ImGui::Button("Close Me"))
-		show_another_window = false;
+	ShowTileMenu();
+}
+
+void ImGuiManager::ShowTileMenu()
+{
+	static std::string curr;
+	ImGui::Begin("Tile Menu");
+	std::string forCurrTile = "Current Tile : " + curr;
+	ImGui::Text(forCurrTile.c_str());
+	/*ImGui::Image()*/
+
+	if (ImGui::Button("Road"))
+	{
+		curr = "Road";
+	}
+	if (ImGui::Button("Zone"))
+	{
+		curr = "Zone";
+	}
+
+	//if(ImGui::ImageButton())
 	ImGui::End();
 }

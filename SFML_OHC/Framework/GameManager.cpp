@@ -11,6 +11,7 @@ bool GameManager::Initialize(sf::RenderWindow* window)
 	m_MainWindow = window;
 	bool success = true;
 	//m_MainWindow->setMouseCursorVisible(false);
+	success &= DATATABLE_MGR->Initialize();
 	success &= SCENE_MGR->Initialize();
 
 	Scene_Test* lobby = new Scene_Test();
@@ -19,6 +20,12 @@ bool GameManager::Initialize(sf::RenderWindow* window)
 	lobby->RESET();
 	lobby->ENTER();
 	return success;
+}
+
+void GameManager::Release()
+{
+	//SCENE_MGR->Release();
+	DATATABLE_MGR->Release();
 }
 
 void GameManager::UpdateEvent(const sf::Event& ev)
