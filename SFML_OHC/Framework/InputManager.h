@@ -52,6 +52,8 @@ public:
 	bool GetMouseUp(sf::Mouse::Button btt) const;
 	bool GetMouse(sf::Mouse::Button btt) const;
 
+	sf::Vector2i GetPrevMouseDown(sf::Mouse::Button btt) const;
+
 	float GetAxis(Axis axis) const;
 	float GetAxisRaw(Axis axis) const;
 private:
@@ -69,6 +71,8 @@ private:
 	//std::bitset<sf::Mouse::ButtonCount>		m_DownMouse;
 	//std::bitset<sf::Mouse::ButtonCount>		m_UpMouse;
 	std::vector<AxisInfo>							m_Axis;
+
+	std::vector<sf::Vector2i>						m_MouseDownPosition;
 };
 
 #define MOUSEPOS (INPUT_MGR->GetMouseDefaultViewPos())

@@ -18,6 +18,8 @@ bool InputManager::Initialize()
 	m_Axis[(int)Axis::Vertical].AddKey(false, sf::Keyboard::Down);
 	m_Axis[(int)Axis::Vertical].AddKey(true, sf::Keyboard::Up);
 
+	m_MouseDownPosition.resize((int)sf::Mouse::ButtonCount);
+
 	return true;
 }
 
@@ -48,6 +50,7 @@ void InputManager::UpdateEvent(const sf::Event& ev)
 		if (!GetIsValidMouse(ev.mouseButton.button))break;
 		if (!GetMouse(ev.mouseButton.button))
 		{
+			m_MouseDownPosition[(int)ev.mouseButton.button] = GetMousePos();
 			m_DownKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
 			m_HeldKey.set(sf::Keyboard::KeyCount + ev.mouseButton.button, 1);
 		}
@@ -140,6 +143,11 @@ bool InputManager::GetMouseUp(sf::Mouse::Button btt) const
 bool InputManager::GetMouse(sf::Mouse::Button btt) const
 {
 	return m_HeldKey.test(sf::Keyboard::KeyCount + btt);
+}
+
+sf::Vector2i InputManager::GetPrevMouseDown(sf::Mouse::Button btt) const
+{
+	return m_MouseDownPosition[btt];
 }
 
 float InputManager::GetAxis(Axis axis) const

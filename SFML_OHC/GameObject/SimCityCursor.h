@@ -5,7 +5,8 @@ enum class CursorMode
 {
 	None,
 	Move,
-	Select,
+	WaitForClick,
+	NowDrag,
 };
 
 class SimCityCursor :

@@ -35,6 +35,9 @@ public:
 	void SetTileTransform(const sf::Vector2f& zero, const sf::Transform& trans);
 	void SetCellSize(const sf::Vector2f& cell) { m_CellSize = cell; }
 
+	sf::Vector2f GetTileCoordinatedPos(const sf::Vector2f& pos) const;
+	sf::Vector2i GetTileCoordinatedIndex(const sf::Vector2f& pos) const;
+
 protected:
 	std::vector<std::vector<TileInfo>> m_TileInfos;
 
@@ -44,5 +47,13 @@ protected:
 
 
 	std::string GetTypeToString(TileType type) const;
+
+
+	std::queue<DrawableObject*> m_ColorizedTile;
+	void ColorizeTile(const sf::Color& color, const sf::Vector2i& cellIndex);
+	void ResetColorizedTile();
+
+	//void GetLnieIntersectedTiles(const sf::Vector2f& start, const sf::Vector2f& end, std::queue);
+
 };
 

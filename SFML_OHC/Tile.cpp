@@ -22,10 +22,11 @@ bool Tile::Initialize()
 	{
 		for (int i = 0; i < m_CellCount.x; i++)
 		{
-			m_TileInfos[j][i].type = (TileType)doc.GetCell<int>(i * 2, j);
-			m_TileInfos[j][i].name = doc.GetCell<std::string>(i * 2 + 1, j);
-			m_TileInfos[j][i].filepath = DATATABLE_TILERES->GetTileFilePath(GetTypeToString(m_TileInfos[j][i].type), m_TileInfos[j][i].name);
-			DTile* tileSprite = new DTile(m_TileInfos[j][i].filepath);
+			auto& currTileInfo = m_TileInfos[j][i];
+			currTileInfo.type = (TileType)doc.GetCell<int>(i * 2, j);
+			currTileInfo.name = doc.GetCell<std::string>(i * 2 + 1, j);
+			currTileInfo.filepath = DATATABLE_TILERES->GetTileFilePath(GetTypeToString(currTileInfo.type), m_TileInfos[j][i].name);
+			DTile* tileSprite = new DTile(currTileInfo.filepath);
 			tileSprite->SetLot({ 1, 1 });
 			tileSprite->SetDebugDraw(false);
 			tileSprite->SetOrigin(OriginType::BC, { -1.0f,-3.0f });
@@ -42,14 +43,12 @@ void Tile::Reset()
 
 void Tile::Update(float dt)
 {
-	sf::Vector2f tilepos = m_TileTransform.getInverse().transformPoint(INPUT_MGR->GetMouseViewPos(0));
-	sf::Vector2i tileindex = sf::Vector2i(tilepos.x / m_CellSize.x, tilepos.y / m_CellSize.y);
-	//std::cout << tileindex.x << ", " << tileindex.y << std::endl;
-	if (INPUT_MGR->GetMouseDown(sf::Mouse::Left))
-	{
-		if (tileindex.x >= 0 && tileindex.x < 100 || tileindex.y >= 0 || tileindex.y < 100)
-			GetDrawable(tileindex.x + tileindex.y * 100)->SetFillColor(sf::Color::Blue);
-	}
+	ResetColorizedTile();
+
+	sf::Vector2i tileindex = GetTileCoordinatedIndex(INPUT_MGR->GetMouseViewPos(0));
+
+	if (tileindex.x >= 0 && tileindex.x < m_CellCount.x && tileindex.y >= 0 && tileindex.y < m_CellCount.y)
+		ColorizeTile(ColorPalette::Gray, tileindex);
 }
 
 void Tile::SetTileTransform(const sf::Vector2f& zero, const sf::Transform& trans)
@@ -60,6 +59,17 @@ void Tile::SetTileTransform(const sf::Vector2f& zero, const sf::Transform& trans
 	{
 		tile->setLocalPosition(m_TileTransform.transformPoint(tile->getLocalPosition()));
 	}
+}
+
+sf::Vector2f Tile::GetTileCoordinatedPos(const sf::Vector2f& pos) const
+{
+	return m_TileTransform.getInverse().transformPoint(pos);
+}
+
+sf::Vector2i Tile::GetTileCoordinatedIndex(const sf::Vector2f& pos) const
+{
+	sf::Vector2f tilepos = GetTileCoordinatedPos(pos);
+	return sf::Vector2i(tilepos.x/m_CellSize.x, tilepos.y/m_CellSize.y);
 }
 
 std::string Tile::GetTypeToString(TileType type) const
@@ -90,5 +100,22 @@ std::string Tile::GetTypeToString(TileType type) const
 	case TileType::Other:
 		return "other";
 		break;
+	}
+}
+
+void Tile::ColorizeTile(const sf::Color& color, const sf::Vector2i& cellIndex)
+{
+	auto tile = GetDrawable(cellIndex.x + cellIndex.y * m_CellCount.x);
+	tile->SetFillColor(color);
+	m_ColorizedTile.push(tile);
+}
+
+void Tile::ResetColorizedTile()
+{
+	while (!m_ColorizedTile.empty())
+	{
+		auto tile = m_ColorizedTile.front();
+		tile->SetFillColor(ColorPalette::White);
+		m_ColorizedTile.pop();
 	}
 }
